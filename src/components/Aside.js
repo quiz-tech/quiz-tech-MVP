@@ -1,7 +1,7 @@
 import React from 'react';
 
 const aside = () => {
-  return <div>aside</div>;
+  return <div>Aside</div>;
 };
 
 export default aside;
