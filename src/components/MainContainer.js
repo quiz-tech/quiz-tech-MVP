@@ -9,6 +9,6 @@ export default MainContainer;
 const Container = styled.div`
   display: flex;
   background-color: #fbf9f9;
-  height: 630px;
+  height: calc(100vh - 100px);
   width: 100%;
 `;
