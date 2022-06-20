@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Nav from './components/Nav';
-import DashBoard from './features/DashBoard/DashBoard';
+import Login from './features/Login/Login';
+import MainRouter from './features/MainRouter';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Nav />
       <Routes>
-        <Route path="/" element={<DashBoard />} />
+        <Route path="/*" element={<MainRouter />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,12 @@
-import React from 'react';
+import styled from 'styled-components';
 
-const aside = () => {
-  return <div>aside</div>;
+const Aside = () => {
+  return <SideBar>aside</SideBar>;
 };
 
-export default aside;
+export default Aside;
+
+const SideBar = styled.div`
+  background-color: #fbf9f9;
+  width: 270px;
+`;

@@ -1,7 +1,9 @@
-import React from 'react';
+import styled from 'styled-components';
 
 const DashBoard = () => {
-  return <div>DashBoard</div>;
+  return <DashboardContainer>Dashboard</DashboardContainer>;
 };
 
 export default DashBoard;
+
+const DashboardContainer = styled.div``;
