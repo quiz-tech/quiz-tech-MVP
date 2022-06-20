@@ -35,12 +35,9 @@ const Support = () => {
 export default Support;
 
 const SupportWrap = styled.div`
-  position: absolute;
-  top: 30%;
-  left: 50%;
+  margin: 70px auto 0;
   width: 500px;
   text-align: center;
-  transform: translate(-50%, -30%);
 `;
 const SupportTitle = styled.p`
   font-size: 28px;
@@ -52,6 +49,8 @@ const SupportText = styled.textarea`
   width: 478px;
   height: 200px;
   padding: 10px;
+  border: 1px solid #767676;
+  border-radius: 8px;
   resize: none;
 `;
 
