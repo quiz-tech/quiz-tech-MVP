@@ -1,8 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
+
 const Card = () => {
+  const [answer, setAnswer] = useState('');
+
+  const handleBtnAnswer = e => {
+    const { value } = e.target;
+    setAnswer(value);
+  };
   return (
     <>
       <Title>타이틀</Title>
@@ -16,27 +22,51 @@ const Card = () => {
         </QuestionDesc>
         <QuestionImage />
       </QuestionCard>
-
       <AnswerButtonWrapper>
         <RadioBtnBox>
-          <RadioBtn type="radio" />
-          <RadioBtnLabel>#1</RadioBtnLabel>
+          <RadioBtn
+            type="radio"
+            value="1"
+            checked={answer === '1'}
+            onChange={e => handleBtnAnswer(e)}
+          />
+          <RadioBtnLabel />
         </RadioBtnBox>
         <RadioBtnBox>
-          <RadioBtn type="radio" />
-          <RadioBtnLabel>#2</RadioBtnLabel>
+          <RadioBtn
+            type="radio"
+            value="2"
+            checked={answer === '2'}
+            onChange={e => handleBtnAnswer(e)}
+          />
+          <RadioBtnLabel />
         </RadioBtnBox>
         <RadioBtnBox>
-          <RadioBtn type="radio" />
-          <RadioBtnLabel>#3</RadioBtnLabel>
+          <RadioBtn
+            type="radio"
+            value="3"
+            checked={answer === '3'}
+            onChange={e => handleBtnAnswer(e)}
+          />
+          <RadioBtnLabel />
         </RadioBtnBox>
         <RadioBtnBox>
-          <RadioBtn type="radio" />
-          <RadioBtnLabel>#4</RadioBtnLabel>
+          <RadioBtn
+            type="radio"
+            value="4"
+            checked={answer === '4'}
+            onChange={e => handleBtnAnswer(e)}
+          />
+          <RadioBtnLabel />
         </RadioBtnBox>
         <RadioBtnBox>
-          <RadioBtn type="radio" />
-          <RadioBtnLabel>#5</RadioBtnLabel>
+          <RadioBtn
+            type="radio"
+            value="5"
+            checked={answer === '5'}
+            onChange={e => handleBtnAnswer(e)}
+          />
+          <RadioBtnLabel />
         </RadioBtnBox>
       </AnswerButtonWrapper>
       <NextButton>NEXT</NextButton>
@@ -79,14 +109,60 @@ const AnswerButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-top: 80px;
 `;
 
-const RadioBtnBox = styled.div``;
-
-const RadioBtn = styled.input`
-  margin-right: 28px;
+const RadioBtnBox = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 const RadioBtnLabel = styled.label`
-  color: black;
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border: 4px solid black;
+  border-radius: 50%;
+`;
+
+const RadioBtn = styled.input`
+  opacity: 0;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  cursor: pointer;
+
+  &:hover ~ ${RadioBtnLabel} {
+    &::after {
+      content: '';
+      display: block;
+      margin-left: 4px;
+      margin-top: 4px;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      background: gray;
+    }
+  }
+  ${props =>
+    props.checked &&
+    css`
+      &:checked + ${RadioBtnLabel} {
+        background: #fff;
+        border: 4px solid black;
+        &::after {
+          content: '';
+          display: block;
+          margin-left: 4px;
+          margin-top: 4px;
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
+          background: #000;
+        }
+      }
+    `}
 `;
