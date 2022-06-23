@@ -138,13 +138,12 @@ const RadioBtn = styled.input`
   &:hover ~ ${RadioBtnLabel} {
     &::after {
       content: '';
-      display: block;
-      margin-left: 4px;
-      margin-top: 4px;
+      display: flex;
+      margin: 2px;
       border-radius: 50%;
-      width: 16px;
-      height: 16px;
-      background: gray;
+      width: 12px;
+      height: 12px;
+      background: darkgray;
     }
   }
   ${props =>
@@ -156,11 +155,10 @@ const RadioBtn = styled.input`
         &::after {
           content: '';
           display: block;
-          margin-left: 4px;
-          margin-top: 4px;
+          margin: 2px;
           border-radius: 50%;
-          width: 16px;
-          height: 16px;
+          width: 12px;
+          height: 12px;
           background: #000;
         }
       }
