@@ -12,6 +12,7 @@ const Card = () => {
   return (
     <>
       <Title>타이틀</Title>
+
       <SubTitle>서브 타이틀</SubTitle>
       <QuestionCard>
         <QuestionDesc>
@@ -20,6 +21,7 @@ const Card = () => {
             다음중 버그를 찾거나 정적 분석을 할 수 있는 어플리케이션은?
           </QuestionExplanation>
         </QuestionDesc>
+        <Timer>Timer: 10:00</Timer>
         <QuestionImage />
       </QuestionCard>
       <AnswerButtonWrapper>
@@ -92,6 +94,15 @@ const QuestionIndex = styled.p`
   margin-top: 36px;
 `;
 
+const Timer = styled.p`
+  position: absolute;
+  top: 24px;
+  right: 45px;
+  font-weight: 700;
+  font-size: 33px;
+  color: #696f79;
+`;
+
 const QuestionExplanation = styled.p`
   margin-top: 36px;
   font-size: 18px;
@@ -108,7 +119,7 @@ const QuestionImage = styled.img`
 const AnswerButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 48px;
   margin-top: 80px;
 `;
 
