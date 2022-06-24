@@ -1,24 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
 
 const Card = () => {
   const [answer, setAnswer] = useState('');
+  const [questionData, setQuestionData] = useState([]);
+  const [questionIndex, setQuestionIndex] = useState(0);
 
   const handleBtnAnswer = e => {
     const { value } = e.target;
     setAnswer(value);
   };
+
+  const handleQuestionIndex = () => {
+    if (questionIndex < 9) {
+      setQuestionIndex(prev => prev + 1);
+      setAnswer('');
+    }
+  };
+
+  const handleSubmitBtn = () => {
+    if (questionIndex === 9) {
+      console.log('결과 제출');
+    }
+  };
+
+  useEffect(() => {
+    fetch('http://localhost:3000/data/cardData.json')
+      .then(res => res.json())
+      .then(res => {
+        setQuestionData(res.content);
+      });
+  }, []);
+
   return (
     <>
       <Title>타이틀</Title>
-
       <SubTitle>서브 타이틀</SubTitle>
       <QuestionCard>
         <QuestionDesc>
-          <QuestionIndex>Question 1/10</QuestionIndex>
+          <QuestionIndex>{`Question ${questionIndex + 1}/10`}</QuestionIndex>
           <QuestionExplanation>
-            다음중 버그를 찾거나 정적 분석을 할 수 있는 어플리케이션은?
+            {questionData[questionIndex]?.question}
           </QuestionExplanation>
         </QuestionDesc>
         <Timer>Timer: 10:00</Timer>
@@ -33,6 +56,9 @@ const Card = () => {
             onChange={e => handleBtnAnswer(e)}
           />
           <RadioBtnLabel />
+          <AnswerOptionText>
+            {questionData[questionIndex]?.asnwer[0].answer_content}
+          </AnswerOptionText>
         </RadioBtnBox>
         <RadioBtnBox>
           <RadioBtn
@@ -42,6 +68,9 @@ const Card = () => {
             onChange={e => handleBtnAnswer(e)}
           />
           <RadioBtnLabel />
+          <AnswerOptionText>
+            {questionData[questionIndex]?.asnwer[1].answer_content}
+          </AnswerOptionText>
         </RadioBtnBox>
         <RadioBtnBox>
           <RadioBtn
@@ -51,6 +80,9 @@ const Card = () => {
             onChange={e => handleBtnAnswer(e)}
           />
           <RadioBtnLabel />
+          <AnswerOptionText>
+            {questionData[questionIndex]?.asnwer[2].answer_content}
+          </AnswerOptionText>
         </RadioBtnBox>
         <RadioBtnBox>
           <RadioBtn
@@ -60,6 +92,9 @@ const Card = () => {
             onChange={e => handleBtnAnswer(e)}
           />
           <RadioBtnLabel />
+          <AnswerOptionText>
+            {questionData[questionIndex]?.asnwer[3].answer_content}
+          </AnswerOptionText>
         </RadioBtnBox>
         <RadioBtnBox>
           <RadioBtn
@@ -69,9 +104,19 @@ const Card = () => {
             onChange={e => handleBtnAnswer(e)}
           />
           <RadioBtnLabel />
+          <AnswerOptionText>
+            {questionData[questionIndex]?.asnwer[4].answer_content}
+          </AnswerOptionText>
         </RadioBtnBox>
       </AnswerButtonWrapper>
-      <NextButton>NEXT</NextButton>
+      <NextButton
+        onClick={() => {
+          handleQuestionIndex();
+          handleSubmitBtn();
+        }}
+      >
+        {questionIndex === 9 ? `FINISH` : `NEXT`}
+      </NextButton>
     </>
   );
 };
@@ -80,12 +125,11 @@ export default Card;
 
 const QuestionCard = styled.div`
   display: flex;
+  justify-content: space-between;
   height: 296px;
 `;
 
-const QuestionDesc = styled.div`
-  width: 50%;
-`;
+const QuestionDesc = styled.div``;
 
 const QuestionIndex = styled.p`
   font-weight: 600;
@@ -120,7 +164,6 @@ const AnswerButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;
-  margin-top: 80px;
 `;
 
 const RadioBtnBox = styled.div`
@@ -174,4 +217,11 @@ const RadioBtn = styled.input`
         }
       }
     `}
+`;
+
+const AnswerOptionText = styled.p`
+  margin-left: 32px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #696f79;
 `;
