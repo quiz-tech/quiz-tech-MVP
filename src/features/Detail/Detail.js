@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
 
@@ -52,9 +52,10 @@ const ThumbnailWrap = styled.div`
   margin-right: 50px;
   border-radius: 30px;
   background: #c9c9c9;
+  overflow: hidden;
 `;
 
-const Thumbnail = styled.image`
+const Thumbnail = styled.img`
   width: 100%;
   height: 100%;
 `;
