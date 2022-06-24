@@ -19,8 +19,8 @@ const MainRouter = () => {
           <Routes>
             <Route path="/" element={<DashBoard />} />
             <Route path="/card" element={<Card />} />
-            <Route path="/detail" element={<Detail />} />
-            <Route path="/list" element={<List />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/list/:id" element={<List />} />
             <Route path="/result" element={<Result />} />
           </Routes>
         </ContentsWrapper>
