@@ -64,6 +64,7 @@ const ThumbnailWrap = styled.div`
   margin-right: 50px;
   border-radius: 30px;
   background: #c9c9c9;
+  overflow: hidden;
 `;
 
 const Thumbnail = styled.img`
