@@ -40,12 +40,12 @@
   "CategoryData": [
     {
       "id": 1,
-      "CategoryImg": "이미지",
+      "CategoryImg": "/images/Vector.svg",
       "CategoryName": "Front-end"
     },
     {
       "id": 2,
-      "CategoryImg": "이미지",
+      "CategoryImg": "/images/Vector.svg",
       "CategoryName": "Back-end"
     }
   ]

@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ProfileData from './ProfileData';
 import { flex } from '../../styles/Mixin';
-
+import RankingPerson from './RankingPerson';
+import ProfileData from './ProfileData';
+import SelectQuiz from './SelectQuiz';
 // FIXME:맵핑되는 것만이 아닌 여러가지 데이터 받아와야한다 잊지 말기
 
 const DashBoard = () => {
   const [dataItem, setDataItem] = useState([]);
+  const [quizItem, setQuizItem] = useState([]);
   // useEffect(() => {
   //   fetch({''}, {
   //     headers: {
@@ -21,9 +22,13 @@ const DashBoard = () => {
   useEffect(() => {
     fetch('http://localhost:3000/data/dashboardData.json')
       .then(res => res.json())
-      .then(data => setDataItem(data.ProfileData));
+      .then(
+        data => setDataItem(data.ProfileData),
+        setQuizItem(data.CategoryData)
+      );
   }, []);
   console.log(dataItem);
+  console.log(quizItem);
 
   return (
     <DashboardContainer>
@@ -35,7 +40,6 @@ const DashBoard = () => {
             <ProfileNickname>노도</ProfileNickname>
           </ProfileText>
           <DataChart />
-
           <ProfileDataContainer>
             {dataItem &&
               dataItem.map((profileData, idx) => {
@@ -48,15 +52,18 @@ const DashBoard = () => {
       <Content>
         <Ranking>
           <RankingTitle>Ranking</RankingTitle>
-          {/* <RankingPerson /> 이것도 맵핑 */}
+          <RankingPerson />
           {/* <RenkingPersonView>랭킹 뷰 버튼</RenkingPersonView> */}
         </Ranking>
         <QuizCategory>
-          <QuizCategoryText>
-            <QuizCategoryTitle>Featured Category</QuizCategoryTitle>
-            {/* <QuizCategoryView>카테고리 뷰</QuizCategoryView> */}
-          </QuizCategoryText>
+          <QuizCategoryTitle>Featured Category</QuizCategoryTitle>
+          {/* <QuizCategoryView>카테고리 뷰</QuizCategoryView> */}
           {/* <QuizCategorySelect /> 이것도 맵핑 */}
+          {quizItem &&
+            quizItem.map(quizData => {
+              return <SelectQuiz key={quizData.id} {...quizData} />;
+            })}
+          {/* <SelectQuiz /> */}
         </QuizCategory>
       </Content>
     </DashboardContainer>
@@ -70,7 +77,6 @@ const DashboardContainer = styled.div`
 `;
 
 const Profile = styled.div`
-  /* ${flex('space-between', 'center')} */
   display: flex;
 `;
 
@@ -113,15 +119,22 @@ const ProfileDataContainer = styled.ul`
   display: flex;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  ${flex('center', 'center')}
+  margin-top:50px;
+`;
 
-const Ranking = styled.div``;
+const Ranking = styled.div`
+  margin-right: 40px;
+`;
 
-const RankingTitle = styled.div``;
-
-const RenkingPersonView = styled.div``;
+const RankingTitle = styled.div`
+  font-weight: 700;
+  font-size: 20px;
+  color: #696f79;
+  margin-bottom: 10px;
+`;
 
 const QuizCategory = styled.div``;
-const QuizCategoryText = styled.div``;
-const QuizCategoryTitle = styled.div``;
-const QuizCategoryView = styled.div``;
+
+const QuizCategoryTitle = styled(RankingTitle)``;
