@@ -22,10 +22,10 @@ const DashBoard = () => {
   useEffect(() => {
     fetch('http://localhost:3000/data/dashboardData.json')
       .then(res => res.json())
-      .then(
-        data => setDataItem(data.ProfileData),
-        setQuizItem(data.CategoryData)
-      );
+      .then(data => {
+        setDataItem(data.ProfileData);
+        setQuizItem(data.CategoryData);
+      });
   }, []);
   console.log(dataItem);
   console.log(quizItem);
@@ -59,10 +59,12 @@ const DashBoard = () => {
           <QuizCategoryTitle>Featured Category</QuizCategoryTitle>
           {/* <QuizCategoryView>카테고리 뷰</QuizCategoryView> */}
           {/* <QuizCategorySelect /> 이것도 맵핑 */}
-          {quizItem &&
-            quizItem.map(quizData => {
-              return <SelectQuiz key={quizData.id} {...quizData} />;
-            })}
+          <SelectQuizContainer>
+            {quizItem &&
+              quizItem.map(quizData => {
+                return <SelectQuiz key={quizData.id} {...quizData} />;
+              })}
+          </SelectQuizContainer>
           {/* <SelectQuiz /> */}
         </QuizCategory>
       </Content>
@@ -121,11 +123,11 @@ const ProfileDataContainer = styled.ul`
 
 const Content = styled.div`
   ${flex('center', 'center')}
-  margin-top:50px;
+  margin-top: 50px;
 `;
 
 const Ranking = styled.div`
-  margin-right: 40px;
+  margin-right: 50px;
 `;
 
 const RankingTitle = styled.div`
@@ -138,3 +140,10 @@ const RankingTitle = styled.div`
 const QuizCategory = styled.div``;
 
 const QuizCategoryTitle = styled(RankingTitle)``;
+
+const SelectQuizContainer = styled.div`
+  ${flex('center', 'center')}
+  width:400px;
+  height: 230px;
+  border: 1px solid gray;
+`;
