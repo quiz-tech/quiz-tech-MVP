@@ -1,12 +1,15 @@
 import styled from 'styled-components';
+import { flex } from '../../styles/Mixin';
 
-const ProfileData = () => {
+const ProfileData = ({ ...profileData }) => {
   return (
     <Data>
-      <ProfileDataImg />
+      <ProfileDataImgBase>
+        <ProfileDataImg src={profileData.dataImg} alt="프로필데이터사진" />
+      </ProfileDataImgBase>
       <ProfileDataInfo>
-        <ProfileDataTitle />
-        <ProfileDataName />
+        <ProfileDataResult>{profileData.dataResult}</ProfileDataResult>
+        <ProfileDataName>{profileData.dataName}</ProfileDataName>
       </ProfileDataInfo>
     </Data>
   );
@@ -15,10 +18,36 @@ const ProfileData = () => {
 export default ProfileData;
 
 const Data = styled.li`
-  background-color: red;
+  ${flex('space-between', 'center')}
+  height: 70px;
+  margin: 30px 25px 0 0;
 `;
 
-const ProfileDataImg = styled.div``;
-const ProfileDataInfo = styled.div``;
-const ProfileDataTitle = styled.div``;
-const ProfileDataName = styled.div``;
+const ProfileDataImgBase = styled.div`
+  ${flex('center', 'center')}
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border: 1px solid gray;
+  border-radius: 10px;
+`;
+
+const ProfileDataImg = styled.img`
+  width: 100%;
+  height: 100%;
+  /* background: url({profileData.dataImg}) no-repeat center; */
+`;
+
+const ProfileDataInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+`;
+const ProfileDataResult = styled.span`
+  font-weight: 700;
+  font-size: 25px;
+`;
+const ProfileDataName = styled.span`
+  font-size: 13px;
+  margin-top: 5px;
+`;
