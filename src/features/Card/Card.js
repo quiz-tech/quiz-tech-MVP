@@ -7,9 +7,14 @@ const Card = () => {
   const [questionData, setQuestionData] = useState([]);
   const [questionIndex, setQuestionIndex] = useState(0);
 
-  const handleBtnAnswer = e => {
-    const { value } = e.target;
-    setAnswer(value);
+  //문제 풀이에서 저장 및 통신에 필요한 데이터
+  //1.고른답
+  //2.정답 여부 - 고른답과 정답을 비교해 boolean 값으로 저장
+
+  //4.통과 여부
+
+  const handleBtnAnswer = idx => {
+    setAnswer(idx);
   };
 
   const handleQuestionIndex = () => {
@@ -48,72 +53,27 @@ const Card = () => {
         <QuestionImage />
       </QuestionCard>
       <AnswerButtonWrapper>
-        <RadioBtnBox>
-          <RadioBtn
-            type="radio"
-            value="1"
-            checked={answer === '1'}
-            onChange={e => handleBtnAnswer(e)}
-          />
-          <RadioBtnLabel />
-          <AnswerOptionText>
-            {questionData[questionIndex]?.asnwer[0].answer_content}
-          </AnswerOptionText>
-        </RadioBtnBox>
-        <RadioBtnBox>
-          <RadioBtn
-            type="radio"
-            value="2"
-            checked={answer === '2'}
-            onChange={e => handleBtnAnswer(e)}
-          />
-          <RadioBtnLabel />
-          <AnswerOptionText>
-            {questionData[questionIndex]?.asnwer[1].answer_content}
-          </AnswerOptionText>
-        </RadioBtnBox>
-        <RadioBtnBox>
-          <RadioBtn
-            type="radio"
-            value="3"
-            checked={answer === '3'}
-            onChange={e => handleBtnAnswer(e)}
-          />
-          <RadioBtnLabel />
-          <AnswerOptionText>
-            {questionData[questionIndex]?.asnwer[2].answer_content}
-          </AnswerOptionText>
-        </RadioBtnBox>
-        <RadioBtnBox>
-          <RadioBtn
-            type="radio"
-            value="4"
-            checked={answer === '4'}
-            onChange={e => handleBtnAnswer(e)}
-          />
-          <RadioBtnLabel />
-          <AnswerOptionText>
-            {questionData[questionIndex]?.asnwer[3].answer_content}
-          </AnswerOptionText>
-        </RadioBtnBox>
-        <RadioBtnBox>
-          <RadioBtn
-            type="radio"
-            value="5"
-            checked={answer === '5'}
-            onChange={e => handleBtnAnswer(e)}
-          />
-          <RadioBtnLabel />
-          <AnswerOptionText>
-            {questionData[questionIndex]?.asnwer[4].answer_content}
-          </AnswerOptionText>
-        </RadioBtnBox>
+        {questionData[questionIndex]?.asnwer?.map((answerInfo, idx) => {
+          return (
+            <RadioBtnBox
+              key={idx}
+              onClick={() => {
+                handleBtnAnswer(idx);
+              }}
+            >
+              <RadioBtn answer={answer} idx={idx} />
+              <AnswerOptionText>{answerInfo.answer_content}</AnswerOptionText>
+            </RadioBtnBox>
+          );
+        })}
       </AnswerButtonWrapper>
       <NextButton
         onClick={() => {
           handleQuestionIndex();
           handleSubmitBtn();
         }}
+        disabled={answer === '' ? true : false}
+        style={answer === '' ? { opacity: 0.3 } : { opacity: 1 }}
       >
         {questionIndex === 9 ? `FINISH` : `NEXT`}
       </NextButton>
@@ -170,56 +130,26 @@ const RadioBtnBox = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-`;
-
-const RadioBtnLabel = styled.label`
-  position: absolute;
-  left: 0;
-  width: 24px;
-  height: 24px;
-  border: 4px solid black;
-  border-radius: 50%;
-`;
-
-const RadioBtn = styled.input`
-  opacity: 0;
-  z-index: 1;
-  width: 24px;
-  height: 24px;
-  margin: 0;
   cursor: pointer;
+`;
 
-  &:hover ~ ${RadioBtnLabel} {
-    &::after {
-      content: '';
-      display: flex;
-      margin: 2px;
-      border-radius: 50%;
-      width: 12px;
-      height: 12px;
-      background: darkgray;
-    }
-  }
+const RadioBtn = styled.div`
+  width: 24px;
+  height: 24px;
+  background-image: url('images/radioButton/unChecked.png');
   ${props =>
-    props.checked &&
+    props.idx === props.answer &&
     css`
-      &:checked + ${RadioBtnLabel} {
-        background: #fff;
-        border: 4px solid black;
-        &::after {
-          content: '';
-          display: block;
-          margin: 2px;
-          border-radius: 50%;
-          width: 12px;
-          height: 12px;
-          background: #000;
-        }
-      }
+      background-image: url('images/radioButton/checked.png');
     `}
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const AnswerOptionText = styled.p`
+  margin-top: 2px;
   margin-left: 32px;
   font-weight: 400;
   font-size: 18px;
