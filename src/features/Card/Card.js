@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
+import Timer from './Timer';
 
 const Card = () => {
   const [answer, setAnswer] = useState('');
@@ -8,10 +9,10 @@ const Card = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
   //문제 풀이에서 저장 및 통신에 필요한 데이터
-  //1.고른답
-  //2.정답 여부 - 고른답과 정답을 비교해 boolean 값으로 저장
-
-  //4.통과 여부
+  //1. 고른답 - 문제 선택지 index 저장
+  //2. 정답 여부 - 고른답과 정답을 비교해 boolean 값으로 저장
+  //3. 걸린 시간 - submit 시에 타이머 시간 저장
+  //4. 통과 여부 - 정답인 문제 개수가 7개 이상일때 ture, 이하일때 false
 
   const handleBtnAnswer = idx => {
     setAnswer(idx);
@@ -49,7 +50,7 @@ const Card = () => {
             {questionData[questionIndex]?.question}
           </QuestionExplanation>
         </QuestionDesc>
-        <Timer>Timer: 10:00</Timer>
+        <Timer />
         <QuestionImage />
       </QuestionCard>
       <AnswerButtonWrapper>
@@ -96,15 +97,6 @@ const QuestionIndex = styled.p`
   font-size: 23px;
   line-height: 34px;
   margin-top: 36px;
-`;
-
-const Timer = styled.p`
-  position: absolute;
-  top: 24px;
-  right: 45px;
-  font-weight: 700;
-  font-size: 33px;
-  color: #696f79;
 `;
 
 const QuestionExplanation = styled.p`
