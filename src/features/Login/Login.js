@@ -7,11 +7,11 @@ const Login = () => {
       <div>안녕나는로그인페이지야</div>
       <GoogleBtn />
       <a
-        href="http://13.209.49.51:8000/users/login/"
+        href="http://ec2-13-209-49-51.ap-northeast-2.compute.amazonaws.com:8000/users/google/login/"
         target="_blank"
         rel="noreferrer"
       >
-        구글
+        구글 로그인
       </a>
     </div>
   );
