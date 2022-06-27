@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { countSeconds } from './timerSlice';
 
-const Timer = () => {
-  const [time, setTime] = useState(600000);
-  const [minutes, setMinutes] = useState(10);
-  const [seconds, setSeconds] = useState(0);
+const Timer = ({ minutes, seconds, setMinutes, setSeconds }) => {
+  // const time = useSelector(state => state.timer.time);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -23,12 +24,12 @@ const Timer = () => {
       }
     }, 1000);
     return () => clearInterval(countdown);
-  }, [minutes, seconds]);
+  }, [minutes, seconds, setMinutes, setSeconds]);
 
   return (
     <TimerText>
       {`Timer: ${minutes}:${seconds < 10 ? `0${seconds}` : seconds}Mins`}
-      {time}
+      {/* {time} */}
     </TimerText>
   );
 };

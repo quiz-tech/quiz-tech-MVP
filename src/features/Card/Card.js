@@ -6,17 +6,12 @@ import Timer from './Timer';
 
 const Card = () => {
   const [questionData, setQuestionData] = useState([]);
-  const [answer, setAnswer] = useState('');
-  const correctAnswerIndex = [];
-
-  questionData.forEach(questionElenents => {
-    questionElenents.answer.forEach((answerEl, idx) => {
-      answerEl.answer === true && correctAnswerIndex.push(idx);
-    });
-  });
-  // console.log(correctAnswerIndex);
-
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [answer, setAnswer] = useState('');
+  const [correctCount, setCorrectCount] = useState(0);
+
+  const [minutes, setMinutes] = useState(10);
+  const [seconds, setSeconds] = useState(0);
 
   const [questionAnswerData, setQuestionAnswerData] = useState([]);
   // [{questionId: 0, choosenAnswer: 0, correctAnswer: 0, isCorrect: Boolean} x 10]
@@ -25,25 +20,32 @@ const Card = () => {
   //2. 고른답 - 문제 선택지 index 저장
   //3. 정답 - 문제 정답 인덱스
   //4. 정답 여부 - 고른답과 정답을 비교해 boolean 값으로 저장
-
-  const [questionResultData, setQuestionResultData] = useState([
-    { elapsedTime: 0, isPassed: Boolean },
-  ]);
+  const [questionResultData, setQuestionResultData] = useState([]);
   // {elapsedTime: 0, isPassed: Boolean}
   //문제 풀이결과 데이터
   //1. 걸린 시간 - submit 시에 타이머 시간 저장
   //2. 통과 여부 - 정답인 문제 개수가 7개 이상일때 ture, 이하일때 false
-
+  //3. 맞은 문제 개수 = isCorrect가 ture일때 +1
   //next버튼 클릭시 이 객체 추가
 
   const navigate = useNavigate();
+  const correctAnswerIndex = [];
+
+  questionData.forEach(questionElenents => {
+    questionElenents.answer.forEach((answerEl, idx) => {
+      answerEl.answer === true && correctAnswerIndex.push(idx);
+    });
+  });
 
   const handleBtnAnswer = idx => {
     setAnswer(idx);
   };
 
   const handleQuestionIndex = () => {
-    if (questionIndex < 9) {
+    if (answer === correctAnswerIndex[questionIndex]) {
+      setCorrectCount(prev => (prev += 1));
+    }
+    if (questionIndex <= 10) {
       setQuestionAnswerData(prev => [
         ...prev,
         {
@@ -56,12 +58,16 @@ const Card = () => {
       setQuestionIndex(prev => prev + 1);
       setAnswer('');
     }
-  };
-  console.log(questionAnswerData);
-  const handleSubmitBtn = () => {
     if (questionIndex === 9) {
-      navigate('/result');
+      setQuestionResultData({
+        elapsedTime: 0,
+        isPassed: correctCount >= 7,
+        correctCount: correctCount,
+      });
     }
+  };
+  const handleSubmitBtn = () => {
+    //결과 POST통신 함수
   };
 
   useEffect(() => {
@@ -70,7 +76,8 @@ const Card = () => {
       .then(res => {
         setQuestionData(res.content);
       });
-  }, []);
+    questionIndex === 10 && navigate('/result');
+  }, [navigate, questionIndex]);
 
   return (
     <>
@@ -83,7 +90,12 @@ const Card = () => {
             {questionData[questionIndex]?.question}
           </QuestionExplanation>
         </QuestionDesc>
-        <Timer />
+        {/* <Timer
+          minutes={minutes}
+          seconds={seconds}
+          setMinutes={setMinutes}
+          setSeconds={setSeconds}
+        /> */}
         <QuestionImage />
       </QuestionCard>
       <AnswerButtonWrapper>
