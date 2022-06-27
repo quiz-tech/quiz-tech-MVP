@@ -1,5 +1,19 @@
 {
-  [
-    
+  "sideContent": [
+    {
+      "id": 1,
+      "contentImg": "/images/DashboardImg.svg",
+      "contentName": "Dashboard"
+    },
+    {
+      "id": 2,
+      "contentImg": "/images/SupportImg.svg",
+      "contentName": "Support"
+    },
+    {
+      "id": 3,
+      "contentImg": "/images/NotificationImg.svg",
+      "contentName": "Notification"
+    }
   ]
 }

@@ -1,15 +1,41 @@
 import styled from 'styled-components';
 import ContentItem from './ContentItem';
 import { flex } from '../styles/Mixin';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Aside = () => {
-  useEffect(() => {});
+  const [contentItem, setContentItem] = useState([]);
+  // useEffect(() => {
+  //   fetch({‘’}, {
+  //     headers: {
+  //      Authorization:localStorage.getItem(‘access-token’)
+  //    },
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data)=>{
+  // setDataItem(data.ProfileData);
+  // setQuizItem(data.CategoryData);
+  // }
+  // )
+  // }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/data/sideData.json')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setContentItem(data.sideContent);
+      });
+  }, []);
+  console.log(contentItem);
 
   return (
     <SideBar>
       <Content>
-        <ContentItem />
+        {contentItem &&
+          contentItem.map(contentData => {
+            return <ContentItem key={contentData.id} {...contentData} />;
+          })}
       </Content>
       <Logout>
         <LogoutImg src="/images/Logout.svg" alt="로그아웃사진" />
@@ -26,8 +52,8 @@ const SideBar = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #fbf9f9;
   width: 270px;
+  background-color: #fbf9f9;
 `;
 
 const Content = styled.ul`
@@ -37,6 +63,7 @@ const Content = styled.ul`
 const Logout = styled.div`
   ${flex('center', ' center')}
   margin-bottom: 50px;
+  cursor: pointer;
 `;
 
 const LogoutImg = styled.img`

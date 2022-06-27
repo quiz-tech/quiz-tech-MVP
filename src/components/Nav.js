@@ -1,11 +1,18 @@
 import styled from 'styled-components';
 import { flex } from '../styles/Mixin';
+import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
+  const navigate = useNavigate();
+
+  const goToDashboard = () => {
+    navigate('/');
+  };
+
   return (
     <NavBar>
       <NavContainer>
-        <Title>Quiz Tech</Title>
+        <Title onClick={goToDashboard}>Quiz Tech</Title>
         <UserSearch>
           <SearchImg src="/images/Search.svg" />
           <SearchInput placeholder="search.." />
@@ -31,10 +38,11 @@ const NavContainer = styled.div`
   ${flex('flex-start', 'center')}
 `;
 
-const Title = styled.span`
+const Title = styled.div`
   font-weight: 800;
   font-size: 40px;
   margin: 30px 0 0 30px;
+  cursor: pointer;
 `;
 
 const UserSearch = styled.div`
@@ -52,7 +60,8 @@ const SearchImg = styled.img`
 
 const SearchInput = styled.input`
   width: 300px;
-  margin-left: 15px;
+  margin-left: 20px;
+  font-size: 20px;
   border: none;
   outline: none;
 `;
