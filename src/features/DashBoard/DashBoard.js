@@ -12,11 +12,15 @@ const DashBoard = () => {
   // useEffect(() => {
   //   fetch({''}, {
   //     headers: {
-  // 			Authorization:
+  // 			Authorization:localStorage.getItem('access-token')
   // 		},
   //   })
   //   .then((res) => res.json())
-  //   .then((data)=>(data))
+  //   .then((data)=>{
+  // setDataItem(data.ProfileData);
+  // setQuizItem(data.CategoryData);
+  // }
+  // )
   // }, []);
 
   useEffect(() => {
