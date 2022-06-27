@@ -7,13 +7,13 @@ const Nav = () => {
       <NavContainer>
         <Title>Quiz Tech</Title>
         <UserSearch>
-          <SearchImg src="/images" />
+          <SearchImg src="/images/Search.svg" />
           <SearchInput placeholder="search.." />
         </UserSearch>
         <StartQuizBtn>Start Quiz</StartQuizBtn>
         <UserProfile>
-          <UserImg src="/images" />
-          <UserName>Kyuhyun Ro</UserName>
+          <UserImg src="/images" alt="^" />
+          <UserName>Kyuhyun Ro^</UserName>
         </UserProfile>
       </NavContainer>
     </NavBar>
@@ -51,6 +51,7 @@ const SearchImg = styled.img`
 `;
 
 const SearchInput = styled.input`
+  width: 300px;
   margin-left: 15px;
   border: none;
   outline: none;
