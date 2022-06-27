@@ -4,7 +4,7 @@
     {
       "question": "파이썬에서 Iterator의 설명으로 틀린 것은?",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
@@ -30,7 +30,7 @@
     {
       "question": "다음 중 인터프리터 언어와 컴파일 언어의 차이점이 아닌 것은 무엇인가요?",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "컴파일언어의 경우 ‘컴파일러’과정이 들어 가기때문에 인터프린터 언어 보다 생산속도가 느리다."
@@ -52,7 +52,7 @@
     {
       "question": "question 3",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
@@ -78,7 +78,7 @@
     {
       "question": "question 4",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
@@ -104,7 +104,7 @@
     {
       "question": "question 5",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
@@ -130,7 +130,7 @@
     {
       "question": "question 6",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
@@ -156,7 +156,7 @@
     {
       "question": "question 7",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
@@ -182,7 +182,7 @@
     {
       "question": "question 8",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
@@ -208,7 +208,7 @@
     {
       "question": "question 9",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
@@ -234,7 +234,7 @@
     {
       "question": "파이썬에서 Iterator의 설명으로 틀린 것은?",
       "image": "",
-      "asnwer": [
+      "answer": [
         {
           "answer": false,
           "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
