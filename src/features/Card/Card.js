@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
+import { useNavigate } from 'react-router-dom';
 import Timer from './Timer';
 
 const Card = () => {
@@ -13,6 +14,18 @@ const Card = () => {
   //2. 정답 여부 - 고른답과 정답을 비교해 boolean 값으로 저장
   //3. 걸린 시간 - submit 시에 타이머 시간 저장
   //4. 통과 여부 - 정답인 문제 개수가 7개 이상일때 ture, 이하일때 false
+  const [questionResultData, setQuestionResultData] = useState({});
+
+  // {
+  //   isPassed: false,
+  //   passedTime: 0,
+  //   questionAnswer: {
+  //     answerIndex: '',
+  //     isCorrect: false,
+  //   }
+  // }
+
+  const navigate = useNavigate();
 
   const handleBtnAnswer = idx => {
     setAnswer(idx);
@@ -27,7 +40,7 @@ const Card = () => {
 
   const handleSubmitBtn = () => {
     if (questionIndex === 9) {
-      console.log('결과 제출');
+      navigate('/result');
     }
   };
 
