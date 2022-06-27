@@ -3,17 +3,63 @@ import { useState, useEffect } from 'react';
 const Login = () => {
   const [Auth, setAuth] = useState({});
 
+  // useEffect(() => {
+  //   fetch('http://backend.tecquiz.net:8000/users/google/login/finish/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       // clientId: Auth.clientId,
+  //       // credential: Auth.credential,
+  //       // select_by: Auth.select_by,
+  //       // access_token: `${Auth.clientId}`,
+  //       // code: `${Auth.credential}`,
+  //       // id_token: `${Auth.select_by}`,
+  //       access_token: Auth.credential,
+  //       // code: Auth.clientId,
+  //       // id_token: Auth.select_by,
+  //     }),
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       // localStorage.setItem('access_token', data);
+  //       // console.log(localStorage.getItem('access_token'));
+  //     });
+  //   // localStorage.getItem('access_token')
+  //   //   ? navigate('/dashboard')
+  //   //   : navigate('/login');
+
+  //   // .then(res => {
+  //   //   if (res.access_token) {
+  //   //     sendToken(res.access_token);
+  //   //   } else {
+  //   //     alert('다시 시도해주세요!');
+  //   //   }
+  //   // }
+  //   console.log(Auth.credential);
+  // }, [Auth]);
+
+  // ?code=${Auth.credential}
   useEffect(() => {
-    fetch('http://backend.tecquiz.net:8000/users/google/login/callback/', {
+    const access_token = 'token ' + Auth.credential;
+    fetch(`http://backend.tecquiz.net:8000/users/callback/`, {
       method: 'POST',
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
-      body: JSON.stringify({
-        clientId: Auth.clientId,
-        credential: Auth.credential,
-        select_by: Auth.select_by,
-      }),
+      headers: {
+        // 'Content-Type': 'application/x-www-form-urlencoded;',
+        Authorization: Auth.credential,
+      },
+      // body: JSON.stringify({
+      // clientId: Auth.clientId,
+      // credential: Auth.credential,
+      // select_by: Auth.select_by,
+      // access_token: `${Auth.clientId}`,
+      // code: `${Auth.credential}`,
+      // id_token: `${Auth.select_by}`,
+      // access_token: Auth.credential,
+      // code: Auth.clientId,
+      // id_token: Auth.select_by,
     })
       .then(res => res.json())
       .then(data => {
@@ -32,10 +78,10 @@ const Login = () => {
     //     alert('다시 시도해주세요!');
     //   }
     // }
-    console.log(Auth.credential);
+    // console.log(access_token);
   }, [Auth]);
 
-  console.log(Auth);
+  // console.log(Auth);
 
   return (
     <div>

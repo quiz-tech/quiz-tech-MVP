@@ -13,7 +13,7 @@ const GoogleBtn = ({ setAuth, Auth }) => {
     setAuth(credentialResponse);
   };
 
-  console.log(Auth);
+  // console.log(Auth);
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
