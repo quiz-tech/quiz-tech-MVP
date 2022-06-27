@@ -19,22 +19,22 @@ export default ProfileData;
 
 const Data = styled.li`
   ${flex('space-between', 'center')}
-  height: 70px;
-  margin: 30px 25px 0 0;
+  height: 80px;
+  margin: 25px 50px 0 0;
 `;
 
 const ProfileDataImgBase = styled.div`
   ${flex('center', 'center')}
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   background-color: #ffffff;
   border: 1px solid gray;
   border-radius: 10px;
 `;
 
 const ProfileDataImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 60px;
+  height: 60px;
   /* background: url({profileData.dataImg}) no-repeat center; */
 `;
 
@@ -45,9 +45,9 @@ const ProfileDataInfo = styled.div`
 `;
 const ProfileDataResult = styled.span`
   font-weight: 700;
-  font-size: 25px;
+  font-size: 28px;
 `;
 const ProfileDataName = styled.span`
-  font-size: 13px;
+  font-size: 15px;
   margin-top: 5px;
 `;

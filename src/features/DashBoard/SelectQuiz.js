@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 import { flex } from '../../styles/Mixin';
+import { useNavigate } from 'react-router-dom';
 
 const SelectQuiz = ({ ...quizData }) => {
+  const navigate = useNavigate();
+
+  const goToQuiz = () => {
+    navigate(`/list/${quizData.id}`);
+  };
+
+  console.log(quizData.id);
+
   return (
-    <SelectQuizContainer>
+    <SelectQuizContainer onClick={goToQuiz}>
       <QuizImg src={quizData.CategoryImg} alt="퀴즈선택사진" />
       <QuizName>{quizData.CategoryName}</QuizName>
     </SelectQuizContainer>
@@ -12,18 +21,23 @@ const SelectQuiz = ({ ...quizData }) => {
 
 export default SelectQuiz;
 
-const SelectQuizContainer = styled.div`
-  width: 240px;
+const SelectQuizContainer = styled.button`
+  display: flex;
+  flex-direction: column;
+  width: 100px;
   height: 100px;
-  margin: 0 40px 0 40px;
+  margin: 0 30px;
   border-radius: 30px;
+  /* background-color: red; */
 `;
 
 const QuizImg = styled.img`
-  height: 100%;
+  width: 100px;
+  height: 100px;
 `;
 
 const QuizName = styled.span`
+  margin-top: 10px;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 17px;
 `;

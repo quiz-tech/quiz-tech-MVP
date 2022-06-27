@@ -46,8 +46,8 @@ const DashBoard = () => {
           <DataChart />
           <ProfileDataContainer>
             {dataItem &&
-              dataItem.map((profileData, idx) => {
-                return <ProfileData key={idx} {...profileData} />;
+              dataItem.map(profileData => {
+                return <ProfileData key={profileData.id} {...profileData} />;
               })}
           </ProfileDataContainer>
           {/* <ProfileData /> */}
@@ -84,18 +84,18 @@ const DashboardContainer = styled.div`
 
 const Profile = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const ProfileImg = styled.div`
-  width: 220px;
-  height: 180px;
+  width: 280px;
+  height: 220px;
   background: url('/images/Rectangle 278.svg') no-repeat center;
-  border-radius: 30px;
+  border-radius: 25px;
 `;
 
 const ProfileInfo = styled.div`
-  margin-left: 23px;
-  padding: 10px;
+  margin-left: 60px;
   color: #696f79;
 `;
 
@@ -106,19 +106,20 @@ const ProfileText = styled.div`
 
 const ProfileName = styled.span`
   font-weight: 700;
-  font-size: 25px;
+  font-size: 30px;
 `;
 
 const ProfileNickname = styled.span`
-  font-size: 15px;
-  margin-top: 5px;
+  font-size: 18px;
+  margin-top: 8px;
 `;
 
 const DataChart = styled.div`
-  width: 500px;
+  width: 600px;
   height: 5px;
-  margin-top: 20px;
+  margin-top: 25px;
   background-color: #c4c4c4;
+  border-radius: 50px;
 `;
 
 const ProfileDataContainer = styled.ul`
@@ -126,19 +127,17 @@ const ProfileDataContainer = styled.ul`
 `;
 
 const Content = styled.div`
-  ${flex('center', 'center')}
+  ${flex('space-between', 'center')}
   margin-top: 50px;
 `;
 
-const Ranking = styled.div`
-  margin-right: 50px;
-`;
+const Ranking = styled.div``;
 
 const RankingTitle = styled.div`
   font-weight: 700;
-  font-size: 20px;
+  font-size: 22px;
   color: #696f79;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 
 const QuizCategory = styled.div``;
@@ -146,8 +145,8 @@ const QuizCategory = styled.div``;
 const QuizCategoryTitle = styled(RankingTitle)``;
 
 const SelectQuizContainer = styled.div`
-  ${flex('center', 'center')}
-  width:400px;
-  height: 230px;
+  ${flex('space-around', 'center')}
+  width:470px;
+  height: 255px;
   border: 1px solid gray;
 `;

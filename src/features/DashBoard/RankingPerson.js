@@ -7,7 +7,7 @@ const RankingPerson = () => {
 export default RankingPerson;
 
 const RankingContainer = styled.div`
-  width: 400px;
-  height: 230px;
+  width: 460px;
+  height: 255px;
   border: 1px solid gray;
 `;
