@@ -1,8 +1,9 @@
 import GoogleBtn from './GoogleBtn';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [Auth, setAuth] = useState({});
-
+  const navigate = useNavigate();
   // useEffect(() => {
   //   fetch('http://backend.tecquiz.net:8000/users/google/login/finish/', {
   //     method: 'POST',
@@ -44,8 +45,7 @@ const Login = () => {
   // ?code=${Auth.credential}
   useEffect(() => {
     const access_token = 'token ' + Auth.credential;
-    fetch(`http://backend.tecquiz.net:8000/users/callback/`, {
-      method: 'POST',
+    fetch(`http://backend.tecquiz.net:8000/users/login/`, {
       headers: {
         // 'Content-Type': 'application/x-www-form-urlencoded;',
         Authorization: Auth.credential,
@@ -64,8 +64,11 @@ const Login = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        // localStorage.setItem('access_token', data);
-        // console.log(localStorage.getItem('access_token'));
+        localStorage.setItem('access-token', data);
+        console.log(localStorage.getItem('access-token'));
+        localStorage.getItem('access-token')
+          ? navigate('/')
+          : alert('다시 로그인을 진행해주세요.');
       });
     // localStorage.getItem('access_token')
     //   ? navigate('/dashboard')
