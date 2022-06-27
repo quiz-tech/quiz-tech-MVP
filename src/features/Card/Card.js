@@ -27,6 +27,8 @@ const Card = () => {
   //2. 통과 여부 - 정답인 문제 개수가 7개 이상일때 ture, 이하일때 false
   //3. 맞은 문제 개수 = isCorrect가 ture일때 +1
   //next버튼 클릭시 이 객체 추가
+  console.log(questionAnswerData);
+  console.log(questionResultData);
 
   const navigate = useNavigate();
   const correctAnswerIndex = [];
@@ -40,7 +42,6 @@ const Card = () => {
   const handleBtnAnswer = idx => {
     setAnswer(idx);
   };
-
   const handleQuestionIndex = () => {
     if (answer === correctAnswerIndex[questionIndex]) {
       setCorrectCount(prev => (prev += 1));
@@ -58,17 +59,19 @@ const Card = () => {
       setQuestionIndex(prev => prev + 1);
       setAnswer('');
     }
-    if (questionIndex === 9) {
-      setQuestionResultData({
-        elapsedTime: 0,
-        isPassed: correctCount >= 7,
-        correctCount: correctCount,
-      });
-    }
   };
   const handleSubmitBtn = () => {
     //결과 POST통신 함수
   };
+
+  useEffect(() => {
+    console.log(correctCount);
+    setQuestionResultData({
+      elapsedTime: 0,
+      isPassed: correctCount >= 7,
+      correctCount: correctCount,
+    });
+  }, [correctCount, questionIndex]);
 
   useEffect(() => {
     fetch('http://localhost:3000/data/cardData.json')
@@ -76,7 +79,7 @@ const Card = () => {
       .then(res => {
         setQuestionData(res.content);
       });
-    questionIndex === 10 && navigate('/result');
+    questionAnswerData.length === 10 && navigate('/result');
   }, [navigate, questionIndex]);
 
   return (
