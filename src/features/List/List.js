@@ -3,6 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Doughnut } from 'react-chartjs-2';
 import { data } from './components/Doughnut';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const mockData = [
   {
@@ -48,24 +51,45 @@ const mockData = [
 ];
 
 const List = () => {
-  const navigate = useNavigate();
-  const goToDashBoard = () => {
-    navigate('/');
-  };
   const [quizInfo, setQuizInfo] = useState([]);
+  const [totalAnswer, setTotalAnswer] = useState({
+    success: '123',
+    fail: '222',
+  });
+
+  const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
-    fetch(
-      `http://backend.tecquiz.net:8000/questions/${params.id}/category/?format=json`
+    fetch(`http://backend.tecquiz.net:8000/questions/1/category/?format=json`)
       // 'http://backend.tecquiz.net:8000/questions/category/1'
-    )
       .then(res => res.json())
       .then(data => setQuizInfo(data));
   }, [params.id]);
 
+  // useEffect(() => {
+  //   fetch();
+  // });
+
   const goToCard = id => {
     navigate(`/detail/${id}`);
+  };
+
+  const goToDashBoard = () => {
+    navigate('/');
+  };
+
+  const data = {
+    labels: ['정답 횟수', '오답 횟수'],
+    datasets: [
+      {
+        label: '# of Votes',
+        data: [totalAnswer.success, totalAnswer.fail],
+        backgroundColor: ['rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'],
+        borderColor: ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+        borderWidth: 1,
+      },
+    ],
   };
 
   return (
