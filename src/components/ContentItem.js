@@ -33,6 +33,7 @@ const ContentBox = styled.div`
 const ContentImg = styled.img`
   width: 15px;
   height: 15px;
+  color: black;
 `;
 
 const ContentText = styled.span`
