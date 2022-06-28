@@ -7,48 +7,48 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const mockData = [
-  {
-    id: 1,
-    created_at: null,
-    updated_at: null,
-    name: 'Python',
-    image: null,
-    development_group: 1,
-  },
-  {
-    id: 2,
-    created_at: null,
-    updated_at: null,
-    name: 'Database',
-    image: null,
-    development_group: 1,
-  },
-  {
-    id: 3,
-    created_at: null,
-    updated_at: null,
-    name: 'Framework',
-    image: null,
-    development_group: 1,
-  },
-  {
-    id: 4,
-    created_at: null,
-    updated_at: null,
-    name: 'Network',
-    image: null,
-    development_group: 1,
-  },
-  {
-    id: 5,
-    created_at: null,
-    updated_at: null,
-    name: 'OS',
-    image: null,
-    development_group: 1,
-  },
-];
+// const mockData = [
+//   {
+//     id: 1,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'Python',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 2,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'Database',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 3,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'Framework',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 4,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'Network',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 5,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'OS',
+//     image: null,
+//     development_group: 1,
+//   },
+// ];
 
 const List = () => {
   const [quizInfo, setQuizInfo] = useState([]);
@@ -62,14 +62,9 @@ const List = () => {
 
   useEffect(() => {
     fetch(`http://backend.tecquiz.net:8000/questions/1/category/?format=json`)
-      // 'http://backend.tecquiz.net:8000/questions/category/1'
       .then(res => res.json())
       .then(data => setQuizInfo(data));
   }, [params.id]);
-
-  // useEffect(() => {
-  //   fetch();
-  // });
 
   const goToCard = id => {
     navigate(`/detail/${id}`);
