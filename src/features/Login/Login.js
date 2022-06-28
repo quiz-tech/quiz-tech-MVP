@@ -43,8 +43,8 @@ const Login = () => {
   // }, [Auth]);
 
   // ?code=${Auth.credential}
+
   useEffect(() => {
-    const access_token = 'token ' + Auth.credential;
     fetch(`http://backend.tecquiz.net:8000/users/login/`, {
       headers: {
         // 'Content-Type': 'application/x-www-form-urlencoded;',
@@ -61,15 +61,23 @@ const Login = () => {
       // code: Auth.clientId,
       // id_token: Auth.select_by,
     })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        localStorage.setItem('access-token', data);
-        console.log(localStorage.getItem('access-token'));
-        localStorage.getItem('access-token')
-          ? navigate('/')
-          : alert('다시 로그인을 진행해주세요.');
-      });
+      .then(res => {
+        if (res.status === 200 || res.status === 201) {
+          return navigate('/');
+        } else {
+          console.log('다시 로그인을 진행해주세요.');
+        }
+      })
+      .then(data => data);
+    //   {
+    //   console.log(data);
+    //   localStorage.setItem('access-token', data);
+    //   console.log(localStorage.getItem('access-token'));
+    //   localStorage.getItem('access-token')
+    //     ? navigate('/')
+    //     : alert('다시 로그인을 진행해주세요.');
+    // }
+
     // localStorage.getItem('access_token')
     //   ? navigate('/dashboard')
     //   : navigate('/login');
