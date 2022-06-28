@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { Doughnut } from 'react-chartjs-2';
+import { data } from './components/Doughnut';
 
 const mockData = [
   {
@@ -65,6 +67,9 @@ const List = () => {
 
   return (
     <>
+      <ChartWrap>
+        <Doughnut data={data} />
+      </ChartWrap>
       <Title>타이틀</Title>
       <SubTitle>서브타이틀</SubTitle>
       <CardList>
@@ -131,4 +136,9 @@ export const NextButton = styled.button`
   color: #fff;
   background: #8692a6;
   border-radius: 27px;
+`;
+
+const ChartWrap = styled.div`
+  width: 300px;
+  height: 300px;
 `;
