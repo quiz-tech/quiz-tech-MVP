@@ -52,14 +52,17 @@ const List = () => {
   const goToDashBoard = () => {
     navigate('/');
   };
-  const [quizInfo, setQuizInfo] = useState(mockData);
+  const [quizInfo, setQuizInfo] = useState([]);
   const params = useParams();
 
-  // useEffect(() => {
-  //   fetch(`http://13.209.49.51:8000/questions/{params.id}/category/?format=json`)
-  //     .then(res => res.json())
-  //     .then(data => setQuizInfo(data));
-  // }, []);
+  useEffect(() => {
+    fetch(
+      `http://backend.tecquiz.net:8000/questions/${params.id}/category/?format=json`
+      // 'http://backend.tecquiz.net:8000/questions/category/1'
+    )
+      .then(res => res.json())
+      .then(data => setQuizInfo(data));
+  }, [params.id]);
 
   const goToCard = id => {
     navigate(`/detail/${id}`);
@@ -67,10 +70,12 @@ const List = () => {
 
   return (
     <>
+      <Title>내 기록 전체 보기</Title>
+      <SubTitle>기록</SubTitle>
       <ChartWrap>
         <Doughnut data={data} />
       </ChartWrap>
-      <Title>타이틀</Title>
+      <Title>{params.id === 1 ? 'Backend Quiz' : 'Frontend Quiz'}</Title>
       <SubTitle>서브타이틀</SubTitle>
       <CardList>
         {quizInfo &&
@@ -141,4 +146,5 @@ export const NextButton = styled.button`
 const ChartWrap = styled.div`
   width: 300px;
   height: 300px;
+  margin: 50px 0;
 `;

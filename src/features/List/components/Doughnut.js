@@ -5,7 +5,7 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-  labels: ['Yellow', 'Green'], // 차트색상
+  labels: ['정답 횟수', '오답 횟수'],
   datasets: [
     {
       label: '# of Votes',
