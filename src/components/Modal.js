@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-
+import { useNavigate } from 'react-router-dom';
 const Modal = () => {
+  const navigate = useNavigate();
+  const [modalType, setModalType] = useState('submit');
+
+  const goToResult = () => {
+    navigate('/result');
+  };
+
+  const handleModalType = () => {
+    setModalType('result');
+  };
   return (
     <ModalBackground>
-      <ModalWindow modalType="submit">
+      <ModalWindow modalType={modalType}>
         <ModalIcon src="/images/modalIcon.png" />
         <ModalDesc>Are you Sure you want {`\n`}to submit Quiz?</ModalDesc>
         <ModalBtnContainer>
           <ModalBtn>No</ModalBtn>
-          <ModalBtn>Yes</ModalBtn>
+          <ModalBtn
+            onClick={() => {
+              if (modalType === 'submit') {
+                handleModalType();
+              } else {
+                goToResult();
+              }
+            }}
+          >
+            Yes
+          </ModalBtn>
         </ModalBtnContainer>
       </ModalWindow>
     </ModalBackground>
@@ -19,7 +39,7 @@ const Modal = () => {
 export default Modal;
 
 const ModalBackground = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { infoUpdate } from './resultSlice';
 import Timer from './Timer';
+import Modal from '../../components/Modal';
 
 const Card = () => {
   const [questionData, setQuestionData] = useState([]);
@@ -10,28 +13,15 @@ const Card = () => {
   const [answer, setAnswer] = useState('');
   const [correctCount, setCorrectCount] = useState(0);
 
-  const [minutes, setMinutes] = useState(10);
-  const [seconds, setSeconds] = useState(0);
-
   const [questionAnswerData, setQuestionAnswerData] = useState([]);
-  // [{questionId: 0, choosenAnswer: 0, correctAnswer: 0, isCorrect: Boolean} x 10]
-  //문제 풀이항목 데이터
-  //1. 문제 인덱스
-  //2. 고른답 - 문제 선택지 index 저장
-  //3. 정답 - 문제 정답 인덱스
-  //4. 정답 여부 - 고른답과 정답을 비교해 boolean 값으로 저장
-  const [questionResultData, setQuestionResultData] = useState([]);
-  // {elapsedTime: 0, isPassed: Boolean}
-  //문제 풀이결과 데이터
-  //1. 걸린 시간 - submit 시에 타이머 시간 저장
-  //2. 통과 여부 - 정답인 문제 개수가 7개 이상일때 ture, 이하일때 false
-  //3. 맞은 문제 개수 = isCorrect가 ture일때 +1
-  //next버튼 클릭시 이 객체 추가
-  console.log(questionAnswerData);
-  console.log(questionResultData);
+
+  // console.log(questionAnswerData);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const result = useSelector(state => state.result);
   const correctAnswerIndex = [];
+  console.log('result', result);
 
   questionData.forEach(questionElenents => {
     questionElenents.answer.forEach((answerEl, idx) => {
@@ -42,6 +32,7 @@ const Card = () => {
   const handleBtnAnswer = idx => {
     setAnswer(idx);
   };
+
   const handleQuestionIndex = () => {
     if (answer === correctAnswerIndex[questionIndex]) {
       setCorrectCount(prev => (prev += 1));
@@ -56,7 +47,12 @@ const Card = () => {
           isCorrect: answer === correctAnswerIndex[questionIndex],
         },
       ]);
-      setQuestionIndex(prev => prev + 1);
+      // setQuestionResultData({
+      //   elapsedTime: 0,
+      //   isPassed: correctCount >= 7,
+      //   correctCount: correctCount,
+      // });
+      setQuestionIndex(prev => (prev += 1));
       setAnswer('');
     }
   };
@@ -65,13 +61,8 @@ const Card = () => {
   };
 
   useEffect(() => {
-    console.log(correctCount);
-    setQuestionResultData({
-      elapsedTime: 0,
-      isPassed: correctCount >= 7,
-      correctCount: correctCount,
-    });
-  }, [correctCount, questionIndex]);
+    dispatch(infoUpdate(correctCount));
+  }, [correctCount, dispatch]);
 
   useEffect(() => {
     fetch('http://localhost:3000/data/cardData.json')
@@ -79,27 +70,34 @@ const Card = () => {
       .then(res => {
         setQuestionData(res.content);
       });
-    questionAnswerData.length === 10 && navigate('/result');
   }, [navigate, questionIndex]);
 
   return (
     <>
+      {questionIndex === 10 ? <Modal /> : null}
       <Title>타이틀</Title>
       <SubTitle>서브 타이틀</SubTitle>
       <QuestionCard>
-        <QuestionDesc>
-          <QuestionIndex>{`Question ${questionIndex + 1}/10`}</QuestionIndex>
-          <QuestionExplanation>
-            {questionData[questionIndex]?.question}
-          </QuestionExplanation>
-        </QuestionDesc>
+        {questionIndex <= 9 && (
+          <>
+            <QuestionDesc>
+              <QuestionIndex>{`Question ${
+                questionIndex + 1
+              }/10`}</QuestionIndex>
+              <QuestionExplanation>
+                {questionData[questionIndex]?.question}
+              </QuestionExplanation>
+            </QuestionDesc>
+            <QuestionImage />
+          </>
+        )}
+
         {/* <Timer
           minutes={minutes}
           seconds={seconds}
           setMinutes={setMinutes}
           setSeconds={setSeconds}
         /> */}
-        <QuestionImage />
       </QuestionCard>
       <AnswerButtonWrapper>
         {questionData[questionIndex]?.answer?.map((answerInfo, idx) => {
