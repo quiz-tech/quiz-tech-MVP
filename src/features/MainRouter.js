@@ -8,6 +8,7 @@ import Card from './Card/Card';
 import Detail from './Detail/Detail';
 import List from './List/List';
 import Result from './Result/Result';
+import Support from './Support/Support';
 
 const MainRouter = () => {
   return (
@@ -19,9 +20,10 @@ const MainRouter = () => {
           <Routes>
             <Route path="/" element={<DashBoard />} />
             <Route path="/card" element={<Card />} />
-            <Route path="/detail" element={<Detail />} />
-            <Route path="/list" element={<List />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/list/:id" element={<List />} />
             <Route path="/result" element={<Result />} />
+            <Route path="/support" element={<Support />} />
           </Routes>
         </ContentsWrapper>
       </MainContainer>
