@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Doughnut } from 'react-chartjs-2';
-import { data } from './components/Doughnut';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -48,7 +47,78 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 //     image: null,
 //     development_group: 1,
 //   },
+//   {
+//     id: 6,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'Python',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 7,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'Database',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 8,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'Framework',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 9,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'Network',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 10,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'OS',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 12,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'OS',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 13,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'OS',
+//     image: null,
+//     development_group: 1,
+//   },
+//   {
+//     id: 14,
+//     created_at: null,
+//     updated_at: null,
+//     name: 'OS',
+//     image: null,
+//     development_group: 1,
+//   },
 // ];
+
+const chartMock = {
+  correct_answer: 63,
+  total_time: 81,
+  quiz_passed: 9,
+  attempt: 9,
+};
 
 const List = () => {
   const [quizInfo, setQuizInfo] = useState([]);
@@ -56,7 +126,6 @@ const List = () => {
     success: '123',
     fail: '222',
   });
-
   const navigate = useNavigate();
   const params = useParams();
 
@@ -65,6 +134,21 @@ const List = () => {
       .then(res => res.json())
       .then(data => setQuizInfo(data));
   }, [params.id]);
+
+  // useEffect(() => {
+  //   fetch(`http://backend.tecquiz.net:8000/users/rank/?format=json`)
+  //     .then(res => res.json())
+  //     .then(data => console.log(data));
+  // });
+
+  useEffect(() => {
+    const fail = chartMock.attempt * 10 - chartMock.correct_answer;
+    setTotalAnswer(prev => ({
+      ...prev,
+      success: chartMock.correct_answer,
+      fail: fail,
+    }));
+  }, []);
 
   const goToCard = id => {
     navigate(`/detail/${id}`);
