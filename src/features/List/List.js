@@ -1,7 +1,8 @@
 import React from 'react';
+import { Doughnut } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { data } from './components/Doughnut';
 const List = () => {
   const navigate = useNavigate();
   const goToDashBoard = () => {
@@ -9,6 +10,9 @@ const List = () => {
   };
   return (
     <>
+      <ChartWrap>
+        <Doughnut data={data} />
+      </ChartWrap>
       <Title>타이틀</Title>
       <SubTitle>서브타이틀</SubTitle>
       <CardList>
@@ -76,4 +80,9 @@ export const NextButton = styled.button`
   color: #fff;
   background: #8692a6;
   border-radius: 27px;
+`;
+
+const ChartWrap = styled.div`
+  width: 300px;
+  height: 300px;
 `;
