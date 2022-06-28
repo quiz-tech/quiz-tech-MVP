@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
 
 const Detail = () => {
+  const [arr, setArr] = useState();
+  const params = useParams();
+
+  useEffect(() => {
+    fetch(`http://13.209.49.51:8000/questions/category/${params.id}`)
+      .then(res => res.json())
+      .then(data => setArr(data.name));
+  }, [params.id]);
+
+  console.log(arr);
+
   return (
     <>
       <Title>타이틀</Title>

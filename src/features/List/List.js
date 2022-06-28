@@ -1,13 +1,70 @@
-import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { Doughnut } from 'react-chartjs-2';
 import { data } from './components/Doughnut';
+
+const mockData = [
+  {
+    id: 1,
+    created_at: null,
+    updated_at: null,
+    name: 'Python',
+    image: null,
+    development_group: 1,
+  },
+  {
+    id: 2,
+    created_at: null,
+    updated_at: null,
+    name: 'Database',
+    image: null,
+    development_group: 1,
+  },
+  {
+    id: 3,
+    created_at: null,
+    updated_at: null,
+    name: 'Framework',
+    image: null,
+    development_group: 1,
+  },
+  {
+    id: 4,
+    created_at: null,
+    updated_at: null,
+    name: 'Network',
+    image: null,
+    development_group: 1,
+  },
+  {
+    id: 5,
+    created_at: null,
+    updated_at: null,
+    name: 'OS',
+    image: null,
+    development_group: 1,
+  },
+];
+
 const List = () => {
   const navigate = useNavigate();
   const goToDashBoard = () => {
     navigate('/');
   };
+  const [quizInfo, setQuizInfo] = useState(mockData);
+  const params = useParams();
+
+  // useEffect(() => {
+  //   fetch(`http://13.209.49.51:8000/questions/{params.id}/category/?format=json`)
+  //     .then(res => res.json())
+  //     .then(data => setQuizInfo(data));
+  // }, []);
+
+  const goToCard = id => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
     <>
       <ChartWrap>
@@ -16,12 +73,12 @@ const List = () => {
       <Title>타이틀</Title>
       <SubTitle>서브타이틀</SubTitle>
       <CardList>
-        <Card>
-          <CardText>프론트</CardText>
-        </Card>
-        <Card>
-          <CardText>백</CardText>
-        </Card>
+        {quizInfo &&
+          quizInfo.map(card => (
+            <Card key={card.id} onClick={() => goToCard(card.id)}>
+              <CardText>{card.name}</CardText>
+            </Card>
+          ))}
       </CardList>
       <NextButton onClick={() => goToDashBoard()}>PREV</NextButton>
     </>
@@ -40,11 +97,9 @@ export const SubTitle = styled.p`
 `;
 
 const CardList = styled.ul`
-  position: absolute;
-  top: 50%;
-  left: 50%;
   display: flex;
-  transform: translate(-50%, -50%);
+  flex-wrap: wrap;
+  margin-top: 50px;
 `;
 
 const Card = styled.li`
@@ -52,6 +107,7 @@ const Card = styled.li`
   width: 235px;
   height: 170px;
   padding: 20px;
+  margin-bottom: 20px;
   margin-right: 20px;
   border-radius: 30px;
   background: #c9c9c9;
