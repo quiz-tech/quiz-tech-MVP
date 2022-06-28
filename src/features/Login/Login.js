@@ -61,36 +61,23 @@ const Login = () => {
       // code: Auth.clientId,
       // id_token: Auth.select_by,
     })
-      .then(res => {
-        if (res.status === 200 || res.status === 201) {
-          return navigate('/');
-        } else {
-          console.log('다시 로그인을 진행해주세요.');
-        }
-      })
-      .then(data => data);
-    //   {
-    //   console.log(data);
-    //   localStorage.setItem('access-token', data);
-    //   console.log(localStorage.getItem('access-token'));
-    //   localStorage.getItem('access-token')
-    //     ? navigate('/')
-    //     : alert('다시 로그인을 진행해주세요.');
-    // }
+      // .then(res => {
+      //   if (res.status === 200 || res.status === 201) {
+      //     return navigate('/');
+      //   } else {
+      //     console.log('다시 로그인을 진행해주세요.');
+      //   }
+      // })
+      // .then(data => data);
 
-    // localStorage.getItem('access_token')
-    //   ? navigate('/dashboard')
-    //   : navigate('/login');
-
-    // .then(res => {
-    //   if (res.access_token) {
-    //     sendToken(res.access_token);
-    //   } else {
-    //     alert('다시 시도해주세요!');
-    //   }
-    // }
-    // console.log(access_token);
-  }, [Auth]);
+      .then(res => res)
+      .then(data => {
+        localStorage.setItem('access-token', data);
+        localStorage.getItem('access-token')
+          ? navigate('/')
+          : alert('다시 로그인을 진행해주세요.');
+      });
+  }, [Auth, navigate]);
 
   // console.log(Auth);
 
