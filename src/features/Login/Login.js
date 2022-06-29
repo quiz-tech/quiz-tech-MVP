@@ -6,7 +6,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.getItem('access-token')
+    localStorage.getItem('access')
       ? navigate('/')
       : console.log('로그인을 진행해주세요.');
 
@@ -17,9 +17,11 @@ const Login = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data.jwt_token.access_token);
-        localStorage.setItem('access-token', data.jwt_token.access_token);
-        localStorage.getItem('access-token')
+        console.log(data.jwt_token.access);
+        data.jwt_token.access
+          ? localStorage.setItem('access', data.jwt_token.access)
+          : navigate('/login');
+        localStorage.getItem('access')
           ? navigate('/')
           : alert('다시 로그인을 진행해주세요.');
       });
