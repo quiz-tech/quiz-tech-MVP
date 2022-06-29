@@ -1,51 +1,65 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
 
-const Detail = () => {
-  const [arr, setArr] = useState();
-  const params = useParams();
+const mock = {
+  time: '2022-06-21T23:53:25.545557Z',
+};
 
+const Detail = () => {
+  const [info, setInfo] = useState();
+  const [data, setData] = useState(mock);
+  const params = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://13.209.49.51:8000/questions/category/${params.id}`)
+    fetch(`http://backend.tecquiz.net:8000/questions/category/${params.id}/`)
       .then(res => res.json())
-      .then(data => setArr(data.name));
+      .then(data => setInfo(data));
   }, [params.id]);
 
-  console.log(arr);
+  const createQuizDay = data.time.slice(0, 10);
+
+  const goToQuiz = () => {
+    navigate(`/card/${info.id}`);
+  };
+
+  console.log(info);
 
   return (
     <>
-      <Title>타이틀</Title>
-      <SubTitle>서브타이틀</SubTitle>
+      <Title>
+        {info && info.development_group === 1 ? 'Backend' : 'Frontend'}
+      </Title>
+      <SubTitle>Quiz</SubTitle>
       <ContentWrap>
         <ThumbnailWrap>
-          <Thumbnail />
+          <Thumbnail src={info && info.image} />
         </ThumbnailWrap>
         <ThumbnailInfo>
           <Info>
             <InfoTitle>Date</InfoTitle>
-            <InfoText>2022/08/17</InfoText>
+            <InfoText>{createQuizDay}</InfoText>
           </Info>
           <Info>
             <InfoTitle>Time Limit</InfoTitle>
-            <InfoText>2022/08/17</InfoText>
+            <InfoText>10MIN</InfoText>
           </Info>
           <Info>
             <InfoTitle>Attempts</InfoTitle>
-            <InfoText>클릭/시도 횟수</InfoText>
+            <InfoText>10</InfoText>
           </Info>
         </ThumbnailInfo>
       </ContentWrap>
 
       <IntroTitle>Instructions</IntroTitle>
       <IntroText>
-        [카테고리] 별 퀴즈입니다 랜덤한 문제중 10문제가 나옵니다. 문제
-        수정사항이나 문의 사항 있다면 우측의 support 항목을 이용해 주세요
+        <TextBold>[{info && info.name}]</TextBold> 퀴즈입니다 랜덤한 문제중
+        10문제가 나옵니다. 문제 수정사항이나 문의 사항 있다면 우측의 support
+        항목을 이용해 주세요
       </IntroText>
 
-      <NextButton>Start</NextButton>
+      <NextButton onClick={() => goToQuiz()}>Start</NextButton>
     </>
   );
 };
@@ -92,6 +106,10 @@ const InfoText = styled.span`
 const IntroTitle = styled.div`
   font-size: 23px;
   margin-top: 30px;
+`;
+const TextBold = styled.span`
+  font-size: 16px;
+  font-weight: 700;
 `;
 const IntroText = styled.div`
   margin-top: 100px;
