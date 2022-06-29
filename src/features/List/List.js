@@ -208,11 +208,16 @@ const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin-top: 50px;
+  max-height: 450px;
+  overflow-y: auto;
+  @media (max-width: 1450px) {
+    max-height: 200px;
+  }
 `;
 
 const Card = styled.li`
   position: relative;
-  width: 235px;
+  width: 200px;
   height: 170px;
   padding: 20px;
   margin-bottom: 20px;
@@ -221,6 +226,10 @@ const Card = styled.li`
   background: #c9c9c9;
   &:last-child {
     margin-right: 0;
+  }
+  @media (max-width: 1450px) {
+    width: 120px;
+    height: 100px;
   }
 `;
 
@@ -234,7 +243,7 @@ const CardText = styled.span`
 `;
 
 export const NextButton = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   right: 30px;
   width: 212px;
@@ -249,5 +258,8 @@ export const NextButton = styled.button`
 const ChartWrap = styled.div`
   width: 300px;
   height: 300px;
-  margin: 50px 0;
+  @media (max-width: 1500px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
