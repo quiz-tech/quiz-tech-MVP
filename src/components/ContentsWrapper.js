@@ -14,4 +14,5 @@ const Wrapper = styled.div`
   background-color: #ffffff;
   border-radius: 30px;
   border: 1px solid black;
+  overflow-y: auto;
 `;

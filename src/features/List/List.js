@@ -104,7 +104,7 @@ const CardList = styled.ul`
 
 const Card = styled.li`
   position: relative;
-  width: 235px;
+  width: calc(100% / 4 - 60px);
   height: 170px;
   padding: 20px;
   margin-bottom: 20px;
@@ -126,7 +126,7 @@ const CardText = styled.span`
 `;
 
 export const NextButton = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   right: 30px;
   width: 212px;
