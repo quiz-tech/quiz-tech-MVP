@@ -243,7 +243,7 @@ const CardText = styled.span`
 `;
 
 export const NextButton = styled.button`
-  position: fixed;
+  position: absolute;
   bottom: 30px;
   right: 30px;
   width: 212px;
@@ -258,6 +258,7 @@ export const NextButton = styled.button`
 const ChartWrap = styled.div`
   width: 300px;
   height: 300px;
+  margin-bottom: 50px;
   @media (max-width: 1500px) {
     width: 200px;
     height: 200px;
