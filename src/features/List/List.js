@@ -135,7 +135,7 @@ const CardText = styled.span`
 `;
 
 export const NextButton = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   right: 30px;
   width: 212px;
