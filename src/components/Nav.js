@@ -1,9 +1,24 @@
 import styled from 'styled-components';
 import { flex } from '../styles/Mixin';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Nav = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('http://backend.tecquiz.net:8000/users/profile/', {
+      headers: {
+        access: localStorage.getItem('access'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+  }, []);
 
   const goToDashboard = () => {
     navigate('/');
@@ -12,12 +27,16 @@ const Nav = () => {
   return (
     <NavBar>
       <NavContainer>
-        <Title onClick={goToDashboard}>Quiz Tech</Title>
+        <LogoLink to="/">
+          <Title onClick={goToDashboard}>Quiz Tech</Title>
+        </LogoLink>
         <UserSearch>
           <SearchImg src="/images/Search.svg" />
           <SearchInput placeholder="search.." />
         </UserSearch>
-        <StartQuizBtn>Start Quiz</StartQuizBtn>
+        <ListLink to="/list/1">
+          <StartQuizBtn>Start Quiz</StartQuizBtn>
+        </ListLink>
         <UserProfile>
           <UserImg src="/images" alt="^" />
           <UserName>Kyuhyun Ro^</UserName>
@@ -37,6 +56,12 @@ const NavBar = styled.div`
 const NavContainer = styled.div`
   ${flex('flex-start', 'center')}
 `;
+
+const LogoLink = styled(Link)`
+  color: inherit;
+`;
+
+const ListLink = styled(LogoLink)``;
 
 const Title = styled.div`
   font-weight: 800;

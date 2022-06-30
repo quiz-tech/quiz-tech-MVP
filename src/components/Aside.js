@@ -2,32 +2,26 @@ import styled from 'styled-components';
 import ContentItem from './ContentItem';
 import { flex } from '../styles/Mixin';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Aside = () => {
+  const navigate = useNavigate();
   const [contentItem, setContentItem] = useState([]);
-  // useEffect(() => {
-  //   fetch({‘’}, {
-  //     headers: {
-  //      Authorization:localStorage.getItem(‘access-token’)
-  //    },
-  //   })
-  //   .then((res) => res.json())
-  //   .then((data)=>{
-  // setDataItem(data.ProfileData);
-  // setQuizItem(data.CategoryData);
-  // }
-  // )
-  // }, []);
 
   useEffect(() => {
     fetch('http://localhost:3000/data/sideData.json')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setContentItem(data.sideContent);
       });
   }, []);
-  console.log(contentItem);
+  // console.log(contentItem);
+
+  const handleLogout = () => {
+    localStorage.removeItem('access');
+    navigate('/login');
+  };
 
   return (
     <SideBar>
@@ -39,7 +33,7 @@ const Aside = () => {
       </Content>
       <Logout>
         <LogoutImg src="/images/Logout.svg" alt="로그아웃사진" />
-        <LogoutText>Log Out</LogoutText>
+        <LogoutText onClick={handleLogout}>Log Out</LogoutText>
       </Logout>
     </SideBar>
   );
@@ -70,7 +64,7 @@ const LogoutImg = styled.img`
   width: 20px;
   height: 20px;
 `;
-const LogoutText = styled.span`
+const LogoutText = styled.div`
   margin-left: 20px;
   color: #696f79;
   font-weight: 600;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { flex } from '../styles/Mixin';
+import { useState } from 'react';
 
 const ContentItem = ({ ...contentData }) => {
   return (
@@ -17,7 +18,7 @@ export default ContentItem;
 const Content = styled.li`
   width: 200px;
   margin-bottom: 40px;
-  color: #8692a6;
+  color: #696f79;
   border-radius: 30px;
   border: 1px solid gray;
   cursor: pointer;
@@ -33,11 +34,10 @@ const ContentBox = styled.div`
 const ContentImg = styled.img`
   width: 15px;
   height: 15px;
-  color: black;
 `;
 
 const ContentText = styled.span`
-  margin-left: 15px;
+  margin: 5px 0 0 15px;
   font-weight: 600;
   font-size: 18px;
 `;
