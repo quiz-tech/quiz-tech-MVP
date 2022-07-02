@@ -4,6 +4,7 @@ import { Title, SubTitle, NextButton } from '../List/List';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { infoUpdate } from './resultSlice';
+import { asnwerUpdate } from './questionSlice';
 import Timer from './Timer';
 import Modal from '../../components/Modal';
 
@@ -20,8 +21,11 @@ const Card = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const result = useSelector(state => state.result);
+  const answersData = useSelector(state => state.answers);
   const correctAnswerIndex = [];
+
   console.log('result', result);
+  console.log('answersData', answersData);
 
   questionData.forEach(questionElenents => {
     questionElenents.answer.forEach((answerEl, idx) => {
@@ -52,6 +56,14 @@ const Card = () => {
       //   isPassed: correctCount >= 7,
       //   correctCount: correctCount,
       // });
+      dispatch(
+        asnwerUpdate({
+          questionId: questionIndex,
+          choosenAnswer: answer,
+          correctAnswer: correctAnswerIndex[questionIndex],
+          isCorrect: answer === correctAnswerIndex[questionIndex],
+        })
+      );
       setQuestionIndex(prev => (prev += 1));
       setAnswer('');
     }
@@ -65,11 +77,12 @@ const Card = () => {
   }, [correctCount, dispatch]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/cardData.json')
+    fetch('http://backend.tecquiz.net:8000/questions/category/2/quiz/')
       .then(res => res.json())
       .then(res => {
         setQuestionData(res.content);
-      });
+      })
+      .catch(err => console.log('err:', err));
   }, [navigate, questionIndex]);
 
   return (
