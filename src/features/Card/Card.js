@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import { Title, SubTitle, NextButton } from '../List/List';
+import { Title, SubTitle } from '../List/List';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { infoUpdate } from './resultSlice';
@@ -83,7 +83,7 @@ const Card = () => {
         setQuestionData(res.content);
       })
       .catch(err => console.log('err:', err));
-  }, [navigate, questionIndex]);
+  }, []);
 
   return (
     <>
@@ -127,6 +127,15 @@ const Card = () => {
           );
         })}
       </AnswerButtonWrapper>
+      <PrevButton
+        disabled={questionIndex === 0 ? true : false}
+        style={questionIndex === 0 ? { opacity: 0.3 } : { opacity: 1 }}
+        onClick={() => {
+          setQuestionIndex(prev => prev - 1);
+        }}
+      >
+        PREV
+      </PrevButton>
       <NextButton
         onClick={() => {
           handleQuestionIndex();
@@ -205,4 +214,30 @@ const AnswerOptionText = styled.p`
   font-weight: 400;
   font-size: 18px;
   color: #696f79;
+`;
+
+const NextButton = styled.button`
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 212px;
+  height: 65px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  background: #8692a6;
+  border-radius: 27px;
+`;
+
+const PrevButton = styled.button`
+  position: absolute;
+  bottom: 30px;
+  right: 284px;
+  width: 212px;
+  height: 65px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  background: #8692a6;
+  border-radius: 27px;
 `;
