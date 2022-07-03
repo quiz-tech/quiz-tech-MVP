@@ -136,5 +136,6 @@ const SelectQuizContainer = styled.div`
   ${flex('space-around', 'center')}
   width:470px;
   height: 255px;
-  border: 1px solid gray;
+  border: 1px solid lightgray;
+  border-radius: 30px;
 `;
