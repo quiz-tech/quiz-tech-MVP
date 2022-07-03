@@ -28,7 +28,6 @@ const SelectQuizContainer = styled.button`
   height: 100px;
   margin: 0 30px;
   border-radius: 30px;
-  /* background-color: red; */
 `;
 
 const QuizImg = styled.img`

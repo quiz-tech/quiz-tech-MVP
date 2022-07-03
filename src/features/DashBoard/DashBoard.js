@@ -9,24 +9,12 @@ import SelectQuiz from './SelectQuiz';
 const DashBoard = () => {
   const [dataItem, setDataItem] = useState([]);
   const [quizItem, setQuizItem] = useState([]);
-  // useEffect(() => {
-  //   fetch({''}, {
-  //     headers: {
-  // 			Authorization:localStorage.getItem('access-token')
-  // 		},
-  //   })
-  //   .then((res) => res.json())
-  //   .then((data)=>{
-  // setDataItem(data.ProfileData);
-  // setQuizItem(data.CategoryData);
-  // }
-  // )
-  // }, []);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/dashboardData.json')
+    fetch('/data/dashboardData.json')
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         setDataItem(data.ProfileData);
         setQuizItem(data.CategoryData);
       });
