@@ -11,6 +11,7 @@ const Nav = () => {
   useEffect(() => {
     fetch(
       'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
+      // FIX ME: 배포 되어 있는 프록시 서버를 이용하여 우회 통신 성공
       // 'http://backend.tecquiz.net:8000/users/profile/',
       {
         // mode: 'no-cors',
