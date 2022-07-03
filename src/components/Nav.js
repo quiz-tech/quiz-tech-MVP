@@ -9,11 +9,17 @@ const Nav = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://backend.tecquiz.net:8000/users/profile/', {
-      headers: {
-        access: localStorage.getItem('access'),
-      },
-    })
+    fetch(
+      'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
+      // 'http://backend.tecquiz.net:8000/users/profile/',
+      {
+        // mode: 'no-cors',
+        headers: {
+          // Access-Control-Allow-Credentials: true,
+          access: localStorage.getItem('access'),
+        },
+      }
+    )
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -104,17 +110,18 @@ const StartQuizBtn = styled.button`
 
 const UserProfile = styled.div`
   ${flex('center', 'center')}
-  margin-left: 150px;
+  /* margin-left: 150px; */
+  margin: 20px 0 0 150px;
 `;
 
 const UserImg = styled.img`
   width: 45px;
   height: 45px;
-  margin: 20px 0 0 30px;
+  margin-left: 30px;
   border-radius: 45px;
 `;
 
 const UserName = styled.span`
-  font-size: 18px;
-  margin: 20px 0 0 10px;
+  font-size: 20px;
+  margin-left: 10px;
 `;
