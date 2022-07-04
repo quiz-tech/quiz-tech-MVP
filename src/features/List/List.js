@@ -130,7 +130,9 @@ const List = () => {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`http://backend.tecquiz.net:8000/questions/1/category/?format=json`)
+    fetch(
+      `http://backend.tecquiz.net:8000/questions/${params.id}/category/?format=json`
+    )
       .then(res => res.json())
       .then(data => setQuizInfo(data));
   }, [params.id]);
@@ -164,8 +166,8 @@ const List = () => {
       {
         label: '# of Votes',
         data: [totalAnswer.success, totalAnswer.fail],
-        backgroundColor: ['rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'],
-        borderColor: ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+        backgroundColor: ['rgba(126, 206, 252, 0.2)', 'rgba(255, 77, 51, 0.2)'],
+        borderColor: ['rgba(126, 206, 252, 1)', 'rgba(255, 77, 51, 1)'],
         borderWidth: 1,
       },
     ],
@@ -182,14 +184,13 @@ const List = () => {
           </ChartWrap>
         </ContentLeft>
         <ContentRight>
-          <Title>{params.id === '1' ? 'Frontend Quiz' : 'Backend Quiz'}</Title>
+          <Title>{params.id !== '1' ? 'Frontend Quiz' : 'Backend Quiz'}</Title>
           <SubTitle>서브타이틀</SubTitle>
           <CardList>
             {quizInfo &&
               quizInfo.map(card => (
                 <Card key={card.id} onClick={() => goToCard(card.id)}>
                   <CardImg src={card.image} alt={card.name} />
-                  <CardText>{card.name}</CardText>
                 </Card>
               ))}
           </CardList>
@@ -244,13 +245,13 @@ const CardList = styled.ul`
 
 const Card = styled.li`
   position: relative;
-  width: 200px;
-  height: 170px;
-  padding: 20px;
+  width: 250px;
+  height: 200px;
   margin-bottom: 20px;
   margin-right: 20px;
   border-radius: 30px;
   background: #c9c9c9;
+  overflow: hidden;
   &:last-child {
     margin-right: 0;
   }
@@ -264,15 +265,6 @@ const Card = styled.li`
 const CardImg = styled.img`
   width: 100%;
   height: 100%;
-`;
-
-const CardText = styled.span`
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
 `;
 
 export const NextButton = styled.button`
