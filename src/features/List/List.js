@@ -173,21 +173,28 @@ const List = () => {
 
   return (
     <>
-      <Title>내 기록 전체 보기</Title>
-      <SubTitle>기록</SubTitle>
-      <ChartWrap>
-        <Doughnut data={data} />
-      </ChartWrap>
-      <Title>{params.id === 1 ? 'Backend Quiz' : 'Frontend Quiz'}</Title>
-      <SubTitle>서브타이틀</SubTitle>
-      <CardList>
-        {quizInfo &&
-          quizInfo.map(card => (
-            <Card key={card.id} onClick={() => goToCard(card.id)}>
-              <CardText>{card.name}</CardText>
-            </Card>
-          ))}
-      </CardList>
+      <ContentWrap>
+        <ContentLeft>
+          <Title>내 기록 전체 보기</Title>
+          <SubTitle>기록</SubTitle>
+          <ChartWrap>
+            <Doughnut data={data} />
+          </ChartWrap>
+        </ContentLeft>
+        <ContentRight>
+          <Title>{params.id === '1' ? 'Frontend Quiz' : 'Backend Quiz'}</Title>
+          <SubTitle>서브타이틀</SubTitle>
+          <CardList>
+            {quizInfo &&
+              quizInfo.map(card => (
+                <Card key={card.id} onClick={() => goToCard(card.id)}>
+                  <CardImg src={card.image} alt={card.name} />
+                  <CardText>{card.name}</CardText>
+                </Card>
+              ))}
+          </CardList>
+        </ContentRight>
+      </ContentWrap>
       <NextButton onClick={() => goToDashBoard()}>PREV</NextButton>
     </>
   );
@@ -204,14 +211,34 @@ export const SubTitle = styled.p`
   margin-top: 10px;
 `;
 
+const ContentWrap = styled.div`
+  @media (max-width: 1700px) {
+    display: flex;
+  }
+`;
+
+const ContentLeft = styled.div`
+  @media (max-width: 1700px) {
+    padding-right: 50px;
+    border-right: 1px solid #e9e9e9;
+  }
+`;
+
+const ContentRight = styled.div`
+  @media (max-width: 1700px) {
+    margin-left: 50px;
+    padding: 0 20px;
+  }
+`;
+
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin-top: 50px;
   max-height: 450px;
   overflow-y: auto;
-  @media (max-width: 1450px) {
-    max-height: 200px;
+  @media (max-width: 1700px) {
+    max-height: 350px;
   }
 `;
 
@@ -227,10 +254,16 @@ const Card = styled.li`
   &:last-child {
     margin-right: 0;
   }
-  @media (max-width: 1450px) {
-    width: 120px;
-    height: 100px;
+  @media (max-width: 1700px) {
+    width: 160px;
+    height: 130px;
+    border-radius: 20px;
   }
+`;
+
+const CardImg = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 
 const CardText = styled.span`
@@ -259,8 +292,8 @@ const ChartWrap = styled.div`
   width: 300px;
   height: 300px;
   margin-bottom: 50px;
-  @media (max-width: 1500px) {
-    width: 200px;
-    height: 200px;
+  @media (max-width: 1700px) {
+    margin-top: 80px;
+    margin-bottom: 0;
   }
 `;
