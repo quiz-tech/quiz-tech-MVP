@@ -33,9 +33,8 @@ const ProfileDataImgBase = styled.div`
 `;
 
 const ProfileDataImg = styled.img`
-  width: 60px;
-  height: 60px;
-  /* background: url({profileData.dataImg}) no-repeat center; */
+  width: 100%;
+  height: 100%;
 `;
 
 const ProfileDataInfo = styled.div`
