@@ -5,7 +5,6 @@ import { countDown } from './timerSlice';
 
 const Timer = ({ setShowModal, showModal }) => {
   const leftTime = useSelector(state => state.timer.leftTime);
-
   const dispatch = useDispatch();
 
   function padTo2Digits(num) {
@@ -30,11 +29,9 @@ const Timer = ({ setShowModal, showModal }) => {
         setShowModal(true);
       }
     }, 1000);
-
     if (showModal === true) {
       clearInterval(countdown);
     }
-
     return () => clearInterval(countdown);
   }, [dispatch, leftTime, setShowModal, showModal]);
 

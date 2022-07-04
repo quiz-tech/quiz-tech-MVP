@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import { Title, SubTitle } from '../List/List';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { resultUpdate } from './resultSlice';
 import { asnwerUpdate } from './questionSlice';
+import { Title, SubTitle } from '../List/List';
 import Timer from './Timer';
 import Modal from '../../components/Modal';
 
@@ -13,7 +14,8 @@ const Card = () => {
   const [answer, setAnswer] = useState('');
   const [correctCount, setCorrectCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  // console.log(questionAnswerData);
+
+  const param = useParams();
 
   const dispatch = useDispatch();
   const result = useSelector(state => state.result);
@@ -56,8 +58,10 @@ const Card = () => {
   }, [correctCount, dispatch]);
 
   useEffect(() => {
-    // fetch('http://backend.tecquiz.net:8000/questions/category/2/quiz/')
-    fetch('http://localhost:3000/data/cardData.json')
+    fetch(
+      `http://backend.tecquiz.net:8000/questions/category/${param.id}/quiz/`
+    )
+      // fetch('http://localhost:3000/data/cardData.json')
       .then(res => res.json())
       .then(res => {
         setQuestionData(res.content);
@@ -176,11 +180,11 @@ const RadioBtnBox = styled.div`
 const RadioBtn = styled.div`
   width: 24px;
   height: 24px;
-  background-image: url('images/radioButton/unChecked.png');
+  background-image: url('/images/radioButton/unChecked.png');
   ${props =>
     props.idx === props.answer &&
     css`
-      background-image: url('images/radioButton/checked.png');
+      background-image: url('/images/radioButton/checked.png');
     `}
 
   background-size: cover;
