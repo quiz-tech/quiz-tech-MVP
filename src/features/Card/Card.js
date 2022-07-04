@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { resultUpdate } from './resultSlice';
 import { asnwerUpdate } from './questionSlice';
 import { Title, SubTitle } from '../List/List';
@@ -15,11 +16,11 @@ const Card = () => {
   const [correctCount, setCorrectCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
+  const location = useLocation();
   const param = useParams();
 
   const dispatch = useDispatch();
-  const result = useSelector(state => state.result);
-  const answersData = useSelector(state => state.answers);
+
   const correctAnswerIndex = [];
 
   questionData.forEach(questionElenents => {
@@ -64,10 +65,11 @@ const Card = () => {
       // fetch('http://localhost:3000/data/cardData.json')
       .then(res => res.json())
       .then(res => {
-        setQuestionData(res.content);
-      })
-      .catch(err => console.log('err:', err));
-  }, []);
+        res[0] === 'try again'
+          ? window.location.reload()
+          : setQuestionData(res.content);
+      });
+  }, [param.id]);
 
   return (
     <>

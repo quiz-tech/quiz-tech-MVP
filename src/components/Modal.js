@@ -7,7 +7,11 @@ const Modal = ({ setQuestionIndex, questionIndex }) => {
   const navigate = useNavigate();
   const [modalType, setModalType] = useState('submit');
   const leftTime = useSelector(state => state.timer.leftTime);
-  console.log(leftTime);
+
+  const result = useSelector(state => state.result);
+  const answersData = useSelector(state => state.answers.answers);
+
+  console.log(answersData);
   const goToResult = () => {
     navigate('/result');
   };
@@ -47,7 +51,11 @@ const Modal = ({ setQuestionIndex, questionIndex }) => {
         ) : (
           <>
             <ModalDesc>
-              Congratulations you have passed {'\n'} You scored 80%
+              {result.isPassed
+                ? `Congratulations! you have passed.`
+                : `Oops! You have to study more. `}
+              {'\n'}
+              {`You scored ${result.correctCount}0%`}
             </ModalDesc>
             <ModalBtn
               onClick={() => {
