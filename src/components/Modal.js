@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-const Modal = () => {
+import { useSelector } from 'react-redux';
+
+const Modal = ({ setQuestionIndex, questionIndex }) => {
   const navigate = useNavigate();
   const [modalType, setModalType] = useState('submit');
-
+  const leftTime = useSelector(state => state.timer.leftTime);
+  console.log(leftTime);
   const goToResult = () => {
     navigate('/result');
   };
@@ -12,25 +15,49 @@ const Modal = () => {
   const handleModalType = () => {
     setModalType('result');
   };
+
+  const handleSubmitBtn = () => {
+    //결과 POST통신 함수
+  };
+
   return (
     <ModalBackground>
       <ModalWindow modalType={modalType}>
         <ModalIcon src="/images/modalIcon.png" />
-        <ModalDesc>Are you Sure you want {`\n`}to submit Quiz?</ModalDesc>
-        <ModalBtnContainer>
-          <ModalBtn>No</ModalBtn>
-          <ModalBtn
-            onClick={() => {
-              if (modalType === 'submit') {
-                handleModalType();
-              } else {
+        {modalType === 'submit' ? (
+          <>
+            <ModalDesc>Are you Sure you want {`\n`}to submit Quiz?</ModalDesc>
+            <ModalBtnContainer>
+              <ModalBtn
+                onClick={() => {
+                  setQuestionIndex(9);
+                }}
+              >
+                No
+              </ModalBtn>
+              <ModalBtn
+                onClick={() => {
+                  handleModalType();
+                }}
+              >
+                Yes
+              </ModalBtn>
+            </ModalBtnContainer>
+          </>
+        ) : (
+          <>
+            <ModalDesc>
+              Congratulations you have passed {'\n'} You scored 80%
+            </ModalDesc>
+            <ModalBtn
+              onClick={() => {
                 goToResult();
-              }
-            }}
-          >
-            Yes
-          </ModalBtn>
-        </ModalBtnContainer>
+              }}
+            >
+              Review Quiz
+            </ModalBtn>
+          </>
+        )}
       </ModalWindow>
     </ModalBackground>
   );

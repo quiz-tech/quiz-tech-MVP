@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Title, SubTitle } from '../List/List';
-import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { infoUpdate } from './resultSlice';
+import { resultUpdate } from './resultSlice';
 import { asnwerUpdate } from './questionSlice';
 import Timer from './Timer';
 import Modal from '../../components/Modal';
@@ -13,19 +12,13 @@ const Card = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [correctCount, setCorrectCount] = useState(0);
-
-  const [questionAnswerData, setQuestionAnswerData] = useState([]);
-
+  const [showModal, setShowModal] = useState(false);
   // console.log(questionAnswerData);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const result = useSelector(state => state.result);
   const answersData = useSelector(state => state.answers);
   const correctAnswerIndex = [];
-
-  console.log('result', result);
-  console.log('answersData', answersData);
 
   questionData.forEach(questionElenents => {
     questionElenents.answer.forEach((answerEl, idx) => {
@@ -42,20 +35,6 @@ const Card = () => {
       setCorrectCount(prev => (prev += 1));
     }
     if (questionIndex <= 10) {
-      setQuestionAnswerData(prev => [
-        ...prev,
-        {
-          questionId: questionIndex,
-          choosenAnswer: answer,
-          correctAnswer: correctAnswerIndex[questionIndex],
-          isCorrect: answer === correctAnswerIndex[questionIndex],
-        },
-      ]);
-      // setQuestionResultData({
-      //   elapsedTime: 0,
-      //   isPassed: correctCount >= 7,
-      //   correctCount: correctCount,
-      // });
       dispatch(
         asnwerUpdate({
           questionId: questionIndex,
@@ -67,17 +46,18 @@ const Card = () => {
       setQuestionIndex(prev => (prev += 1));
       setAnswer('');
     }
-  };
-  const handleSubmitBtn = () => {
-    //결과 POST통신 함수
+    if (questionIndex === 9) {
+      setShowModal(true);
+    }
   };
 
   useEffect(() => {
-    dispatch(infoUpdate(correctCount));
+    dispatch(resultUpdate(correctCount));
   }, [correctCount, dispatch]);
 
   useEffect(() => {
-    fetch('http://backend.tecquiz.net:8000/questions/category/2/quiz/')
+    // fetch('http://backend.tecquiz.net:8000/questions/category/2/quiz/')
+    fetch('http://localhost:3000/data/cardData.json')
       .then(res => res.json())
       .then(res => {
         setQuestionData(res.content);
@@ -87,7 +67,12 @@ const Card = () => {
 
   return (
     <>
-      {questionIndex === 10 ? <Modal /> : null}
+      {showModal ? (
+        <Modal
+          questionIndex={questionIndex}
+          setQuestionIndex={setQuestionIndex}
+        />
+      ) : null}
       <Title>타이틀</Title>
       <SubTitle>서브 타이틀</SubTitle>
       <QuestionCard>
@@ -105,13 +90,9 @@ const Card = () => {
           </>
         )}
 
-        {/* <Timer
-          minutes={minutes}
-          seconds={seconds}
-          setMinutes={setMinutes}
-          setSeconds={setSeconds}
-        /> */}
+        <Timer setShowModal={setShowModal} showModal={showModal} />
       </QuestionCard>
+      <AnswerDesc>Choose Answer</AnswerDesc>
       <AnswerButtonWrapper>
         {questionData[questionIndex]?.answer?.map((answerInfo, idx) => {
           return (
@@ -139,7 +120,6 @@ const Card = () => {
       <NextButton
         onClick={() => {
           handleQuestionIndex();
-          handleSubmitBtn();
         }}
         disabled={answer === '' ? true : false}
         style={answer === '' ? { opacity: 0.3 } : { opacity: 1 }}
@@ -155,7 +135,7 @@ export default Card;
 const QuestionCard = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 296px;
+  height: 276px;
 `;
 
 const QuestionDesc = styled.div``;
@@ -206,6 +186,15 @@ const RadioBtn = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+`;
+
+const AnswerDesc = styled.p`
+  display: inline-block;
+  margin-bottom: 32px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  color: #696f79;
 `;
 
 const AnswerOptionText = styled.p`

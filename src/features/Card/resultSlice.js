@@ -9,12 +9,12 @@ export const resultSlice = createSlice({
   name: 'resultInfo',
   initialState,
   reducers: {
-    infoUpdate: (state, actions) => {
+    resultUpdate: (state, actions) => {
       state.isPassed = actions.payload >= 7;
       state.correctCount = actions.payload;
     },
   },
 });
 
-export const { infoUpdate } = resultSlice.actions;
+export const { resultUpdate } = resultSlice.actions;
 export default resultSlice.reducer;

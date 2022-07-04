@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import timerReducer from '../features/Card/timerSlice';
 import resultReducer from '../features/Card/resultSlice';
 import answersReducer from '../features/Card/questionSlice';
+
 export const store = configureStore({
   reducer: {
     timer: timerReducer,
