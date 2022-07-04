@@ -43,10 +43,12 @@ const ProfileDataInfo = styled.div`
   flex-direction: column;
   margin-left: 15px;
 `;
+
 const ProfileDataResult = styled.span`
   font-weight: 700;
   font-size: 28px;
 `;
+
 const ProfileDataName = styled.span`
   font-size: 15px;
   margin-top: 5px;
