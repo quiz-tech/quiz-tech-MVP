@@ -1,0 +1,52 @@
+{
+  "ProfileData": [
+    {
+      "id": 1,
+      "dataImg": "/images/Rectangle 278.svg",
+      "dataResult": "31",
+      "dataName": "Quiz Passed"
+    },
+    {
+      "id": 2,
+      "dataImg": "/images/Rectangle 278.svg",
+      "dataResult": "15",
+      "dataName": "Fastest Time"
+    },
+    {
+      "id": 3,
+      "dataImg": "/images/Rectangle 278.svg",
+      "dataResult": "100",
+      "dataName": "Correct Answers"
+    }
+  ],
+  "RankingData": [
+    {
+      "id": 1,
+      "medalImg": "메달사진 ex. 이미지 경로 (github issues 링크? ) ",
+      "medalName": "메달이 나타내는 항목 ex. lucky, winner",
+      "userName": "노규현"
+    },
+    {
+      "id": 2,
+      "promote_image_url": "../images/landingpage/접어둔여러색옷.jpg",
+      "promote_name": "반팔티셔츠 시리즈"
+    },
+    {
+      "id": 3,
+      "promote_image_url": "../images/landingpage/흰구름.jpg",
+      "promote_name": "구름같은 솜사탕 한정판매"
+    }
+  ],
+  "CategoryData": [
+    {
+      "id": 1,
+      "CategoryImg": "/images/Vector.svg",
+      "CategoryName": "Front-end"
+    },
+    {
+      "id": 2,
+      "CategoryImg": "/images/Vector.svg",
+      "CategoryName": "Back-end"
+    }
+  ]
+}
