@@ -31,8 +31,8 @@ const SelectQuizContainer = styled.button`
 `;
 
 const QuizImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 `;
 
 const QuizName = styled.span`
