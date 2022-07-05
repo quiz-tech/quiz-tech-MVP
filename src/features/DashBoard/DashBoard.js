@@ -19,8 +19,8 @@ const DashBoard = () => {
         setQuizItem(data.CategoryData);
       });
   }, []);
-  console.log(dataItem);
-  console.log(quizItem);
+  // console.log(dataItem);
+  // console.log(quizItem);
 
   return (
     <DashboardContainer>

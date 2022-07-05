@@ -9,8 +9,6 @@ const SelectQuiz = ({ ...quizData }) => {
     navigate(`/list/${quizData.id}`);
   };
 
-  console.log(quizData.id);
-
   return (
     <SelectQuizContainer onClick={goToQuiz}>
       <QuizImg src={quizData.CategoryImg} alt="퀴즈선택사진" />

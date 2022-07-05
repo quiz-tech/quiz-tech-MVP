@@ -1,5 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import userDataReducer from '../features/DashBoard/userDataSlice';
 
 export default configureStore({
-  reducer: {},
+  reducer: {
+    userData: userDataReducer,
+  },
 });
