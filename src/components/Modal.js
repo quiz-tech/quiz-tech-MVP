@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const Modal = ({ setQuestionIndex, questionIndex }) => {
+const Modal = ({ setQuestionIndex, questionIndex, setShowModal }) => {
   const navigate = useNavigate();
   const [modalType, setModalType] = useState('submit');
   const leftTime = useSelector(state => state.timer.leftTime);
@@ -11,7 +11,7 @@ const Modal = ({ setQuestionIndex, questionIndex }) => {
   const result = useSelector(state => state.result);
   const answersData = useSelector(state => state.answers.answers);
 
-  console.log(answersData);
+  console.log(result.isPassed);
   const goToResult = () => {
     navigate('/result');
   };
@@ -21,29 +21,42 @@ const Modal = ({ setQuestionIndex, questionIndex }) => {
   };
 
   const handleSubmitBtn = () => {
-    //결과 POST통신 함수
+    fetch('http://backend.tecquiz.net:8000/users/rank/', {
+      method: 'POST',
+      headers: localStorage.getItem(''),
+      body: JSON.stringify({
+        correct_answer: result.correctCount,
+        // total_time: lastName,
+        quiz_passed: result.isPassed,
+        attempt: 1,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        handleModalType();
+      });
   };
 
   return (
     <ModalBackground>
       <ModalWindow modalType={modalType}>
-        <ModalIcon src="/images/modalIcon.png" />
         {modalType === 'submit' ? (
           <>
+            <ModalIcon src="/images/modalIcon.png" />
             <ModalDesc>Are you Sure you want {`\n`}to submit Quiz?</ModalDesc>
             <ModalBtnContainer>
               <ModalBtn
                 onClick={() => {
                   setQuestionIndex(9);
+                  setShowModal(false);
                 }}
                 disabled={leftTime === 0 ? true : false}
-                style={leftTime === 0 && { opacity: 0.3 }}
               >
                 No
               </ModalBtn>
               <ModalBtn
                 onClick={() => {
-                  handleModalType();
+                  handleSubmitBtn();
                 }}
               >
                 Yes
@@ -52,6 +65,7 @@ const Modal = ({ setQuestionIndex, questionIndex }) => {
           </>
         ) : (
           <>
+            <ModalIcon src="/images/modalIcon.png" />
             <ModalDesc>
               {result.isPassed
                 ? `Congratulations! you have passed.`

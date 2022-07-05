@@ -77,6 +77,7 @@ const Card = () => {
         <Modal
           questionIndex={questionIndex}
           setQuestionIndex={setQuestionIndex}
+          setShowModal={setShowModal}
         />
       ) : null}
       <Title>타이틀</Title>

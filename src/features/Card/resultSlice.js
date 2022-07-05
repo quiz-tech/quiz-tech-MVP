@@ -10,7 +10,7 @@ export const resultSlice = createSlice({
   initialState,
   reducers: {
     resultUpdate: (state, actions) => {
-      state.isPassed = actions.payload >= 7 && 1;
+      state.isPassed = actions.payload >= 7 ? 1 : 0;
       state.correctCount = actions.payload;
     },
     initResult: state => {
