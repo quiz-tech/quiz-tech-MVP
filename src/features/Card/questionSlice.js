@@ -11,9 +11,12 @@ const questionSlice = createSlice({
     asnwerUpdate: (state, actions) => {
       state.answers = [...state.answers, actions.payload];
     },
+    initAnswer: state => {
+      state.answers = [];
+    },
   },
 });
 
-export const { asnwerUpdate } = questionSlice.actions;
+export const { asnwerUpdate, initAnswer } = questionSlice.actions;
 
 export default questionSlice.reducer;

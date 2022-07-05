@@ -36,6 +36,8 @@ const Modal = ({ setQuestionIndex, questionIndex }) => {
                 onClick={() => {
                   setQuestionIndex(9);
                 }}
+                disabled={leftTime === 0 ? true : false}
+                style={leftTime === 0 && { opacity: 0.3 }}
               >
                 No
               </ModalBtn>

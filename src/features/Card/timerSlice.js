@@ -11,8 +11,11 @@ export const timerSlice = createSlice({
     countDown: state => {
       state.leftTime = state.leftTime -= 1000;
     },
+    initTimer: state => {
+      state.leftTime = 600000;
+    },
   },
 });
 
-export const { countDown } = timerSlice.actions;
+export const { countDown, initTimer } = timerSlice.actions;
 export default timerSlice.reducer;

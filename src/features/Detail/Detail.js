@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title, SubTitle, NextButton } from '../List/List';
+import { useDispatch } from 'react-redux';
+import { initAnswer } from '../Card/questionSlice';
+import { initResult } from '../Card/resultSlice';
+import { initTimer } from '../Card/timerSlice';
 
 const mock = {
   time: '2022-06-21T23:53:25.545557Z',
@@ -10,6 +14,7 @@ const mock = {
 const Detail = () => {
   const [info, setInfo] = useState();
   const [data, setData] = useState(mock);
+  const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,6 +26,9 @@ const Detail = () => {
   const createQuizDay = data.time.slice(0, 10);
 
   const goToQuiz = () => {
+    dispatch(initAnswer());
+    dispatch(initTimer());
+    dispatch(initResult());
     navigate(`/card/${info.id}`);
   };
 
