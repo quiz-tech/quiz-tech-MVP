@@ -7,6 +7,8 @@ import { useLocation } from 'react-router-dom';
 
 const Nav = () => {
   const navigate = useNavigate();
+  const [userProfile, setUserProfile] = useState({});
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     fetch(
@@ -23,9 +25,16 @@ const Nav = () => {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
+        // console.log(data[0].rank_set[0]);
+        setUserProfile(data[0]);
+        setUserData(data[0].rank_set[0]);
       });
   }, []);
+
+  // console.log(userData);
+  console.log(userProfile);
+  console.log(userProfile.picture);
 
   const goToDashboard = () => {
     navigate('/');
@@ -45,8 +54,8 @@ const Nav = () => {
           <StartQuizBtn>Start Quiz</StartQuizBtn>
         </ListLink>
         <UserProfile>
-          <UserImg src="/images" alt="^" />
-          <UserName>Kyuhyun Ro^</UserName>
+          <UserImg src={userProfile.picture} alt="유저사진" />
+          <UserName>{userProfile.username}</UserName>
         </UserProfile>
       </NavContainer>
     </NavBar>
@@ -111,18 +120,18 @@ const StartQuizBtn = styled.button`
 
 const UserProfile = styled.div`
   ${flex('center', 'center')}
-  /* margin-left: 150px; */
   margin: 20px 0 0 150px;
 `;
 
 const UserImg = styled.img`
-  width: 45px;
-  height: 45px;
-  margin-left: 30px;
+  width: 60px;
+  height: 60px;
+  margin-left: 60px;
   border-radius: 45px;
 `;
 
 const UserName = styled.span`
-  font-size: 20px;
-  margin-left: 10px;
+  font-size: 17px;
+  margin-left: 20px;
+  color: #696f79;
 `;
