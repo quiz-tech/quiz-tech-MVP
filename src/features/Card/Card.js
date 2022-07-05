@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resultUpdate } from './resultSlice';
 import { asnwerUpdate } from './questionSlice';
@@ -16,7 +15,6 @@ const Card = () => {
   const [correctCount, setCorrectCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
-  const location = useLocation();
   const param = useParams();
 
   const dispatch = useDispatch();

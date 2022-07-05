@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  leftTime: 10000,
+  leftTime: 600000,
 };
 
 export const timerSlice = createSlice({

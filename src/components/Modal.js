@@ -23,7 +23,7 @@ const Modal = ({ setQuestionIndex, questionIndex, setShowModal }) => {
   const handleSubmitBtn = () => {
     fetch('http://backend.tecquiz.net:8000/users/rank/', {
       method: 'POST',
-      headers: localStorage.getItem(''),
+      headers: localStorage.getItem('access'),
       body: JSON.stringify({
         correct_answer: result.correctCount,
         // total_time: lastName,
