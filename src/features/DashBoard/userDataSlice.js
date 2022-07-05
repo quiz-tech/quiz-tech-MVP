@@ -9,7 +9,7 @@ export const userDataSlice = createSlice({
   initialState,
   reducers: {
     userDataUpdate: (state, actions) => {
-      state.isPassed = actions.payload >= 7;
+      state.answers = actions.payload;
     },
   },
 });
