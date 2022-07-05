@@ -41,12 +41,12 @@
     {
       "id": 1,
       "CategoryImg": "/images/Vector.svg",
-      "CategoryName": "Front-end"
+      "CategoryName": "Back-end"
     },
     {
       "id": 2,
       "CategoryImg": "/images/Vector.svg",
-      "CategoryName": "Back-end"
+      "CategoryName": "Front-end"
     }
   ]
 }

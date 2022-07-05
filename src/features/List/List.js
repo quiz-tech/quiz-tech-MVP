@@ -130,7 +130,9 @@ const List = () => {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`http://backend.tecquiz.net:8000/questions/1/category/?format=json`)
+    fetch(
+      `http://backend.tecquiz.net:8000/questions/${params.id}/category/?format=json`
+    )
       .then(res => res.json())
       .then(data => setQuizInfo(data));
   }, [params.id]);
@@ -164,8 +166,8 @@ const List = () => {
       {
         label: '# of Votes',
         data: [totalAnswer.success, totalAnswer.fail],
-        backgroundColor: ['rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'],
-        borderColor: ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+        backgroundColor: ['rgba(126, 206, 252, 0.2)', 'rgba(255, 77, 51, 0.2)'],
+        borderColor: ['rgba(126, 206, 252, 1)', 'rgba(255, 77, 51, 1)'],
         borderWidth: 1,
       },
     ],
@@ -173,21 +175,27 @@ const List = () => {
 
   return (
     <>
-      <Title>내 기록 전체 보기</Title>
-      <SubTitle>기록</SubTitle>
-      <ChartWrap>
-        <Doughnut data={data} />
-      </ChartWrap>
-      <Title>{params.id === 1 ? 'Backend Quiz' : 'Frontend Quiz'}</Title>
-      <SubTitle>서브타이틀</SubTitle>
-      <CardList>
-        {quizInfo &&
-          quizInfo.map(card => (
-            <Card key={card.id} onClick={() => goToCard(card.id)}>
-              <CardText>{card.name}</CardText>
-            </Card>
-          ))}
-      </CardList>
+      <ContentWrap>
+        <ContentLeft>
+          <Title>내 기록 전체 보기</Title>
+          <SubTitle>기록</SubTitle>
+          <ChartWrap>
+            <Doughnut data={data} />
+          </ChartWrap>
+        </ContentLeft>
+        <ContentRight>
+          <Title>{params.id !== '1' ? 'Frontend Quiz' : 'Backend Quiz'}</Title>
+          <SubTitle>서브타이틀</SubTitle>
+          <CardList>
+            {quizInfo &&
+              quizInfo.map(card => (
+                <Card key={card.id} onClick={() => goToCard(card.id)}>
+                  <CardImg src={card.image} alt={card.name} />
+                </Card>
+              ))}
+          </CardList>
+        </ContentRight>
+      </ContentWrap>
       <NextButton onClick={() => goToDashBoard()}>PREV</NextButton>
     </>
   );
@@ -204,42 +212,59 @@ export const SubTitle = styled.p`
   margin-top: 10px;
 `;
 
+const ContentWrap = styled.div`
+  @media (max-width: 1700px) {
+    display: flex;
+  }
+`;
+
+const ContentLeft = styled.div`
+  @media (max-width: 1700px) {
+    padding-right: 50px;
+    border-right: 1px solid #e9e9e9;
+  }
+`;
+
+const ContentRight = styled.div`
+  @media (max-width: 1700px) {
+    margin-left: 50px;
+    padding: 0 20px;
+  }
+`;
+
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin-top: 50px;
   max-height: 450px;
   overflow-y: auto;
-  @media (max-width: 1450px) {
-    max-height: 200px;
+  @media (max-width: 1700px) {
+    max-height: 350px;
   }
 `;
 
 const Card = styled.li`
   position: relative;
-  width: 200px;
-  height: 170px;
-  padding: 20px;
+  width: 250px;
+  height: 200px;
   margin-bottom: 20px;
   margin-right: 20px;
   border-radius: 30px;
   background: #c9c9c9;
+  overflow: hidden;
   &:last-child {
     margin-right: 0;
   }
-  @media (max-width: 1450px) {
-    width: 120px;
-    height: 100px;
+  @media (max-width: 1700px) {
+    width: 160px;
+    height: 130px;
+    border-radius: 20px;
   }
 `;
 
-const CardText = styled.span`
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
+const CardImg = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 
 export const NextButton = styled.button`
@@ -259,8 +284,8 @@ const ChartWrap = styled.div`
   width: 300px;
   height: 300px;
   margin-bottom: 50px;
-  @media (max-width: 1500px) {
-    width: 200px;
-    height: 200px;
+  @media (max-width: 1700px) {
+    margin-top: 80px;
+    margin-bottom: 0;
   }
 `;
