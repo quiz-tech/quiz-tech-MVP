@@ -53,12 +53,14 @@ const DashBoard = () => {
         // console.log(data[0].rank_set[0]);
         setDashboardData(data[0]);
         setUserProfileData(data[0].rank_set[0]);
+        userDataUpdate(data[0].rank_set[0]);
       });
   }, []);
 
   console.log(userProfileData);
   console.log(dashboardData);
-  // 여기에 있는 아이들도 props 로 전달되어야 하기에 한번 스토어에 저장?
+  console.log(userDataUpdate);
+  // FIX ME: 여기에 있는 아이들도 props 로 전달되어야 하기에 한번 스토어에 저장?
 
   return (
     <DashboardContainer>
