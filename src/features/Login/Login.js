@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Login = () => {
-  const [Auth, setAuth] = useState({});
+  const [Auth, setAuth] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,9 +19,11 @@ const Login = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data.jwt_token.access);
-        data.jwt_token.access
-          ? localStorage.setItem('access', data.jwt_token.access)
+        // console.log(data.jwt_token.access);
+        console.log(data[0].jwt_token.access);
+        // console.log(data.jwt_token);
+        data[0].jwt_token.access
+          ? localStorage.setItem('access', data[0].jwt_token.access)
           : navigate('/login');
         localStorage.getItem('access')
           ? navigate('/')

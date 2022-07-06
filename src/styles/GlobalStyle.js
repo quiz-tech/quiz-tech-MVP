@@ -6,6 +6,7 @@ ${reset}
 *{
   box-sizing: border-box;
 }
+
 body {
     line-height: 1;
     background-color: #fff;

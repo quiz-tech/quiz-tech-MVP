@@ -26,6 +26,7 @@ const GoogleBtn = ({ setAuth, Auth }) => {
           //   console.log(Auth);
           // }
         }
+        y
         onError={() => {
           console.log('Login Failed');
         }}
