@@ -2,20 +2,17 @@
   "ProfileData": [
     {
       "id": 1,
-      "dataImg": "/images/Rectangle 278.svg",
-      "dataResult": "31",
+      "dataImg": "/images/quizpass.svg",
       "dataName": "Quiz Passed"
     },
     {
       "id": 2,
-      "dataImg": "/images/Rectangle 278.svg",
-      "dataResult": "15",
+      "dataImg": "/images/fastest.svg",
       "dataName": "Fastest Time"
     },
     {
       "id": 3,
-      "dataImg": "/images/Rectangle 278.svg",
-      "dataResult": "100",
+      "dataImg": "/images/correct.svg",
       "dataName": "Correct Answers"
     }
   ],

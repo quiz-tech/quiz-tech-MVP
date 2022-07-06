@@ -95,6 +95,7 @@ const UserSearch = styled.div`
   margin: 20px 0 0 50px;
   border-radius: 20px;
   background-color: #ffffff;
+  box-shadow: 2px 2px 2px 2px lightgray;
 `;
 
 const SearchImg = styled.img`

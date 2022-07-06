@@ -40,10 +40,8 @@ const Aside = () => {
 export default Aside;
 
 const SideBar = styled.div`
-  display: flex;
+  ${flex('space-between', 'center')}
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   width: 270px;
   background-color: #fbf9f9;
 `;

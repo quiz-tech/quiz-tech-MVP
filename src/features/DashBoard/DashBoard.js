@@ -11,12 +11,11 @@ import { userDataUpdate } from './userDataSlice';
 const DashBoard = () => {
   const [dataItem, setDataItem] = useState([]);
   const [quizItem, setQuizItem] = useState([]);
+  const dispatch = useDispatch();
 
   const [dashboardData, setDashboardData] = useState({});
-  const [userProfileData, setUserProfileData] = useState({});
 
-  const dispatch = useDispatch();
-  const uerData = useSelector(state => state.answers);
+  const userData = useSelector(state => state.userData);
 
   useEffect(() => {
     dispatch(userDataUpdate(dashboardData));
@@ -51,25 +50,25 @@ const DashBoard = () => {
       .then(data => {
         // console.log(data);
         // console.log(data[0].rank_set[0]);
+
         setDashboardData(data[0]);
-        setUserProfileData(data[0].rank_set[0]);
-        userDataUpdate(data[0].rank_set[0]);
+        dispatch(userDataUpdate(data[0].rank_set[0]));
       });
   }, []);
 
-  console.log(userProfileData);
   console.log(dashboardData);
-  console.log(userDataUpdate);
+  console.log(userData);
   // FIX ME: 여기에 있는 아이들도 props 로 전달되어야 하기에 한번 스토어에 저장?
 
   return (
     <DashboardContainer>
       <Profile>
+        {/* <ProfileImg src="{dashBoardData.picture}" alt="사용자 사진" /> */}
         <ProfileImg />
         <ProfileInfo>
           <ProfileText>
-            <ProfileName>Kyuhyun Ro</ProfileName>
-            <ProfileNickname>노도</ProfileNickname>
+            <ProfileName>{dashboardData.username}</ProfileName>
+            <ProfileEmail>{dashboardData.email}</ProfileEmail>
           </ProfileText>
           <DataChart />
           <ProfileDataContainer>
@@ -137,7 +136,7 @@ const ProfileName = styled.span`
   font-size: 30px;
 `;
 
-const ProfileNickname = styled.span`
+const ProfileEmail = styled.span`
   font-size: 18px;
   margin-top: 8px;
 `;
@@ -176,6 +175,6 @@ const SelectQuizContainer = styled.div`
   ${flex('space-around', 'center')}
   width:470px;
   height: 255px;
-  border: 1px solid lightgray;
   border-radius: 30px;
+  box-shadow: 3px 3px 3px lightgray;
 `;

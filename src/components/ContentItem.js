@@ -18,9 +18,10 @@ export default ContentItem;
 const Content = styled.li`
   width: 200px;
   margin-bottom: 40px;
+  background-color: #ffffff;
   color: #696f79;
   border-radius: 30px;
-  border: 1px solid gray;
+  box-shadow: 2px 2px 2px 2px lightgray;
   cursor: pointer;
 `;
 
