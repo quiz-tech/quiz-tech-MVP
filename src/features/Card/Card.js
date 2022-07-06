@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useParams } from 'react-router-dom';
+import { useBeforeunload } from 'react-beforeunload';
 import { useDispatch } from 'react-redux';
 import { resultUpdate } from './resultSlice';
 import { asnwerUpdate } from './questionSlice';
@@ -15,11 +16,13 @@ const Card = () => {
   const [correctCount, setCorrectCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
-  const param = useParams();
+  const params = useParams();
 
   const dispatch = useDispatch();
 
   const correctAnswerIndex = [];
+
+  useBeforeunload(event => event.preventDefault());
 
   questionData.forEach(questionElenents => {
     questionElenents.answer.forEach((answerEl, idx) => {
@@ -58,7 +61,7 @@ const Card = () => {
 
   useEffect(() => {
     fetch(
-      `http://backend.tecquiz.net:8000/questions/category/${param.id}/quiz/`
+      `http://backend.tecquiz.net:8000/questions/category/${params.id}/quiz/`
     )
       // fetch('http://localhost:3000/data/cardData.json')
       .then(res => res.json())
@@ -67,7 +70,7 @@ const Card = () => {
           ? window.location.reload()
           : setQuestionData(res.content);
       });
-  }, [param.id]);
+  }, [params.id]);
 
   return (
     <>
