@@ -12,11 +12,9 @@ const Aside = () => {
     fetch('http://localhost:3000/data/sideData.json')
       .then(res => res.json())
       .then(data => {
-        // console.log(data);
         setContentItem(data.sideContent);
       });
   }, []);
-  // console.log(contentItem);
 
   const handleLogout = () => {
     localStorage.removeItem('access');
@@ -64,6 +62,7 @@ const LogoutImg = styled.img`
   width: 20px;
   height: 20px;
 `;
+
 const LogoutText = styled.div`
   margin-left: 20px;
   color: #696f79;

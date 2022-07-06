@@ -49,8 +49,8 @@ const Nav = () => {
           <Title onClick={goToDashboard}>Quiz Tech</Title>
         </LogoLink>
         <UserSearch>
-          <SearchImg src="/images/Search.svg" />
-          <SearchInput placeholder="search.." />
+          <SearchImg src="/images/Search.svg" alt="검색창사진" />
+          <SearchInput placeholder="search.." type="text" />
         </UserSearch>
         <ListLink to="/list/1">
           <StartQuizBtn>Start Quiz</StartQuizBtn>
