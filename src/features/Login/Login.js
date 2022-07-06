@@ -33,7 +33,7 @@ const Login = () => {
     <LoginContainer>
       <Contents>
         <LoginImg src="/images/logo.svg" alt="메인로고" />
-        <Login>
+        <LoginContent>
           <LoginTitle>
             <MainText>Login to your Account</MainText>
             <SubText>with your registered Gmail Address</SubText>
@@ -41,10 +41,26 @@ const Login = () => {
           <GoogleLogin>
             <GoogleBtn setAuth={setAuth} Auth={Auth} />
           </GoogleLogin>
-        </Login>
+        </LoginContent>
       </Contents>
     </LoginContainer>
   );
 };
 
 export default Login;
+
+const LoginContainer = styled.div``;
+
+const Contents = styled.div``;
+
+const LoginImg = styled.img``;
+
+const LoginContent = styled.div``;
+
+const LoginTitle = styled.div``;
+
+const MainText = styled.span``;
+
+const SubText = styled(MainText)``;
+
+const GoogleLogin = styled.div``;
