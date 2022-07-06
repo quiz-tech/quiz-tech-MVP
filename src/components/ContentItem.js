@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 import { flex } from '../styles/Mixin';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ContentItem = ({ ...contentData }) => {
+  const navigate = useNavigate();
+
+  const NavigateContent = name => {
+    navigate(`/${name}`);
+  };
+
   return (
-    <Content>
+    <Content onClick={() => NavigateContent(contentData.contentName)}>
       <ContentBox>
         <ContentImg src={contentData.contentImg} alt="카테고리사진" />
         <ContentText>{contentData.contentName}</ContentText>

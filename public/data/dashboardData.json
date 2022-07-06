@@ -37,12 +37,12 @@
   "CategoryData": [
     {
       "id": 1,
-      "CategoryImg": "/images/Vector.svg",
+      "CategoryImg": "/images/selectQuiz/backimg.png",
       "CategoryName": "Back-end"
     },
     {
       "id": 2,
-      "CategoryImg": "/images/Vector.svg",
+      "CategoryImg": "/images/selectQuiz/frontimg.png",
       "CategoryName": "Front-end"
     }
   ]
