@@ -11,25 +11,27 @@ const Nav = () => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    fetch(
-      'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
-      // FIX ME: 배포 되어 있는 프록시 서버를 이용하여 우회 통신 성공
-      // 'http://backend.tecquiz.net:8000/users/profile/',
-      {
-        // mode: 'no-cors',
-        headers: {
-          // Access-Control-Allow-Credentials: true,
-          access: localStorage.getItem('access'),
-        },
-      }
-    )
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data);
-        // console.log(data[0].rank_set[0]);
-        setUserProfile(data[0]);
-        setUserData(data[0].rank_set[0]);
-      });
+    localStorage.getItem('access')
+      ? fetch(
+          'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
+          // FIX ME: 배포 되어 있는 프록시 서버를 이용하여 우회 통신 성공
+          // 'http://backend.tecquiz.net:8000/users/profile/',
+          {
+            // mode: 'no-cors',
+            headers: {
+              // Access-Control-Allow-Credentials: true,
+              access: localStorage.getItem('access'),
+            },
+          }
+        )
+          .then(res => res.json())
+          .then(data => {
+            // console.log(data);
+            // console.log(data[0].rank_set[0]);
+            setUserProfile(data[0]);
+            setUserData(data[0].rank_set[0]);
+          })
+      : navigate('/');
   }, []);
 
   // console.log(userData);
