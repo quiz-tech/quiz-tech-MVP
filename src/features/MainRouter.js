@@ -9,6 +9,7 @@ import Detail from './Detail/Detail';
 import List from './List/List';
 import Result from './Result/Result';
 import Support from './Support/Support';
+import CompareAnswer from './Result/CompareAnswer';
 
 const MainRouter = () => {
   return (
@@ -23,6 +24,7 @@ const MainRouter = () => {
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/list/:id" element={<List />} />
             <Route path="/result" element={<Result />} />
+            <Route path="/result/compare/:id" element={<CompareAnswer />} />
             <Route path="/support" element={<Support />} />
           </Routes>
         </ContentsWrapper>

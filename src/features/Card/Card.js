@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useBeforeunload } from 'react-beforeunload';
 import { useDispatch } from 'react-redux';
 import { resultUpdate } from './resultSlice';
-import { asnwerUpdate } from './questionSlice';
+import { asnwerUpdate, questionsUpdate } from './questionSlice';
 import { Title, SubTitle } from '../List/List';
 import Timer from './Timer';
 import Modal from '../../components/Modal';
@@ -66,11 +66,14 @@ const Card = () => {
       // fetch('http://localhost:3000/data/cardData.json')
       .then(res => res.json())
       .then(res => {
-        res[0] === 'try again'
-          ? window.location.reload()
-          : setQuestionData(res.content);
+        if (res[0] === 'try again') {
+          window.location.reload();
+        } else {
+          setQuestionData(res.content);
+          dispatch(questionsUpdate(res.content));
+        }
       });
-  }, [params.id]);
+  }, [dispatch, params.id]);
 
   return (
     <>
