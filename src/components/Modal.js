@@ -7,11 +7,8 @@ const Modal = ({ setQuestionIndex, questionIndex, setShowModal }) => {
   const navigate = useNavigate();
   const [modalType, setModalType] = useState('submit');
   const leftTime = useSelector(state => state.timer.leftTime);
-
   const result = useSelector(state => state.result);
-  const answersData = useSelector(state => state.answers.answers);
 
-  console.log(result.isPassed);
   const goToResult = () => {
     navigate('/result');
   };
@@ -21,12 +18,14 @@ const Modal = ({ setQuestionIndex, questionIndex, setShowModal }) => {
   };
 
   const handleSubmitBtn = () => {
+    const token = localStorage.getItem('access');
     fetch('http://backend.tecquiz.net:8000/users/rank/', {
       method: 'POST',
-      headers: localStorage.getItem('access'),
+      headers: { access: token },
+      dataType: 'json',
       body: JSON.stringify({
         correct_answer: result.correctCount,
-        // total_time: lastName,
+        total_time: Math.floor(leftTime / 60000),
         quiz_passed: result.isPassed,
         attempt: 1,
       }),
