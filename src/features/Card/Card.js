@@ -63,7 +63,6 @@ const Card = () => {
     fetch(
       `http://backend.tecquiz.net:8000/questions/category/${params.id}/quiz/`
     )
-      // fetch('http://localhost:3000/data/cardData.json')
       .then(res => res.json())
       .then(res => {
         res[0] === 'try again'
