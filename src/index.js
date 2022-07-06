@@ -4,7 +4,7 @@ import Router from './Router';
 import GlobalStyle from './styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
-import store from './app/store';
+import { store } from './app/store';
 import theme from './styles/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

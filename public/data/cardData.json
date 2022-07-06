@@ -1,0 +1,261 @@
+{
+  "id": 1,
+  "content": [
+    {
+      "question": "파이썬에서 Iterator의 설명으로 틀린 것은?",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    },
+    {
+      "question": "다음 중 인터프리터 언어와 컴파일 언어의 차이점이 아닌 것은 무엇인가요?",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "컴파일언어의 경우 ‘컴파일러’과정이 들어 가기때문에 인터프린터 언어 보다 생산속도가 느리다."
+        },
+        {
+          "answer": true,
+          "answer_content": "생산속도는 컴파일 언어가 좋지만 실행 속도는 인터프리터 언어가 훨씬 빠르다."
+        },
+        {
+          "answer": false,
+          "answer_content": "인터프린터 언어의 경우 소스코드가 실행되기 전까지는 소스코드의 버그를 인지하는것이 어렵고 컴파일 언어가 디버깅작업이 훨씬 수월하다."
+        },
+        {
+          "answer": false,
+          "answer_content": "컴파일 언어의 경우 사용해야하는 변수의 자료에 대해서 명확하게 알아야한다."
+        }
+      ]
+    },
+    {
+      "question": "question 3",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    },
+    {
+      "question": "question 4",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    },
+    {
+      "question": "question 5",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    },
+    {
+      "question": "question 6",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    },
+    {
+      "question": "question 7",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    },
+    {
+      "question": "question 8",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    },
+    {
+      "question": "question 9",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    },
+    {
+      "question": "파이썬에서 Iterator의 설명으로 틀린 것은?",
+      "image": "",
+      "answer": [
+        {
+          "answer": false,
+          "answer_content": "순서대로 다음 값을 리턴할 수 있는 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": "반복문을 이용하여 데이터를 순회하며 처리할 수 있는 객체를 의미 한다"
+        },
+        {
+          "answer": false,
+          "answer_content": "배열과 같은 객체이다."
+        },
+        {
+          "answer": false,
+          "answer_content": " next()로 다음 구성 성분으로 이동하는것이 가능하다."
+        },
+        {
+          "answer": true,
+          "answer_content": "prev()로 이전 성분확인이 가능하다."
+        }
+      ]
+    }
+  ]
+}

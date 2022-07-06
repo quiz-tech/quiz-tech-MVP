@@ -19,7 +19,7 @@ const MainRouter = () => {
         <ContentsWrapper>
           <Routes>
             <Route path="/" element={<DashBoard />} />
-            <Route path="/card" element={<Card />} />
+            <Route path="/card/:id" element={<Card />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/list/:id" element={<List />} />
             <Route path="/result" element={<Result />} />
