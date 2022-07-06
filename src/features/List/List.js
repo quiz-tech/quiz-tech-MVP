@@ -6,113 +6,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// const mockData = [
-//   {
-//     id: 1,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'Python',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 2,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'Database',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 3,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'Framework',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 4,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'Network',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 5,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'OS',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 6,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'Python',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 7,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'Database',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 8,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'Framework',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 9,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'Network',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 10,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'OS',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 12,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'OS',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 13,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'OS',
-//     image: null,
-//     development_group: 1,
-//   },
-//   {
-//     id: 14,
-//     created_at: null,
-//     updated_at: null,
-//     name: 'OS',
-//     image: null,
-//     development_group: 1,
-//   },
-// ];
-
 const chartMock = {
   correct_answer: 63,
   total_time: 81,
@@ -136,12 +29,6 @@ const List = () => {
       .then(res => res.json())
       .then(data => setQuizInfo(data));
   }, [params.id]);
-
-  // useEffect(() => {
-  //   fetch(`http://backend.tecquiz.net:8000/users/rank/?format=json`)
-  //     .then(res => res.json())
-  //     .then(data => console.log(data));
-  // });
 
   useEffect(() => {
     const fail = chartMock.attempt * 10 - chartMock.correct_answer;
