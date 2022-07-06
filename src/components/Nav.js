@@ -31,7 +31,7 @@ const Nav = () => {
             setUserProfile(data[0]);
             setUserData(data[0].rank_set[0]);
           })
-      : navigate('/');
+      : navigate('/login');
   }, []);
 
   // console.log(userData);
