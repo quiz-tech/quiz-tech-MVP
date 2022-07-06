@@ -1,6 +1,8 @@
 import GoogleBtn from './GoogleBtn';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
 const Login = () => {
   const [Auth, setAuth] = useState({});
   const navigate = useNavigate();
@@ -28,10 +30,20 @@ const Login = () => {
   }, [Auth, navigate]);
 
   return (
-    <div>
-      <div>안녕나는로그인페이지야</div>
-      <GoogleBtn setAuth={setAuth} Auth={Auth} />
-    </div>
+    <LoginContainer>
+      <Contents>
+        <LoginImg src="/images/logo.svg" alt="메인로고" />
+        <Login>
+          <LoginTitle>
+            <MainText>Login to your Account</MainText>
+            <SubText>with your registered Gmail Address</SubText>
+          </LoginTitle>
+          <GoogleLogin>
+            <GoogleBtn setAuth={setAuth} Auth={Auth} />
+          </GoogleLogin>
+        </Login>
+      </Contents>
+    </LoginContainer>
   );
 };
 
