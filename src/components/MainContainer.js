@@ -7,6 +7,7 @@ const MainContainer = ({ children }) => {
 export default MainContainer;
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   background-color: #fbf9f9;
   height: calc(100vh - 100px);
