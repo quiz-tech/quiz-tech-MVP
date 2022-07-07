@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Title, SubTitle } from '../List/List';
+import { Title } from '../List/List';
 
 const CompareAnswer = () => {
   const params = useParams();
