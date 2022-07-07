@@ -1,6 +1,5 @@
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const GoogleBtn = ({ setAuth, Auth }) => {
@@ -13,19 +12,11 @@ const GoogleBtn = ({ setAuth, Auth }) => {
     setAuth(credentialResponse);
   };
 
-  // console.log(Auth);
-
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <GoogleLogin
-        onSuccess={
-          successLogin
-          //   credentialResponse => {
-          //   setAuth(credentialResponse);
-          //   // console.log(credentialResponse);
-          //   console.log(Auth);
-          // }
-        }
+        onSuccess={successLogin}
+        y
         onError={() => {
           console.log('Login Failed');
         }}

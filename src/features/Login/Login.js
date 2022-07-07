@@ -1,6 +1,9 @@
 import GoogleBtn from './GoogleBtn';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { flex } from '../../styles/Mixin';
+
 const Login = () => {
   const [Auth, setAuth] = useState([]);
   const navigate = useNavigate();
@@ -30,11 +33,63 @@ const Login = () => {
   }, [Auth, navigate]);
 
   return (
-    <div>
-      <div>안녕나는로그인페이지야</div>
-      <GoogleBtn setAuth={setAuth} Auth={Auth} />
-    </div>
+    <LoginContainer>
+      <Contents>
+        <LoginImg src="/images/logo.svg" alt="메인로고" />
+        <LoginContent>
+          <LoginTitle>
+            <MainText>Login to your Account</MainText>
+            <SubText>with your registered gmail Address</SubText>
+          </LoginTitle>
+          <GoogleLogin>
+            <GoogleBtn setAuth={setAuth} Auth={Auth} />
+          </GoogleLogin>
+        </LoginContent>
+      </Contents>
+    </LoginContainer>
   );
 };
 
 export default Login;
+
+const LoginContainer = styled.div`
+  width: 100%;
+`;
+
+const Contents = styled.div`
+  ${flex('center', 'center')};
+  margin: 0 auto;
+  width: 1060px;
+`;
+
+const LoginImg = styled.img`
+  width: 600px;
+  height: 100vh;
+`;
+
+const LoginContent = styled.div`
+  width: 400px;
+  margin-left: 80px;
+`;
+
+const LoginTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const MainText = styled.span`
+  font-weight: 700;
+  font-size: 30px;
+`;
+
+const SubText = styled.span`
+  margin-top: 5px;
+  color: #8692a6;
+`;
+
+const GoogleLogin = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+`;
