@@ -5,13 +5,15 @@ import { useBeforeunload } from 'react-beforeunload';
 import { useDispatch } from 'react-redux';
 import { resultUpdate } from './resultSlice';
 import { asnwerUpdate, initAnswer, questionsUpdate } from './questionSlice';
+import { initResult } from '../Card/resultSlice';
+import { initTimer } from '../Card/timerSlice';
 import { Title, SubTitle } from '../List/List';
 import Timer from './Timer';
 import Modal from '../../components/Modal';
 
 const Card = () => {
   const [questionData, setQuestionData] = useState([]);
-  console.log(questionData);
+
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [correctCount, setCorrectCount] = useState(0);
@@ -72,6 +74,8 @@ const Card = () => {
           setQuestionData(res.content);
           dispatch(questionsUpdate(res.content));
           dispatch(initAnswer());
+          dispatch(initTimer());
+          dispatch(initResult());
         }
       });
   }, [dispatch, params.id]);
