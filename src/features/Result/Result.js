@@ -37,7 +37,7 @@ const Result = () => {
           );
         })}
       </ListContainer>
-      <NextButton>HOME</NextButton>
+      <NextButton onClick={() => navigate('/')}>HOME</NextButton>
     </>
   );
 };
@@ -52,9 +52,16 @@ const ListTitle = styled.p`
 `;
 
 const ListContainer = styled.ul`
-  height: 600px;
+  height: 70%;
   margin-top: 32px;
   overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #696f79;
+    border-radius: 5px;
+  }
 `;
 
 const QustionResult = styled.li`

@@ -118,7 +118,7 @@ const Card = () => {
           );
         })}
       </AnswerButtonWrapper>
-      <PrevButton
+      {/* <PrevButton
         disabled={questionIndex === 0 ? true : false}
         style={questionIndex === 0 ? { opacity: 0.3 } : { opacity: 1 }}
         onClick={() => {
@@ -126,7 +126,7 @@ const Card = () => {
         }}
       >
         PREV
-      </PrevButton>
+      </PrevButton> */}
       <NextButton
         onClick={() => {
           handleQuestionIndex();

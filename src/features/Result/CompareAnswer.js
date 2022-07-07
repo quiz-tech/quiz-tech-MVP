@@ -8,8 +8,6 @@ const CompareAnswer = () => {
   const params = useParams();
   const questionData = useSelector(state => state.answers.questions[params.id]);
   const answersData = useSelector(state => state.answers.answers[params.id]);
-  console.log(questionData);
-  console.log(answersData);
 
   return (
     <>
@@ -28,8 +26,17 @@ const CompareAnswer = () => {
         {questionData?.answer?.map((answerInfo, idx) => {
           return (
             <RadioBtnBox key={idx}>
-              <RadioBtn />
+              <RadioBtn choosenAnswer={answersData.choosenAnswer} idx={idx} />
               <AnswerOptionText>{answerInfo.answer_content}</AnswerOptionText>
+              <AnswerInfo
+                correctAnswer={answersData.correctAnswer}
+                choosenAnswer={answersData.choosenAnswer}
+                idx={idx}
+              >
+                {(idx === answersData.choosenAnswer && 'Your Answer') ||
+                  (idx === answersData.correctAnswer && 'Correct Answer')}
+                {}
+              </AnswerInfo>
             </RadioBtnBox>
           );
         })}
@@ -86,7 +93,7 @@ const RadioBtn = styled.div`
   height: 24px;
   background-image: url('/images/radioButton/unChecked.png');
   ${props =>
-    props.idx === props.answer &&
+    props.idx === props.choosenAnswer &&
     css`
       background-image: url('/images/radioButton/checked.png');
     `}
@@ -111,4 +118,18 @@ const AnswerOptionText = styled.p`
   font-weight: 400;
   font-size: 18px;
   color: #696f79;
+`;
+
+const AnswerInfo = styled.p`
+  margin-left: 40px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #08ad36;
+
+  ${props =>
+    props.idx === props.choosenAnswer &&
+    props.choosenAnswer !== props.correctAnswer &&
+    css`
+      color: #f24e1e;
+    `}
 `;

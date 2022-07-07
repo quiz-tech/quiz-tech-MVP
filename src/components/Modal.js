@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const Modal = ({ setQuestionIndex, questionIndex, setShowModal }) => {
+const Modal = ({ setQuestionIndex, setShowModal }) => {
   const navigate = useNavigate();
   const [modalType, setModalType] = useState('submit');
   const leftTime = useSelector(state => state.timer.leftTime);
