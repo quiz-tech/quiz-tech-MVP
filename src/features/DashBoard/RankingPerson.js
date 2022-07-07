@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const RankingPerson = () => {
-  return <RankingContainer />;
+  return <RankingContainer></RankingContainer>;
 };
 
 export default RankingPerson;

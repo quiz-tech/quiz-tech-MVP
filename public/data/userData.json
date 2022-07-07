@@ -1,0 +1,31 @@
+{
+  "ProfileData": [
+    {
+      "id": 1,
+      "dataImg": "/images/quizpass.svg",
+      "dataName": "Quiz Passed"
+    },
+    {
+      "id": 2,
+      "dataImg": "/images/fastest.svg",
+      "dataName": "Fastest Time"
+    },
+    {
+      "id": 3,
+      "dataImg": "/images/correct.svg",
+      "dataName": "Correct Answers"
+    }
+  ],
+  "CategoryData": [
+    {
+      "id": 1,
+      "CategoryImg": "/images/selectQuiz/backimg.png",
+      "CategoryName": "Back-end"
+    },
+    {
+      "id": 2,
+      "CategoryImg": "/images/selectQuiz/frontimg.png",
+      "CategoryName": "Front-end"
+    }
+  ]
+}

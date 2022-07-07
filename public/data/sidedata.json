@@ -4,19 +4,22 @@
       "id": 1,
       "contentImg": "/images/DashboardImg.svg",
       "contentImgWhite": "/images/DashboardImgW.svg",
-      "contentName": "Dashboard"
+      "contentName": "Dashboard",
+      "navigateUri": "/"
     },
     {
       "id": 2,
       "contentImg": "/images/SupportImg.svg",
       "contentImgWhite": "/images/SupportImgW.svg",
-      "contentName": "Support"
+      "contentName": "Support",
+      "navigateUri": "/support"
     },
     {
       "id": 3,
       "contentImg": "/images/NotificationImg.svg",
       "contentImgWhite": "/images/NotificationImgW.svg",
-      "contentName": "Notification"
+      "contentName": "Notification",
+      "navigateUri": "/notification"
     }
   ]
 }

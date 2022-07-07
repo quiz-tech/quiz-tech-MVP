@@ -7,11 +7,11 @@ const ContentItem = ({ ...contentData }) => {
   const navigate = useNavigate();
 
   const NavigateContent = name => {
-    navigate(`/${name}`);
+    navigate(`${name}`);
   };
 
   return (
-    <Content onClick={() => NavigateContent(contentData.contentName)}>
+    <Content onClick={() => NavigateContent(contentData.navigateUri)}>
       <ContentBox>
         <ContentImg src={contentData.contentImg} alt="카테고리사진" />
         <ContentText>{contentData.contentName}</ContentText>

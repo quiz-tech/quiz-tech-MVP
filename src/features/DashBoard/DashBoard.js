@@ -1,37 +1,35 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { flex } from '../../styles/Mixin';
-import RankingPerson from './RankingPerson';
 import ProfileData from './ProfileData';
 import SelectQuiz from './SelectQuiz';
+// import RankingPerson from './RankingPerson';
 // FIXME:맵핑되는 것만이 아닌 여러가지 데이터 받아와야한다 잊지 말기
 import { useSelector, useDispatch } from 'react-redux';
-import { userDataUpdate } from './userDataSlice';
+import { userProfileUpdate, profileDataUpdate } from './userDataSlice';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DashBoard = () => {
   const [dataItem, setDataItem] = useState([]);
   const [quizItem, setQuizItem] = useState([]);
-  const dispatch = useDispatch();
-
   const [dashboardData, setDashboardData] = useState({});
+
+  const dispatch = useDispatch();
 
   const userData = useSelector(state => state.userData);
 
-  useEffect(() => {
-    dispatch(userDataUpdate(dashboardData));
-  }, [dashboardData, dispatch]);
-
+  // const userChartData = userData.answers.rank_set;
   useEffect(() => {
     fetch('/data/dashboardData.json')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setDataItem(data.ProfileData);
         setQuizItem(data.CategoryData);
       });
   }, []);
-  // console.log(dataItem);
-  // console.log(quizItem);
 
   useEffect(() => {
     fetch(
@@ -39,26 +37,47 @@ const DashBoard = () => {
       // FIX ME: 배포 되어 있는 프록시 서버를 이용하여 우회 통신 성공
       // 'http://backend.tecquiz.net:8000/users/profile/',
       {
-        // mode: 'no-cors',
         headers: {
-          // Access-Control-Allow-Credentials: true,
           access: localStorage.getItem('access'),
         },
       }
     )
       .then(res => res.json())
       .then(data => {
-        // console.log(data);
-        // console.log(data[0].rank_set[0]);
-
+        console.log(data);
         setDashboardData(data[0]);
-        dispatch(userDataUpdate(data[0].rank_set[0]));
+        dispatch(userProfileUpdate(data[0]));
+        dispatch(profileDataUpdate(data[0].rank_set[0]));
       });
   }, []);
 
-  console.log(dashboardData);
-  console.log(userData);
-  // FIX ME: 여기에 있는 아이들도 props 로 전달되어야 하기에 한번 스토어에 저장?
+  console.log(userData.resultData.correct_answer);
+
+  const chartData = {
+    labels: ['Quiz passed', 'Total time', 'Correct answer'],
+    datasets: [
+      {
+        label: 'resultData',
+        data: [
+          // userData.resultData.quiz_passed,
+          // userData.resultData.total_time,
+          // userData.resultData.correct_answer,
+          1, 2, 3,
+        ],
+        backgroundColor: [
+          'rgba(126, 206, 252, 0.2)',
+          'rgba(255, 77, 51, 0.2)',
+          'rgba(200, 11, 50, 2)',
+        ],
+        borderColor: [
+          'rgba(126, 206, 252, 1)',
+          'rgba(255, 77, 51, 1)',
+          'rgba(200, 11, 51, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
 
   return (
     <DashboardContainer>
@@ -82,8 +101,12 @@ const DashBoard = () => {
       </Profile>
       <Content>
         <Ranking>
-          <RankingTitle>Ranking</RankingTitle>
-          <RankingPerson />
+          <RankingTitle>Data chart</RankingTitle>
+          <RankingPerson>
+            <ChartWrap>
+              <Doughnut data={chartData} />
+            </ChartWrap>
+          </RankingPerson>
           {/* <RenkingPersonView>랭킹 뷰 버튼</RenkingPersonView> */}
         </Ranking>
         <QuizCategory>
@@ -160,6 +183,13 @@ const Content = styled.div`
 
 const Ranking = styled.div``;
 
+const RankingPerson = styled.div`
+  width: 470px;
+  height: 255px;
+  border-radius: 30px;
+  box-shadow: 3px 3px 3px lightgray;
+`;
+
 const RankingTitle = styled.div`
   font-weight: 700;
   font-size: 22px;
@@ -177,4 +207,12 @@ const SelectQuizContainer = styled.div`
   height: 255px;
   border-radius: 30px;
   box-shadow: 3px 3px 3px lightgray;
+`;
+
+const ChartWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin-bottom: 50px;
 `;
