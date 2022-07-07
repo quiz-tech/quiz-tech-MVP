@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -11,6 +12,12 @@ const Result = () => {
 
   const navigate = useNavigate();
   useBeforeunload(event => event.preventDefault());
+
+  useEffect(() => {
+    if (answers.length === 0) {
+      navigate('/');
+    }
+  }, [answers.length, navigate]);
 
   return (
     <>
@@ -28,7 +35,7 @@ const Result = () => {
             >
               <Question>
                 <QustionIndex>{`#${idx + 1}`}</QustionIndex>
-                <QustionDesc>{questions[idx].question}</QustionDesc>
+                <QustionDesc>{questions[idx]?.question}</QustionDesc>
               </Question>
               <AnswerResult isCorrect={answer.isCorrect}>
                 {answer.isCorrect ? 'O' : 'X'}

@@ -4,13 +4,14 @@ import { useParams } from 'react-router-dom';
 import { useBeforeunload } from 'react-beforeunload';
 import { useDispatch } from 'react-redux';
 import { resultUpdate } from './resultSlice';
-import { asnwerUpdate, questionsUpdate } from './questionSlice';
+import { asnwerUpdate, initAnswer, questionsUpdate } from './questionSlice';
 import { Title, SubTitle } from '../List/List';
 import Timer from './Timer';
 import Modal from '../../components/Modal';
 
 const Card = () => {
   const [questionData, setQuestionData] = useState([]);
+  console.log(questionData);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [correctCount, setCorrectCount] = useState(0);
@@ -70,6 +71,7 @@ const Card = () => {
         } else {
           setQuestionData(res.content);
           dispatch(questionsUpdate(res.content));
+          dispatch(initAnswer());
         }
       });
   }, [dispatch, params.id]);
@@ -96,7 +98,7 @@ const Card = () => {
                 {questionData[questionIndex]?.question}
               </QuestionExplanation>
             </QuestionDesc>
-            <QuestionImage />
+            {/* <QuestionImage alt="quiz-image" /> */}
           </>
         )}
 

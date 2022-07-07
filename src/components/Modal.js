@@ -63,7 +63,9 @@ const Modal = ({ setQuestionIndex, setShowModal }) => {
           </>
         ) : (
           <>
-            <ModalIcon src="/images/modalIcon.png" />
+            <ModalIconResult
+              src={result.isPassed ? '/images/O.png' : '/images/X.png'}
+            />
             <ModalDesc>
               {result.isPassed
                 ? `Congratulations! you have passed.`
@@ -132,6 +134,11 @@ const ModalDesc = styled.p`
 
 const ModalIcon = styled.img`
   width: 140px;
+`;
+
+const ModalIconResult = styled.img`
+  margin-top: 30px;
+  width: 50px;
 `;
 
 const ModalBtnContainer = styled.div`
