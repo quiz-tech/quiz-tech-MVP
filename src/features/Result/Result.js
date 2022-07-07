@@ -26,8 +26,10 @@ const Result = () => {
                 navigate(`/result/compare/${idx}`);
               }}
             >
-              <QustionIndex>{`#${idx + 1}`}</QustionIndex>
-              <QustionDesc>{questions[idx].question}</QustionDesc>
+              <Question>
+                <QustionIndex>{`#${idx + 1}`}</QustionIndex>
+                <QustionDesc>{questions[idx].question}</QustionDesc>
+              </Question>
               <AnswerResult isCorrect={answer.isCorrect}>
                 {answer.isCorrect ? 'O' : 'X'}
               </AnswerResult>
@@ -35,6 +37,7 @@ const Result = () => {
           );
         })}
       </ListContainer>
+      <NextButton>HOME</NextButton>
     </>
   );
 };
@@ -49,17 +52,24 @@ const ListTitle = styled.p`
 `;
 
 const ListContainer = styled.ul`
+  height: 600px;
   margin-top: 32px;
+  overflow-y: scroll;
 `;
 
 const QustionResult = styled.li`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px 8px;
   padding-bottom: 12px;
   margin-top: 8px;
   border-bottom: 1px solid #767676;
   cursor: pointer;
+`;
+
+const Question = styled.div`
+  display: flex;
 `;
 
 const QustionIndex = styled.p`
@@ -76,12 +86,10 @@ const QustionDesc = styled.p`
 `;
 
 const AnswerResult = styled.span`
-  position: absolute;
-  right: 46px;
   font-weight: 700;
   font-size: 23px;
   line-height: 34px;
-
+  margin-right: 32px;
   ${props =>
     props.isCorrect
       ? css`
@@ -90,4 +98,17 @@ const AnswerResult = styled.span`
       : css`
           color: red;
         `}
+`;
+
+const NextButton = styled.button`
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 212px;
+  height: 65px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  background: #8692a6;
+  border-radius: 27px;
 `;
