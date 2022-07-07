@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const Modal = ({ setQuestionIndex, questionIndex, setShowModal }) => {
+const Modal = ({ setQuestionIndex, setShowModal }) => {
   const navigate = useNavigate();
   const [modalType, setModalType] = useState('submit');
   const leftTime = useSelector(state => state.timer.leftTime);
@@ -21,11 +21,10 @@ const Modal = ({ setQuestionIndex, questionIndex, setShowModal }) => {
     const token = localStorage.getItem('access');
     fetch('http://backend.tecquiz.net:8000/users/rank/', {
       method: 'POST',
-      headers: { access: token },
-      dataType: 'json',
+      headers: { access: token, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         correct_answer: result.correctCount,
-        total_time: Math.floor(leftTime / 60000),
+        total_time: 10 - Math.floor(leftTime / 60000),
         quiz_passed: result.isPassed,
         attempt: 1,
       }),
