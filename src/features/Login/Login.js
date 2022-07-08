@@ -25,7 +25,8 @@ const Login = () => {
         // console.log(data.jwt_token);
         data[0].jwt_token.access
           ? localStorage.setItem('access', data[0].jwt_token.access)
-          : navigate('/login');
+          : // FIX ME: 리프레쉬 토큰 함께 저장
+            navigate('/login');
         localStorage.getItem('access')
           ? navigate('/')
           : alert('다시 로그인을 진행해주세요.');

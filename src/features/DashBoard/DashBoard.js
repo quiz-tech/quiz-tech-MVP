@@ -54,15 +54,34 @@ const DashBoard = () => {
   console.log(userData.resultData.correct_answer);
 
   const chartData = {
+    // type: 'bar',
+    // data: {
+    //   labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+    //   datasets: [
+    //     {
+    //       label: "Population (millions)",
+    //       backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+    //       data: [2478,5267,734,784,433]
+    //     }
+    //   ]
+    // },
+    // options: {
+    //   legend: { display: false },
+    //   title: {
+    //     display: true,
+    //     text: 'Predicted world population (millions) in 2050'
+    //   }
+    // }
+    // FIX ME: 위에 값이 바 차트
     labels: ['Quiz passed', 'Total time', 'Correct answer'],
     datasets: [
       {
         label: 'resultData',
         data: [
-          // userData.resultData.quiz_passed,
-          // userData.resultData.total_time,
-          // userData.resultData.correct_answer,
-          1, 2, 3,
+          userData.resultData.quiz_passed,
+          userData.resultData.total_time,
+          userData.resultData.correct_answer,
+          // 1, 2, 3,
         ],
         backgroundColor: [
           'rgba(126, 206, 252, 0.2)',
@@ -211,8 +230,6 @@ const SelectQuizContainer = styled.div`
 
 const ChartWrap = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
+  width: 220px;
   margin-bottom: 50px;
 `;
