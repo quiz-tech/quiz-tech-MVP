@@ -26,8 +26,6 @@ const Detail = () => {
     navigate(`/card/${info.id}`);
   };
 
-  console.log(info);
-
   return (
     <>
       <Title>
@@ -53,14 +51,12 @@ const Detail = () => {
           </Info>
         </ThumbnailInfo>
       </ContentWrap>
-
       <IntroTitle>Instructions</IntroTitle>
       <IntroText>
         <TextBold>[{info && info.name}]</TextBold> 퀴즈입니다 랜덤한 문제중
         10문제가 나옵니다. 문제 수정사항이나 문의 사항 있다면 우측의 support
         항목을 이용해 주세요
       </IntroText>
-
       <NextButton onClick={() => goToQuiz()}>Start</NextButton>
     </>
   );
@@ -87,6 +83,7 @@ const Thumbnail = styled.img`
   width: 100%;
   height: 100%;
 `;
+
 const ThumbnailInfo = styled.ul``;
 const Info = styled.li`
   display: flex;
@@ -94,6 +91,7 @@ const Info = styled.li`
   font-size: 23px;
   margin-bottom: 30px;
 `;
+
 const InfoTitle = styled.span`
   font-weight: 700;
   &:after {
@@ -109,10 +107,12 @@ const IntroTitle = styled.div`
   font-size: 23px;
   margin-top: 30px;
 `;
+
 const TextBold = styled.span`
   font-size: 16px;
   font-weight: 700;
 `;
+
 const IntroText = styled.div`
   margin-top: 100px;
 `;

@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 import { flex } from '../../styles/Mixin';
 import ProfileData from './ProfileData';
 import SelectQuiz from './SelectQuiz';
-// import RankingPerson from './RankingPerson';
-// FIXME:맵핑되는 것만이 아닌 여러가지 데이터 받아와야한다 잊지 말기
 import { useSelector, useDispatch } from 'react-redux';
 import { userProfileUpdate, profileDataUpdate } from './userDataSlice';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -21,8 +19,7 @@ const DashBoard = () => {
 
   const userData = useSelector(state => state.userData);
   const resultData = useSelector(state => state.userData.resultData);
-  console.log(resultData);
-  // const userChartData = userData.answers.rank_set;
+
   useEffect(() => {
     fetch('/data/dashboardData.json')
       .then(res => res.json())
@@ -34,9 +31,7 @@ const DashBoard = () => {
 
   useEffect(() => {
     fetch(
-      // 'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
-      // FIX ME: 배포 되어 있는 프록시 서버를 이용하여 우회 통신 성공
-      'http://backend.tecquiz.net:8000/users/profile/',
+      'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
       {
         headers: {
           access: localStorage.getItem('access'),
@@ -45,15 +40,11 @@ const DashBoard = () => {
     )
       .then(res => res.json())
       .then(data => {
-        // console.log(data);
         setDashboardData(data[0]);
         dispatch(userProfileUpdate(data[0]));
         dispatch(profileDataUpdate(data[0].rank_set[0]));
       });
   }, []);
-
-  console.log(userData.resultData.correct_answer);
-
   const chartData = {
     // type: 'bar',
     // data: {
@@ -82,7 +73,6 @@ const DashBoard = () => {
           userData.resultData.quiz_passed,
           userData.resultData.total_time,
           userData.resultData.correct_answer,
-          // 1, 2, 3,
         ],
         backgroundColor: [
           'rgba(126, 206, 252, 0.2)',
@@ -171,7 +161,6 @@ const ProfileImg = styled.div`
   width: 100%;
   height: 100%;
   background: url('/images/Rectangle 278.svg') no-repeat center;
-  /* background-size: 280px 220px; */
 `;
 
 const ProfileInfo = styled.div`
