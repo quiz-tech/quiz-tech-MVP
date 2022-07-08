@@ -2,10 +2,12 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Title } from '../List/List';
 
 const CompareAnswer = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const questionData = useSelector(state => state.answers.questions[params.id]);
   const answersData = useSelector(state => state.answers.answers[params.id]);
 
@@ -19,7 +21,6 @@ const CompareAnswer = () => {
           }/10`}</QuestionIndex>
           <QuestionExplanation>{questionData?.question}</QuestionExplanation>
         </QuestionDesc>
-        <QuestionImage />
       </QuestionCard>
       <AnswerDesc>Choose Answer</AnswerDesc>
       <AnswerButtonWrapper>
@@ -41,6 +42,13 @@ const CompareAnswer = () => {
           );
         })}
       </AnswerButtonWrapper>
+      <BackButton
+        onClick={() => {
+          navigate('/result');
+        }}
+      >
+        BACK
+      </BackButton>
     </>
   );
 };
@@ -50,7 +58,7 @@ export default CompareAnswer;
 const QuestionCard = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 276px;
+  padding-bottom: 50px;
 `;
 
 const QuestionDesc = styled.div``;
@@ -67,18 +75,10 @@ const QuestionExplanation = styled.p`
   font-size: 18px;
 `;
 
-const QuestionImage = styled.img`
-  width: 503px;
-  height: 296px;
-  background-color: gray;
-  box-shadow: 0px 15px 40px 5px #ededed;
-  border-radius: 30px;
-`;
-
 const AnswerButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
 `;
 
 const RadioBtnBox = styled.div`
@@ -132,4 +132,17 @@ const AnswerInfo = styled.p`
     css`
       color: #f24e1e;
     `}
+`;
+
+const BackButton = styled.button`
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 212px;
+  height: 65px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  background: #8692a6;
+  border-radius: 27px;
 `;
