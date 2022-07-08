@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { flex } from '../../styles/Mixin';
+import { useSelector } from 'react-redux';
 
 const ProfileData = ({ ...profileData }) => {
+  const userData = useSelector(state => state.userData);
+
   return (
     <Data>
       <ProfileDataImgBase>
@@ -28,13 +31,14 @@ const ProfileDataImgBase = styled.div`
   width: 70px;
   height: 70px;
   background-color: #ffffff;
-  border: 1px solid gray;
+
   border-radius: 10px;
+  box-shadow: 5px 5px 5px lightgray;
 `;
 
 const ProfileDataImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 30px;
+  height: 30px;
 `;
 
 const ProfileDataInfo = styled.div`

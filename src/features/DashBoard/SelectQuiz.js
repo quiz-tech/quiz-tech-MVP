@@ -9,8 +9,6 @@ const SelectQuiz = ({ ...quizData }) => {
     navigate(`/list/${quizData.id}`);
   };
 
-  console.log(quizData.id);
-
   return (
     <SelectQuizContainer onClick={goToQuiz}>
       <QuizImg src={quizData.CategoryImg} alt="퀴즈선택사진" />
@@ -22,7 +20,7 @@ const SelectQuiz = ({ ...quizData }) => {
 export default SelectQuiz;
 
 const SelectQuizContainer = styled.button`
-  display: flex;
+  ${flex('center', 'center')}
   flex-direction: column;
   width: 100px;
   height: 100px;
@@ -36,7 +34,7 @@ const QuizImg = styled.img`
 `;
 
 const QuizName = styled.span`
-  margin-top: 10px;
-  font-weight: 700;
+  margin-top: 15px;
+  font-weight: 400;
   font-size: 17px;
 `;

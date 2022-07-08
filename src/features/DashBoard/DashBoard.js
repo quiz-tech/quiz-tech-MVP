@@ -1,35 +1,112 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { flex } from '../../styles/Mixin';
-import RankingPerson from './RankingPerson';
 import ProfileData from './ProfileData';
 import SelectQuiz from './SelectQuiz';
+// import RankingPerson from './RankingPerson';
 // FIXME:맵핑되는 것만이 아닌 여러가지 데이터 받아와야한다 잊지 말기
+import { useSelector, useDispatch } from 'react-redux';
+import { userProfileUpdate, profileDataUpdate } from './userDataSlice';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DashBoard = () => {
   const [dataItem, setDataItem] = useState([]);
   const [quizItem, setQuizItem] = useState([]);
+  const [dashboardData, setDashboardData] = useState({});
 
+  const dispatch = useDispatch();
+
+  const userData = useSelector(state => state.userData);
+
+  // const userChartData = userData.answers.rank_set;
   useEffect(() => {
     fetch('/data/dashboardData.json')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setDataItem(data.ProfileData);
         setQuizItem(data.CategoryData);
       });
   }, []);
-  console.log(dataItem);
-  console.log(quizItem);
+
+  useEffect(() => {
+    fetch(
+      'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
+      // FIX ME: 배포 되어 있는 프록시 서버를 이용하여 우회 통신 성공
+      // 'http://backend.tecquiz.net:8000/users/profile/',
+      {
+        headers: {
+          access: localStorage.getItem('access'),
+        },
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setDashboardData(data[0]);
+        dispatch(userProfileUpdate(data[0]));
+        dispatch(profileDataUpdate(data[0].rank_set[0]));
+      });
+  }, []);
+
+  console.log(userData.resultData.correct_answer);
+
+  const chartData = {
+    // type: 'bar',
+    // data: {
+    //   labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+    //   datasets: [
+    //     {
+    //       label: "Population (millions)",
+    //       backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+    //       data: [2478,5267,734,784,433]
+    //     }
+    //   ]
+    // },
+    // options: {
+    //   legend: { display: false },
+    //   title: {
+    //     display: true,
+    //     text: 'Predicted world population (millions) in 2050'
+    //   }
+    // }
+    // FIX ME: 위에 값이 바 차트
+    labels: ['Quiz passed', 'Total time', 'Correct answer'],
+    datasets: [
+      {
+        label: 'resultData',
+        data: [
+          userData.resultData.quiz_passed,
+          userData.resultData.total_time,
+          userData.resultData.correct_answer,
+          // 1, 2, 3,
+        ],
+        backgroundColor: [
+          'rgba(126, 206, 252, 0.2)',
+          'rgba(255, 77, 51, 0.2)',
+          'rgba(200, 11, 50, 2)',
+        ],
+        borderColor: [
+          'rgba(126, 206, 252, 1)',
+          'rgba(255, 77, 51, 1)',
+          'rgba(200, 11, 51, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
 
   return (
     <DashboardContainer>
       <Profile>
+        {/* <ProfileImg src="{dashBoardData.picture}" alt="사용자 사진" /> */}
         <ProfileImg />
         <ProfileInfo>
           <ProfileText>
-            <ProfileName>Kyuhyun Ro</ProfileName>
-            <ProfileNickname>노도</ProfileNickname>
+            <ProfileName>{dashboardData.username}</ProfileName>
+            <ProfileEmail>{dashboardData.email}</ProfileEmail>
           </ProfileText>
           <DataChart />
           <ProfileDataContainer>
@@ -43,8 +120,12 @@ const DashBoard = () => {
       </Profile>
       <Content>
         <Ranking>
-          <RankingTitle>Ranking</RankingTitle>
-          <RankingPerson />
+          <RankingTitle>Data chart</RankingTitle>
+          <RankingPerson>
+            <ChartWrap>
+              <Doughnut data={chartData} />
+            </ChartWrap>
+          </RankingPerson>
           {/* <RenkingPersonView>랭킹 뷰 버튼</RenkingPersonView> */}
         </Ranking>
         <QuizCategory>
@@ -97,7 +178,7 @@ const ProfileName = styled.span`
   font-size: 30px;
 `;
 
-const ProfileNickname = styled.span`
+const ProfileEmail = styled.span`
   font-size: 18px;
   margin-top: 8px;
 `;
@@ -121,6 +202,13 @@ const Content = styled.div`
 
 const Ranking = styled.div``;
 
+const RankingPerson = styled.div`
+  width: 470px;
+  height: 255px;
+  border-radius: 30px;
+  box-shadow: 3px 3px 3px lightgray;
+`;
+
 const RankingTitle = styled.div`
   font-weight: 700;
   font-size: 22px;
@@ -136,6 +224,12 @@ const SelectQuizContainer = styled.div`
   ${flex('space-around', 'center')}
   width:470px;
   height: 255px;
-  border: 1px solid lightgray;
   border-radius: 30px;
+  box-shadow: 3px 3px 3px lightgray;
+`;
+
+const ChartWrap = styled.div`
+  display: flex;
+  width: 220px;
+  margin-bottom: 50px;
 `;

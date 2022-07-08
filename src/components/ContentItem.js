@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 import { flex } from '../styles/Mixin';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ContentItem = ({ ...contentData }) => {
+  const navigate = useNavigate();
+
+  const NavigateContent = name => {
+    navigate(`${name}`);
+  };
+
   return (
-    <Content>
+    <Content onClick={() => NavigateContent(contentData.navigateUri)}>
       <ContentBox>
         <ContentImg src={contentData.contentImg} alt="카테고리사진" />
         <ContentText>{contentData.contentName}</ContentText>
@@ -18,9 +25,10 @@ export default ContentItem;
 const Content = styled.li`
   width: 200px;
   margin-bottom: 40px;
+  background-color: #ffffff;
   color: #696f79;
   border-radius: 30px;
-  border: 1px solid gray;
+  box-shadow: 2px 2px 2px 2px lightgray;
   cursor: pointer;
 `;
 

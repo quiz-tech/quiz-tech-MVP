@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ContentItem from './ContentItem';
 import { flex } from '../styles/Mixin';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Aside = () => {
   const navigate = useNavigate();
@@ -19,6 +19,10 @@ const Aside = () => {
   const handleLogout = () => {
     localStorage.removeItem('access');
     navigate('/login');
+  };
+
+  const NavigateContent = name => {
+    navigate(`/${name}`);
   };
 
   return (
@@ -40,10 +44,8 @@ const Aside = () => {
 export default Aside;
 
 const SideBar = styled.div`
-  display: flex;
+  ${flex('space-between', 'center')}
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   width: 270px;
   background-color: #fbf9f9;
 `;

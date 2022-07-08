@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const GoogleBtn = ({ setAuth, Auth }) => {
   const navigate = useNavigate();
-  const clientId =
-    '1015759403917-3nfg6lne24msd1t9v09n6eov9nk4beo7.apps.googleusercontent.com';
+  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
   const successLogin = credentialResponse => {
     console.log(credentialResponse);
