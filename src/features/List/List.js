@@ -3,25 +3,22 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { useSelector } from 'react-redux';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-const chartMock = {
-  correct_answer: 63,
-  total_time: 81,
-  quiz_passed: 9,
-  attempt: 9,
-};
 
 const List = () => {
   const [quizInfo, setQuizInfo] = useState([]);
   const [totalAnswer, setTotalAnswer] = useState({
-    success: '123',
-    fail: '222',
+    success: '',
+    fail: '',
   });
   const navigate = useNavigate();
   const params = useParams();
 
+  const answerChart = useSelector(
+    state => state.userData.userProfile.rank_set[0]
+  );
   useEffect(() => {
     fetch(
       `http://backend.tecquiz.net:8000/questions/${params.id}/category/?format=json`
@@ -31,13 +28,13 @@ const List = () => {
   }, [params.id]);
 
   useEffect(() => {
-    const fail = chartMock.attempt * 10 - chartMock.correct_answer;
+    const fail = answerChart.attempt * 10 - answerChart.correct_answer;
     setTotalAnswer(prev => ({
       ...prev,
-      success: chartMock.correct_answer,
+      success: answerChart.correct_answer,
       fail: fail,
     }));
-  }, []);
+  }, [answerChart.attempt, answerChart.correct_answer]);
 
   const goToCard = id => {
     navigate(`/detail/${id}`);
