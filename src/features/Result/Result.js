@@ -59,7 +59,7 @@ const ListTitle = styled.p`
 `;
 
 const ListContainer = styled.ul`
-  height: 70%;
+  height: 60%;
   margin-top: 32px;
   overflow-y: scroll;
   ::-webkit-scrollbar {

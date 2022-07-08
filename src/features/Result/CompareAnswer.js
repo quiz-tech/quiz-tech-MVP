@@ -58,7 +58,7 @@ export default CompareAnswer;
 const QuestionCard = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 276px;
+  padding-bottom: 50px;
 `;
 
 const QuestionDesc = styled.div``;
@@ -75,18 +75,10 @@ const QuestionExplanation = styled.p`
   font-size: 18px;
 `;
 
-const QuestionImage = styled.img`
-  width: 503px;
-  height: 296px;
-  background-color: gray;
-  box-shadow: 0px 15px 40px 5px #ededed;
-  border-radius: 30px;
-`;
-
 const AnswerButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
 `;
 
 const RadioBtnBox = styled.div`
