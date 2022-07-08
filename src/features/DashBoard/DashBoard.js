@@ -20,7 +20,8 @@ const DashBoard = () => {
   const dispatch = useDispatch();
 
   const userData = useSelector(state => state.userData);
-
+  const resultData = useSelector(state => state.userData.resultData);
+  console.log(resultData);
   // const userChartData = userData.answers.rank_set;
   useEffect(() => {
     fetch('/data/dashboardData.json')
@@ -33,9 +34,9 @@ const DashBoard = () => {
 
   useEffect(() => {
     fetch(
-      'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
+      // 'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
       // FIX ME: 배포 되어 있는 프록시 서버를 이용하여 우회 통신 성공
-      // 'http://backend.tecquiz.net:8000/users/profile/',
+      'http://backend.tecquiz.net:8000/users/profile/',
       {
         headers: {
           access: localStorage.getItem('access'),
@@ -44,7 +45,7 @@ const DashBoard = () => {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setDashboardData(data[0]);
         dispatch(userProfileUpdate(data[0]));
         dispatch(profileDataUpdate(data[0].rank_set[0]));
@@ -102,7 +103,9 @@ const DashBoard = () => {
     <DashboardContainer>
       <Profile>
         {/* <ProfileImg src="{dashBoardData.picture}" alt="사용자 사진" /> */}
-        <ProfileImg />
+        <ProfileImgWrap>
+          <ProfileImg />
+        </ProfileImgWrap>
         <ProfileInfo>
           <ProfileText>
             <ProfileName>{dashboardData.username}</ProfileName>
@@ -156,11 +159,19 @@ const Profile = styled.div`
   align-items: center;
 `;
 
-const ProfileImg = styled.div`
+const ProfileImgWrap = styled.div`
   width: 280px;
   height: 220px;
-  background: url('/images/Rectangle 278.svg') no-repeat center;
   border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 5px 5px 3px darkgray;
+`;
+
+const ProfileImg = styled.div`
+  width: 100%;
+  height: 100%;
+  background: url('/images/Rectangle 278.svg') no-repeat center;
+  /* background-size: 280px 220px; */
 `;
 
 const ProfileInfo = styled.div`
