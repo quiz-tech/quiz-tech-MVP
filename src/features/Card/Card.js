@@ -7,7 +7,6 @@ import { resultUpdate } from './resultSlice';
 import { asnwerUpdate, initAnswer, questionsUpdate } from './questionSlice';
 import { initResult } from '../Card/resultSlice';
 import { initTimer } from '../Card/timerSlice';
-import { Title, SubTitle } from '../List/List';
 import Timer from './Timer';
 import Modal from '../../components/Modal';
 
@@ -89,8 +88,6 @@ const Card = () => {
           setShowModal={setShowModal}
         />
       ) : null}
-      <Title>타이틀</Title>
-      <SubTitle>서브 타이틀</SubTitle>
       <QuestionCard>
         {questionIndex <= 9 && (
           <>
@@ -151,7 +148,7 @@ export default Card;
 const QuestionCard = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 276px;
+  padding-bottom: 50px;
 `;
 
 const QuestionDesc = styled.div``;
@@ -168,18 +165,10 @@ const QuestionExplanation = styled.p`
   font-size: 18px;
 `;
 
-const QuestionImage = styled.img`
-  width: 503px;
-  height: 296px;
-  background-color: gray;
-  box-shadow: 0px 15px 40px 5px #ededed;
-  border-radius: 30px;
-`;
-
 const AnswerButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
 `;
 
 const RadioBtnBox = styled.div`
