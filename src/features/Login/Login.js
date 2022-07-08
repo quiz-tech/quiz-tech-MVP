@@ -9,9 +9,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.getItem('access')
-      ? navigate('/')
-      : console.log('로그인을 진행해주세요.');
+    // localStorage.getItem('access')
+    //   ? navigate('/')
+    //   : alert('로그인을 진행해주세요.');
 
     fetch(`http://backend.tecquiz.net:8000/users/login/`, {
       headers: {
@@ -20,13 +20,13 @@ const Login = () => {
     })
       .then(res => res.json())
       .then(data => {
-        // console.log(data.jwt_token.access);
-        console.log(data[0].jwt_token.access);
-        // console.log(data.jwt_token);
         data[0].jwt_token.access
           ? localStorage.setItem('access', data[0].jwt_token.access)
-          : // FIX ME: 리프레쉬 토큰 함께 저장
-            navigate('/login');
+          : alert('다시 로그인을 진행해주세요.');
+        data[0].jwt_token.access
+          ? localStorage.setItem('refresh', data[0].jwt_token.refresh)
+          : alert('다시 로그인을 진행해주세요.');
+        navigate('/login');
         localStorage.getItem('access')
           ? navigate('/')
           : alert('다시 로그인을 진행해주세요.');
@@ -45,6 +45,9 @@ const Login = () => {
           <GoogleLogin>
             <GoogleBtn setAuth={setAuth} Auth={Auth} />
           </GoogleLogin>
+          <a href="https://cors-anywhere.herokuapp.com">
+            클릭 후 진행해주세요.
+          </a>
         </LoginContent>
       </Contents>
     </LoginContainer>

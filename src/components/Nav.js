@@ -38,17 +38,19 @@ const Nav = () => {
         <LogoLink to="/">
           <Title onClick={goToDashboard}>Quiz Tech</Title>
         </LogoLink>
-        <UserSearch>
-          <SearchImg src="/images/Search.svg" alt="검색창사진" />
-          <SearchInput placeholder="search.." type="text" />
-        </UserSearch>
-        <ListLink to="/list/1">
+        <NavContents>
+          <UserSearch>
+            <SearchImg src="/images/Search.svg" alt="검색창사진" />
+            <SearchInput placeholder="search.." type="text" />
+          </UserSearch>
+          {/* <ListLink to="/list/1">
           <StartQuizBtn>Start Quiz</StartQuizBtn>
-        </ListLink>
-        <UserProfile>
-          <UserImg src={userProfile.picture} alt="유저사진" />
-          <UserName>{userProfile.username}</UserName>
-        </UserProfile>
+        </ListLink> */}
+          <UserProfile>
+            <UserImg src={userProfile.picture} alt="유저사진" />
+            <UserName>{userProfile.username}</UserName>
+          </UserProfile>
+        </NavContents>
       </NavContainer>
     </NavBar>
   );
@@ -74,15 +76,20 @@ const ListLink = styled(LogoLink)``;
 const Title = styled.div`
   font-weight: 800;
   font-size: 40px;
-  margin: 30px 0 0 30px;
+  margin: 30px 50px 0 30px;
   cursor: pointer;
+`;
+
+const NavContents = styled.div`
+  ${flex('space-between', 'center')}
+  width: calc(100% - 270px);
+  margin-top: 20px;
 `;
 
 const UserSearch = styled.div`
   ${flex('flex-start', 'center')}
   width:400px;
   height: 45px;
-  margin: 20px 0 0 50px;
   border-radius: 20px;
   background-color: #ffffff;
   box-shadow: 2px 2px 2px 2px lightgray;
@@ -94,7 +101,7 @@ const SearchImg = styled.img`
 
 const SearchInput = styled.input`
   width: 300px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   font-size: 20px;
   border: none;
   outline: none;
@@ -113,7 +120,7 @@ const StartQuizBtn = styled.button`
 
 const UserProfile = styled.div`
   ${flex('center', 'center')}
-  margin: 20px 0 0 150px;
+  margin-right:50px;
 `;
 
 const UserImg = styled.img`
