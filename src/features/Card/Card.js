@@ -4,13 +4,16 @@ import { useParams } from 'react-router-dom';
 import { useBeforeunload } from 'react-beforeunload';
 import { useDispatch } from 'react-redux';
 import { resultUpdate } from './resultSlice';
-import { asnwerUpdate } from './questionSlice';
+import { asnwerUpdate, initAnswer, questionsUpdate } from './questionSlice';
+import { initResult } from '../Card/resultSlice';
+import { initTimer } from '../Card/timerSlice';
 import { Title, SubTitle } from '../List/List';
 import Timer from './Timer';
 import Modal from '../../components/Modal';
 
 const Card = () => {
   const [questionData, setQuestionData] = useState([]);
+
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [correctCount, setCorrectCount] = useState(0);
@@ -65,11 +68,17 @@ const Card = () => {
     )
       .then(res => res.json())
       .then(res => {
-        res[0] === 'try again'
-          ? window.location.reload()
-          : setQuestionData(res.content);
+        if (res[0] === 'try again') {
+          window.location.reload();
+        } else {
+          setQuestionData(res.content);
+          dispatch(questionsUpdate(res.content));
+          dispatch(initAnswer());
+          dispatch(initTimer());
+          dispatch(initResult());
+        }
       });
-  }, [params.id]);
+  }, [dispatch, params.id]);
 
   return (
     <>
@@ -93,7 +102,7 @@ const Card = () => {
                 {questionData[questionIndex]?.question}
               </QuestionExplanation>
             </QuestionDesc>
-            <QuestionImage />
+            {/* <QuestionImage alt="quiz-image" /> */}
           </>
         )}
 
@@ -115,7 +124,7 @@ const Card = () => {
           );
         })}
       </AnswerButtonWrapper>
-      <PrevButton
+      {/* <PrevButton
         disabled={questionIndex === 0 ? true : false}
         style={questionIndex === 0 ? { opacity: 0.3 } : { opacity: 1 }}
         onClick={() => {
@@ -123,7 +132,7 @@ const Card = () => {
         }}
       >
         PREV
-      </PrevButton>
+      </PrevButton> */}
       <NextButton
         onClick={() => {
           handleQuestionIndex();

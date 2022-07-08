@@ -14,7 +14,6 @@ const Nav = () => {
     localStorage.getItem('access')
       ? fetch(
           'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
-          // 'http://backend.tecquiz.net:8000/users/profile/',
           {
             headers: {
               access: localStorage.getItem('access'),
