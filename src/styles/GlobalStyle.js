@@ -9,7 +9,9 @@ ${reset}
 
 body {
     line-height: 1;
-    background-color: #fff;
+    background-color: #fbf9f9;
+    max-width:1920px;
+    margin: 0 auto;
   }
   ol, ul,li {
     list-style: none;
