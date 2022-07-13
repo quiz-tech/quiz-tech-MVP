@@ -9,9 +9,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.getItem('access')
-      ? navigate('/')
-      : alert('로그인을 진행해주세요.');
+    if (localStorage.getItem('access')) {
+      return navigate('/');
+    }
 
     fetch(`http://backend.tecquiz.net:8000/users/login/`, {
       headers: {
