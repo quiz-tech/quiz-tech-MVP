@@ -12,7 +12,6 @@ const GoogleBtn = ({ setAuth, Auth }) => {
     <GoogleOAuthProvider clientId={clientId}>
       <GoogleLogin
         onSuccess={successLogin}
-        y
         onError={() => {
           console.log('Login Failed');
         }}
