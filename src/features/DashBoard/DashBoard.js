@@ -31,7 +31,8 @@ const DashBoard = () => {
 
   useEffect(() => {
     fetch(
-      'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
+      // 'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
+      'http://backend.tecquiz.net:8000/users/profile/',
       {
         headers: {
           access: localStorage.getItem('access'),

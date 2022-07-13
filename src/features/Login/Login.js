@@ -8,63 +8,31 @@ const Login = () => {
   const [Auth, setAuth] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(
-    () => {
-      // localStorage.getItem('access')
-      //   ? navigate('/')
-      //   : alert('로그인을 진행해주세요.');
+  useEffect(() => {
+    localStorage.getItem('access')
+      ? navigate('/')
+      : alert('로그인을 진행해주세요.');
 
-      fetch(`http://backend.tecquiz.net:8000/users/google/callback/`, {
-        headers: {
-          // Authorization: Auth.credential,
-          'Content-Type': 'application/json',
-          // Vary: 'Accept',
-          credentials: 'include',
-        },
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          // data[0].jwt_token.access
-          //   ? localStorage.setItem('access', data[0].jwt_token.access)
-          //   : alert('다시 로그인을 진행해주세요.');
-          // data[0].jwt_token.access
-          //   ? localStorage.setItem('refresh', data[0].jwt_token.refresh)
-          //   : alert('다시 로그인을 진행해주세요.');
-          // navigate('/login');
-          // localStorage.getItem('access')
-          //   ? navigate('/')
-          //   : alert('다시 로그인을 진행해주세요.');
-        });
-    },
-    [
-      // Auth, navigate
-    ]
-  );
-
-  // const getToken = () => {
-  //   fetch(`http://backend.tecquiz.net:8000/users/google/callback/`, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       // Vary: 'Accept',
-  //       credentials: 'include',
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       // data[0].jwt_token.access
-  //       //   ? localStorage.setItem('access', data[0].jwt_token.access)
-  //       //   : alert('다시 로그인을 진행해주세요.');
-  //       // data[0].jwt_token.access
-  //       //   ? localStorage.setItem('refresh', data[0].jwt_token.refresh)
-  //       //   : alert('다시 로그인을 진행해주세요.');
-  //       // navigate('/login');
-  //       // localStorage.getItem('access')
-  //       //   ? navigate('/')
-  //       //   : alert('다시 로그인을 진행해주세요.');
-  //     });
-  // };
+    fetch(`http://backend.tecquiz.net:8000/users/login/`, {
+      headers: {
+        Authorization: Auth.credential,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        data[0].jwt_token.access
+          ? localStorage.setItem('access', data[0].jwt_token.access)
+          : alert('다시 로그인을 진행해주세요.');
+        data[0].jwt_token.access
+          ? localStorage.setItem('refresh', data[0].jwt_token.refresh)
+          : alert('다시 로그인을 진행해주세요.');
+        navigate('/login');
+        localStorage.getItem('access')
+          ? navigate('/')
+          : alert('다시 로그인을 진행해주세요.');
+      });
+  }, [Auth, navigate]);
 
   return (
     <LoginContainer>
@@ -75,23 +43,9 @@ const Login = () => {
             <MainText>Login to your Account</MainText>
             <SubText>with your registered gmail Address</SubText>
           </LoginTitle>
-          {/* <GoogleLogin>
+          <GoogleLogin>
             <GoogleBtn setAuth={setAuth} Auth={Auth} />
-          </GoogleLogin> */}
-          <div
-          // onClick={getToken}
-          >
-            <a
-              href="http://backend.tecquiz.net:8000/users/google/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              임시 구글 로그인
-            </a>
-            {/* <a href="http://backend.tecquiz.net:8000/users/google/">
-              --------임시 구글 로그인
-            </a> */}
-          </div>
+          </GoogleLogin>
         </LoginContent>
       </Contents>
     </LoginContainer>

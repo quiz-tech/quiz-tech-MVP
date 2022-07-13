@@ -21,10 +21,6 @@ const Aside = () => {
     navigate('/login');
   };
 
-  const NavigateContent = name => {
-    navigate(`/${name}`);
-  };
-
   return (
     <SideBar>
       <Content>
