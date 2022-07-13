@@ -26,6 +26,10 @@ const SelectQuizContainer = styled.button`
   height: 100px;
   margin: 0 30px;
   border-radius: 30px;
+  @media (min-width: 1792px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 
 const QuizImg = styled.img`
@@ -37,4 +41,7 @@ const QuizName = styled.span`
   margin-top: 15px;
   font-weight: 400;
   font-size: 17px;
+  @media (min-width: 1792px) {
+    font-size: 20px;
+  }
 `;

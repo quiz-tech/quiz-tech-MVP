@@ -197,17 +197,22 @@ const ProfileDataContainer = styled.ul`
 `;
 
 const Content = styled.div`
-  ${flex('space-between', 'center')}
-  margin-top: 50px;
+  display: flex;
+  margin-top: 40px;
+  @media (min-width: 1793px) {
+    margin-top: 100px;
+  }
 `;
 
-const Ranking = styled.div``;
+const Ranking = styled.div`
+  width: 280px;
+`;
 
 const RankingPerson = styled.div`
-  width: 470px;
+  /* width: 470px; */
   height: 255px;
-  border-radius: 30px;
-  box-shadow: 3px 3px 3px lightgray;
+  /* border-radius: 30px;
+  box-shadow: 3px 3px 3px lightgray; */
 `;
 
 const RankingTitle = styled.div`
@@ -217,7 +222,9 @@ const RankingTitle = styled.div`
   margin-bottom: 15px;
 `;
 
-const QuizCategory = styled.div``;
+const QuizCategory = styled.div`
+  margin-left: 60px;
+`;
 
 const QuizCategoryTitle = styled(RankingTitle)``;
 
@@ -225,12 +232,16 @@ const SelectQuizContainer = styled.div`
   ${flex('space-around', 'center')}
   width:470px;
   height: 255px;
-  border-radius: 30px;
-  box-shadow: 3px 3px 3px lightgray;
+  @media (min-width: 1793px) {
+  }
+  /* border-radius: 30px;
+  box-shadow: 3px 3px 3px lightgray; */
 `;
 
 const ChartWrap = styled.div`
   display: flex;
   width: 220px;
-  margin-bottom: 50px;
+  @media (min-width: 1793px) {
+    width: 260px;
+  }
 `;

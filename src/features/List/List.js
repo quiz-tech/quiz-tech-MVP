@@ -120,7 +120,7 @@ const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin-top: 50px;
-  max-height: 450px;
+  max-height: 350px;
   overflow-y: auto;
   @media (max-width: 1700px) {
     max-height: 350px;
