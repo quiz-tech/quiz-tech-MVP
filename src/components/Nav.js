@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -12,16 +13,14 @@ const Nav = () => {
 
   useEffect(() => {
     localStorage.getItem('access')
-      ? fetch(
-          'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
-          {
-            headers: {
-              access: localStorage.getItem('access'),
-            },
-          }
-        )
+      ? fetch('http://backend.tecquiz.net:8000/users/profile/', {
+          headers: {
+            access: localStorage.getItem('access'),
+          },
+        })
           .then(res => res.json())
           .then(data => {
+            console.log(data);
             setUserProfile(data[0]);
             setUserData(data[0].rank_set[0]);
           })
@@ -32,6 +31,16 @@ const Nav = () => {
     navigate('/');
   };
 
+  const alret = () => {
+    Swal.fire({
+      text: '아직 서비스가 지원되지 않습니다.',
+      icon: 'info',
+      iconColor: '#484848',
+      confirmButtonColor: '#000',
+      confirmButtonText: '확인',
+    });
+  };
+
   return (
     <NavBar>
       <NavContainer>
@@ -39,13 +48,10 @@ const Nav = () => {
           <Title onClick={goToDashboard}>Quiz Tech</Title>
         </LogoLink>
         <NavContents>
-          <UserSearch>
+          <UserSearch onClick={alret}>
             <SearchImg src="/images/Search.svg" alt="검색창사진" />
             <SearchInput placeholder="search.." type="text" />
           </UserSearch>
-          {/* <ListLink to="/list/1">
-          <StartQuizBtn>Start Quiz</StartQuizBtn>
-        </ListLink> */}
           <UserProfile>
             <UserImg src={userProfile.picture} alt="유저사진" />
             <UserName>{userProfile.username}</UserName>
