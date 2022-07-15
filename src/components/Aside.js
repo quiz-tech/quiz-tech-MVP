@@ -9,7 +9,7 @@ const Aside = () => {
   const [contentItem, setContentItem] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/sideData.json')
+    fetch('/data/sideData.json')
       .then(res => res.json())
       .then(data => {
         setContentItem(data.sideContent);
@@ -18,11 +18,7 @@ const Aside = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('access');
-    navigate('/login');
-  };
-
-  const NavigateContent = name => {
-    navigate(`/${name}`);
+    navigate('/');
   };
 
   return (

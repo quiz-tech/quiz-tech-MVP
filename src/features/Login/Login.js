@@ -9,29 +9,37 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // localStorage.getItem('access')
-    //   ? navigate('/')
-    //   : alert('로그인을 진행해주세요.');
+    if (localStorage.getItem('access')) {
+      return navigate('/dashboard');
+    }
 
     fetch(`http://backend.tecquiz.net:8000/users/login/`, {
       headers: {
         Authorization: Auth.credential,
+        'Content-Type': 'application/json',
       },
     })
       .then(res => res.json())
       .then(data => {
-        data[0].jwt_token.access
-          ? localStorage.setItem('access', data[0].jwt_token.access)
-          : alert('다시 로그인을 진행해주세요.');
-        data[0].jwt_token.access
-          ? localStorage.setItem('refresh', data[0].jwt_token.refresh)
-          : alert('다시 로그인을 진행해주세요.');
-        navigate('/login');
+        console.log(data);
+        console.log(data[0]);
+        console.log(data[0].jwt_token);
+        console.log(data[0].jwt_token.access);
+        localStorage.setItem('access', data[0].jwt_token.access);
+        localStorage.setItem('refresh', data[0].jwt_token.refresh);
+        // data[0].jwt_token.access
+        //   ? localStorage.setItem('access', data[0].jwt_token.access)
+        //   : alert('다시 로그인을 진행해주세요.');
+        // data[0].jwt_token.access
+        //   ? localStorage.setItem('refresh', data[0].jwt_token.refresh)
+        //   : alert('다시 로그인을 진행해주세요.');
         localStorage.getItem('access')
-          ? navigate('/')
+          ? navigate('/dashboard')
           : alert('다시 로그인을 진행해주세요.');
       });
   }, [Auth, navigate]);
+
+  console.log(Auth);
 
   return (
     <LoginContainer>
@@ -45,9 +53,6 @@ const Login = () => {
           <GoogleLogin>
             <GoogleBtn setAuth={setAuth} Auth={Auth} />
           </GoogleLogin>
-          <a href="https://cors-anywhere.herokuapp.com">
-            클릭 후 진행해주세요.
-          </a>
         </LoginContent>
       </Contents>
     </LoginContainer>

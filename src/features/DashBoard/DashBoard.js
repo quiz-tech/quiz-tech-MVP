@@ -30,14 +30,11 @@ const DashBoard = () => {
   }, []);
 
   useEffect(() => {
-    fetch(
-      'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
-      {
-        headers: {
-          access: localStorage.getItem('access'),
-        },
-      }
-    )
+    fetch('http://backend.tecquiz.net:8000/users/profile/', {
+      headers: {
+        access: localStorage.getItem('access'),
+      },
+    })
       .then(res => res.json())
       .then(data => {
         setDashboardData(data[0]);
@@ -45,6 +42,7 @@ const DashBoard = () => {
         dispatch(profileDataUpdate(data[0].rank_set[0]));
       });
   }, []);
+
   const chartData = {
     // type: 'bar',
     // data: {
@@ -92,7 +90,6 @@ const DashBoard = () => {
   return (
     <DashboardContainer>
       <Profile>
-        {/* <ProfileImg src="{dashBoardData.picture}" alt="사용자 사진" /> */}
         <ProfileImgWrap>
           <ProfileImg />
         </ProfileImgWrap>
@@ -124,7 +121,7 @@ const DashBoard = () => {
         <QuizCategory>
           <QuizCategoryTitle>Featured Category</QuizCategoryTitle>
           {/* <QuizCategoryView>카테고리 뷰</QuizCategoryView> */}
-          {/* <QuizCategorySelect /> 이것도 맵핑 */}
+          {/* <QuizCategorySelect /> */}
           <SelectQuizContainer>
             {quizItem &&
               quizItem.map(quizData => {
@@ -196,17 +193,22 @@ const ProfileDataContainer = styled.ul`
 `;
 
 const Content = styled.div`
-  ${flex('space-between', 'center')}
-  margin-top: 50px;
+  display: flex;
+  margin-top: 40px;
+  @media (min-width: 1793px) {
+    margin-top: 100px;
+  }
 `;
 
-const Ranking = styled.div``;
+const Ranking = styled.div`
+  width: 280px;
+`;
 
 const RankingPerson = styled.div`
-  width: 470px;
+  /* width: 470px; */
   height: 255px;
-  border-radius: 30px;
-  box-shadow: 3px 3px 3px lightgray;
+  /* border-radius: 30px;
+  box-shadow: 3px 3px 3px lightgray; */
 `;
 
 const RankingTitle = styled.div`
@@ -216,7 +218,9 @@ const RankingTitle = styled.div`
   margin-bottom: 15px;
 `;
 
-const QuizCategory = styled.div``;
+const QuizCategory = styled.div`
+  margin-left: 60px;
+`;
 
 const QuizCategoryTitle = styled(RankingTitle)``;
 
@@ -224,12 +228,14 @@ const SelectQuizContainer = styled.div`
   ${flex('space-around', 'center')}
   width:470px;
   height: 255px;
-  border-radius: 30px;
-  box-shadow: 3px 3px 3px lightgray;
+  @media (min-width: 1793px) {
+  }
 `;
 
 const ChartWrap = styled.div`
   display: flex;
   width: 220px;
-  margin-bottom: 50px;
+  @media (min-width: 1793px) {
+    width: 260px;
+  }
 `;
