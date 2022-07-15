@@ -41,16 +41,6 @@ const Nav = () => {
     });
   };
 
-  const alret = () => {
-    Swal.fire({
-      text: '아직 서비스가 지원되지 않습니다.',
-      icon: 'info',
-      iconColor: '#484848',
-      confirmButtonColor: '#000',
-      confirmButtonText: '확인',
-    });
-  };
-
   return (
     <NavBar>
       <NavContainer>
