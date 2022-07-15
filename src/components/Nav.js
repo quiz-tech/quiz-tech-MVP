@@ -24,11 +24,11 @@ const Nav = () => {
             setUserProfile(data[0]);
             setUserData(data[0].rank_set[0]);
           })
-      : navigate('/login');
+      : navigate('/');
   }, []);
 
   const goToDashboard = () => {
-    navigate('/');
+    navigate('/dashboard');
   };
 
   const alret = () => {
@@ -44,7 +44,7 @@ const Nav = () => {
   return (
     <NavBar>
       <NavContainer>
-        <LogoLink to="/">
+        <LogoLink to="/dashboard">
           <Title onClick={goToDashboard}>Quiz Tech</Title>
         </LogoLink>
         <NavContents>

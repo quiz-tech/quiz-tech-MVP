@@ -5,7 +5,7 @@
       "contentImg": "/images/DashboardImg.svg",
       "contentImgWhite": "/images/DashboardImgW.svg",
       "contentName": "Dashboard",
-      "navigateUri": "/"
+      "navigateUri": "/dashboard"
     },
     {
       "id": 2,

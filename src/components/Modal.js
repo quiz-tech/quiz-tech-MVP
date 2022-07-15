@@ -19,19 +19,16 @@ const Modal = ({ setQuestionIndex, setShowModal }) => {
 
   const handleSubmitBtn = () => {
     const token = localStorage.getItem('access');
-    fetch(
-      'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/rank/',
-      {
-        method: 'POST',
-        headers: { access: token, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          correct_answer: result.correctCount,
-          total_time: 10 - Math.floor(leftTime / 60000),
-          quiz_passed: result.isPassed,
-          attempt: 1,
-        }),
-      }
-    )
+    fetch('http://backend.tecquiz.net:8000/users/rank/', {
+      method: 'POST',
+      headers: { access: token, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        correct_answer: result.correctCount,
+        total_time: 10 - Math.floor(leftTime / 60000),
+        quiz_passed: result.isPassed,
+        attempt: 1,
+      }),
+    })
       .then(response => response.json())
       .then(result => {
         handleModalType();

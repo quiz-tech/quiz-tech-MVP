@@ -18,7 +18,6 @@ const DashBoard = () => {
   const dispatch = useDispatch();
 
   const userData = useSelector(state => state.userData);
-  const resultData = useSelector(state => state.userData.resultData);
 
   useEffect(() => {
     fetch('/data/dashboardData.json')
@@ -30,15 +29,11 @@ const DashBoard = () => {
   }, []);
 
   useEffect(() => {
-    fetch(
-      // 'https://cors-anywhere.herokuapp.com/http://backend.tecquiz.net:8000/users/profile/',
-      'http://backend.tecquiz.net:8000/users/profile/',
-      {
-        headers: {
-          access: localStorage.getItem('access'),
-        },
-      }
-    )
+    fetch('http://backend.tecquiz.net:8000/users/profile/', {
+      headers: {
+        access: localStorage.getItem('access'),
+      },
+    })
       .then(res => res.json())
       .then(data => {
         setDashboardData(data[0]);
@@ -46,6 +41,7 @@ const DashBoard = () => {
         dispatch(profileDataUpdate(data[0].rank_set[0]));
       });
   }, []);
+
   const chartData = {
     // type: 'bar',
     // data: {
@@ -93,7 +89,6 @@ const DashBoard = () => {
   return (
     <DashboardContainer>
       <Profile>
-        {/* <ProfileImg src="{dashBoardData.picture}" alt="사용자 사진" /> */}
         <ProfileImgWrap>
           <ProfileImg />
         </ProfileImgWrap>
@@ -125,7 +120,7 @@ const DashBoard = () => {
         <QuizCategory>
           <QuizCategoryTitle>Featured Category</QuizCategoryTitle>
           {/* <QuizCategoryView>카테고리 뷰</QuizCategoryView> */}
-          {/* <QuizCategorySelect /> 이것도 맵핑 */}
+          {/* <QuizCategorySelect /> */}
           <SelectQuizContainer>
             {quizItem &&
               quizItem.map(quizData => {
@@ -234,8 +229,6 @@ const SelectQuizContainer = styled.div`
   height: 255px;
   @media (min-width: 1793px) {
   }
-  /* border-radius: 30px;
-  box-shadow: 3px 3px 3px lightgray; */
 `;
 
 const ChartWrap = styled.div`

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { flex } from '../styles/Mixin';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -8,15 +7,15 @@ const ContentItem = ({ ...contentData }) => {
   const navigate = useNavigate();
 
   const NavigateContent = name => {
-    // name === '/support' || '/notification'
-    Swal.fire({
-      text: '아직 서비스가 지원되지 않습니다.',
-      icon: 'info',
-      iconColor: '#484848',
-      confirmButtonColor: '#000',
-      confirmButtonText: '확인',
-    });
-    // : navigate(`${name}`);
+    name !== '/dashboard'
+      ? Swal.fire({
+          text: '아직 서비스가 지원되지 않습니다.',
+          icon: 'info',
+          iconColor: '#484848',
+          confirmButtonColor: '#000',
+          confirmButtonText: '확인',
+        })
+      : navigate(`${name}`);
   };
 
   return (

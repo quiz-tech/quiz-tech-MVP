@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import ContentItem from './ContentItem';
 import { flex } from '../styles/Mixin';
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Aside = () => {
   const navigate = useNavigate();
   const [contentItem, setContentItem] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/sideData.json')
+    fetch('/data/sideData.json')
       .then(res => res.json())
       .then(data => {
         setContentItem(data.sideContent);
@@ -18,7 +18,7 @@ const Aside = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('access');
-    navigate('/login');
+    navigate('/');
   };
 
   return (
