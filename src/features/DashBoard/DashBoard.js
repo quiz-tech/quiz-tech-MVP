@@ -18,7 +18,6 @@ const DashBoard = () => {
   const dispatch = useDispatch();
 
   const userData = useSelector(state => state.userData);
-  const resultData = useSelector(state => state.userData.resultData);
 
   useEffect(() => {
     fetch('/data/dashboardData.json')
