@@ -13,15 +13,10 @@ const Nav = () => {
 
   useEffect(() => {
     localStorage.getItem('access')
-      ? fetch('/api/users/profile/', {
+      ? fetch('https://backend.tecquiz.net/users/profile/', {
           headers: {
             access: localStorage.getItem('access'),
             refresh: localStorage.getItem('refresh'),
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers':
-              'Access-Control-Allow-Headers, Content-Type, Authorization',
-            'Access-Control-Allow-Methods': '*',
-            'Content-Type': 'application/json',
           },
         })
           .then(res => res.json())
