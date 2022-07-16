@@ -33,7 +33,6 @@ const DashBoard = () => {
       headers: {
         access: localStorage.getItem('access'),
         refresh: localStorage.getItem('refresh'),
-        'Content-Type': 'application/json',
       },
     })
       .then(res => res.json())
