@@ -62,9 +62,7 @@ const Card = () => {
   }, [correctCount, dispatch]);
 
   useEffect(() => {
-    fetch(
-      `http://backend.tecquiz.net:8000/questions/category/${params.id}/quiz/`
-    )
+    fetch(`https://backend.tecquiz.net/questions/category/${params.id}/quiz/`)
       .then(res => res.json())
       .then(res => {
         if (res[0] === 'try again') {

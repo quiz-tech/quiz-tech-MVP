@@ -21,7 +21,7 @@ const List = () => {
   );
   useEffect(() => {
     fetch(
-      `http://backend.tecquiz.net:8000/questions/${params.id}/category/?format=json`
+      `https://backend.tecquiz.net/questions/${params.id}/category/?format=json`
     )
       .then(res => res.json())
       .then(data => setQuizInfo(data));

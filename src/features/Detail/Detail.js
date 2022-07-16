@@ -15,7 +15,7 @@ const Detail = () => {
   const params = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://backend.tecquiz.net:8000/questions/category/${params.id}/`)
+    fetch(`https://backend.tecquiz.net/questions/category/${params.id}/`)
       .then(res => res.json())
       .then(data => setInfo(data));
   }, [params.id]);
