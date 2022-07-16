@@ -6,7 +6,6 @@ import { flex } from '../../styles/Mixin';
 
 const Login = () => {
   const [auth, setAuth] = useState([]);
-  const [token, setToken] = useState([]);
 
   const navigate = useNavigate();
 
@@ -15,7 +14,7 @@ const Login = () => {
       return navigate('/dashboard');
     }
 
-    fetch(`http://backend.tecquiz.net:8000/users/login/`, {
+    fetch('https://backend.tecquiz.net/users/login/', {
       headers: {
         Authorization: auth.credential,
         'Content-Type': 'application/json',
@@ -23,17 +22,8 @@ const Login = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        console.log(data[0]);
-        console.log(data.jwt_token);
-        console.log(data.jwt_token.access);
-        setToken(data);
-        console.log(data?.[0]?.jwt_token?.access);
-        console.log(data[0]?.jwt_token?.access);
-        console.log(data.access);
-        // localStorage.setItem('access', data[0].jwt_token.access);
-        // localStorage.setItem('refresh', data[0].jwt_token.refresh);
-
+        localStorage.setItem('access', data[0].jwt_token.access);
+        localStorage.setItem('refresh', data[0].jwt_token.refresh);
         // data[0].jwt_token.access
         //   ? localStorage.setItem('access', data[0].jwt_token.access)
         //   : alert('다시 로그인을 진행해주세요.');
@@ -45,10 +35,6 @@ const Login = () => {
           : alert('다시 로그인을 진행해주세요.');
       });
   }, [auth, navigate]);
-
-  console.log(auth);
-  console.log(token);
-  console.log(token.jwt_token);
 
   return (
     <LoginContainer>

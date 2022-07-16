@@ -13,7 +13,7 @@ const Nav = () => {
 
   useEffect(() => {
     localStorage.getItem('access')
-      ? fetch('http://backend.tecquiz.net:8000/users/profile/', {
+      ? fetch('https://backend.tecquiz.net/users/profile/', {
           headers: {
             access: localStorage.getItem('access'),
           },

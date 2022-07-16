@@ -19,7 +19,7 @@ const Modal = ({ setQuestionIndex, setShowModal }) => {
 
   const handleSubmitBtn = () => {
     const token = localStorage.getItem('access');
-    fetch('http://backend.tecquiz.net:8000/users/rank/', {
+    fetch('https://backend.tecquiz.net/users/rank/', {
       method: 'POST',
       headers: { access: token, 'Content-Type': 'application/json' },
       body: JSON.stringify({
