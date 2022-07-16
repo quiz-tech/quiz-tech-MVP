@@ -29,7 +29,7 @@ const DashBoard = () => {
   }, []);
 
   useEffect(() => {
-    fetch('https://backend.tecquiz.net/users/profile/', {
+    fetch('/api/users/profile/', {
       headers: {
         access: localStorage.getItem('access'),
         refresh: localStorage.getItem('refresh'),
