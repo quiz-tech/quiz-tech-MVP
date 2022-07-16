@@ -21,7 +21,6 @@ const Nav = () => {
         })
           .then(res => res.json())
           .then(data => {
-            console.log(data);
             setUserProfile(data[0]);
             setUserData(data[0].rank_set[0]);
           })
@@ -108,7 +107,6 @@ const SearchImg = styled.img`
 
 const SearchInput = styled.input`
   width: 300px;
-  /* margin-left: 20px; */
   font-size: 20px;
   border: none;
   outline: none;

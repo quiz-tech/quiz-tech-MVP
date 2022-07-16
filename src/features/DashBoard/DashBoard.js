@@ -63,6 +63,7 @@ const DashBoard = () => {
     //   }
     // }
     // FIX ME: 위에 값이 바 차트
+
     labels: ['Quiz passed', 'Total time', 'Correct answer'],
     datasets: [
       {

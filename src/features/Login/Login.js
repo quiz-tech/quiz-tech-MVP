@@ -24,12 +24,6 @@ const Login = () => {
       .then(data => {
         localStorage.setItem('access', data[0].jwt_token.access);
         localStorage.setItem('refresh', data[0].jwt_token.refresh);
-        // data[0].jwt_token.access
-        //   ? localStorage.setItem('access', data[0].jwt_token.access)
-        //   : alert('다시 로그인을 진행해주세요.');
-        // data[0].jwt_token.access
-        //   ? localStorage.setItem('refresh', data[0].jwt_token.refresh)
-        //   : alert('다시 로그인을 진행해주세요.');
         localStorage.getItem('access')
           ? navigate('/dashboard')
           : alert('다시 로그인을 진행해주세요.');
@@ -45,9 +39,6 @@ const Login = () => {
             <MainText>Login to your Account</MainText>
             <SubText>with your registered gmail Address</SubText>
           </LoginTitle>
-          <a href="https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=ko">
-            하이루요 이 거미자식 실행하고 하세용
-          </a>
           <GoogleLogin>
             <GoogleBtn setAuth={setAuth} Auth={auth} />
           </GoogleLogin>
