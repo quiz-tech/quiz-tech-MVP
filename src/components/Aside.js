@@ -1,20 +1,10 @@
 import styled from 'styled-components';
 import ContentItem from './ContentItem';
 import { flex } from '../styles/Mixin';
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Aside = () => {
   const navigate = useNavigate();
-  const [contentItem, setContentItem] = useState([]);
-
-  useEffect(() => {
-    fetch('/data/sideData.json')
-      .then(res => res.json())
-      .then(data => {
-        setContentItem(data.sideContent);
-      });
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('access');
@@ -24,8 +14,8 @@ const Aside = () => {
   return (
     <SideBar>
       <Content>
-        {contentItem &&
-          contentItem.map(contentData => {
+        {SIDEDATA &&
+          SIDEDATA.map(contentData => {
             return <ContentItem key={contentData.id} {...contentData} />;
           })}
       </Content>
@@ -38,6 +28,30 @@ const Aside = () => {
 };
 
 export default Aside;
+
+const SIDEDATA = [
+  {
+    id: 1,
+    contentImg: '/images/DashboardImg.svg',
+    contentImgWhite: '/images/DashboardImgW.svg',
+    contentName: 'Dashboard',
+    navigateUri: '/dashboard',
+  },
+  {
+    id: 2,
+    contentImg: '/images/SupportImg.svg',
+    contentImgWhite: '/images/SupportImgW.svg',
+    contentName: 'Support',
+    navigateUri: '/support',
+  },
+  {
+    id: 3,
+    contentImg: '/images/NotificationImg.svg',
+    contentImgWhite: '/images/NotificationImgW.svg',
+    contentName: 'Notification',
+    navigateUri: '/notification',
+  },
+];
 
 const SideBar = styled.div`
   ${flex('space-between', 'center')}
