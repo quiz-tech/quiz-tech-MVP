@@ -11,21 +11,21 @@ const Nav = () => {
   const [userProfile, setUserProfile] = useState({});
   const [userData, setUserData] = useState({});
 
-  useEffect(() => {
-    localStorage.getItem('access')
-      ? fetch('https://backend.tecquiz.net/users/profile/', {
-          headers: {
-            access: localStorage.getItem('access'),
-            refresh: localStorage.getItem('refresh'),
-          },
-        })
-          .then(res => res.json())
-          .then(data => {
-            setUserProfile(data[0]);
-            setUserData(data[0].rank_set[0]);
-          })
-      : navigate('/');
-  }, []);
+  // useEffect(() => {
+  //   localStorage.getItem('access')
+  //     ? fetch('https://backend.tecquiz.net/users/profile/', {
+  //         headers: {
+  //           access: localStorage.getItem('access'),
+  //           refresh: localStorage.getItem('refresh'),
+  //         },
+  //       })
+  //         .then(res => res.json())
+  //         .then(data => {
+  //           setUserProfile(data[0]);
+  //           setUserData(data[0].rank_set[0]);
+  //         })
+  //     : navigate('/');
+  // }, []);
 
   const goToDashboard = () => {
     navigate('/dashboard');
@@ -71,10 +71,13 @@ const NavBar = styled.div`
 
 const NavContainer = styled.div`
   ${flex('flex-start', 'center')}
+  height: 100%;
 `;
 
 const LogoLink = styled(Link)`
-  color: inherit;
+  width: 270px;
+  text-align: center;
+  color: #000;
 `;
 
 const ListLink = styled(LogoLink)``;
@@ -82,23 +85,33 @@ const ListLink = styled(LogoLink)``;
 const Title = styled.div`
   font-weight: 800;
   font-size: 40px;
-  margin: 30px 50px 0 30px;
+  padding-top: 10px;
   cursor: pointer;
 `;
 
 const NavContents = styled.div`
+  position: relative;
   ${flex('space-between', 'center')}
-  width: calc(100% - 270px);
-  margin-top: 20px;
+  width: calc(100% - 300px);
+  height: 100%;
 `;
 
 const UserSearch = styled.div`
   ${flex('flex-start', 'center')}
-  width:400px;
+  position: absolute;
+  top: 30px;
+  left: calc(50% - 100px);
+  width: 400px;
   height: 45px;
   border-radius: 20px;
   background-color: #ffffff;
   box-shadow: 2px 2px 2px 2px lightgray;
+  transform: translateX(-50%);
+  overflow: hidden;
+  @media (max-width: 1793px) {
+    width: 300px;
+    left: calc(50% - 40px);
+  }
 `;
 
 const SearchImg = styled.img`
@@ -106,7 +119,7 @@ const SearchImg = styled.img`
 `;
 
 const SearchInput = styled.input`
-  width: 300px;
+  width: 100%;
   font-size: 20px;
   border: none;
   outline: none;
@@ -124,15 +137,16 @@ const StartQuizBtn = styled.button`
 `;
 
 const UserProfile = styled.div`
-  ${flex('center', 'center')}
-  margin-right:50px;
+  display: block;
+  width: 100%;
+  text-align: right;
 `;
 
 const UserImg = styled.img`
-  width: 60px;
-  height: 60px;
-  margin-left: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 45px;
+  vertical-align: middle;
 `;
 
 const UserName = styled.span`
