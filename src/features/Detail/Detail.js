@@ -31,7 +31,6 @@ const Detail = () => {
       <Title>
         {info && info.development_group === 1 ? 'Backend' : 'Frontend'}
       </Title>
-      <SubTitle>Quiz</SubTitle>
       <ContentWrap>
         <ThumbnailWrap>
           <Thumbnail src={info && info.image} />
@@ -43,10 +42,10 @@ const Detail = () => {
           </Info>
           <Info>
             <InfoTitle>Time Limit</InfoTitle>
-            <InfoText>10MIN</InfoText>
+            <InfoText>10 MIN</InfoText>
           </Info>
           <Info>
-            <InfoTitle>Attempts</InfoTitle>
+            <InfoTitle>Quiz Account</InfoTitle>
             <InfoText>10</InfoText>
           </Info>
         </ThumbnailInfo>
@@ -79,7 +78,7 @@ const ThumbnailWrap = styled.div`
   overflow: hidden;
   @media (max-width: 1792px) {
     width: 300px;
-    height: 200px;
+    height: 240px;
   }
 `;
 

@@ -62,14 +62,12 @@ const List = () => {
       <ContentWrap>
         <ContentLeft>
           <Title>내 기록 전체 보기</Title>
-          <SubTitle>기록</SubTitle>
           <ChartWrap>
             <Doughnut data={data} />
           </ChartWrap>
         </ContentLeft>
         <ContentRight>
           <Title>{params.id !== '1' ? 'Frontend Quiz' : 'Backend Quiz'}</Title>
-          <SubTitle>서브타이틀</SubTitle>
           <CardList>
             {quizInfo &&
               quizInfo.map(card => (
@@ -119,7 +117,7 @@ const ContentRight = styled.div`
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 50px;
+  margin-top: 70px;
   max-height: 350px;
   overflow-y: auto;
   @media (max-width: 1700px) {

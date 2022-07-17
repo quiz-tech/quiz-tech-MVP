@@ -28,20 +28,20 @@ const DashBoard = () => {
       });
   }, []);
 
-  useEffect(() => {
-    fetch('https://backend.tecquiz.net/users/profile/', {
-      headers: {
-        access: localStorage.getItem('access'),
-        refresh: localStorage.getItem('refresh'),
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        setDashboardData(data[0]);
-        dispatch(userProfileUpdate(data[0]));
-        dispatch(profileDataUpdate(data[0].rank_set[0]));
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('https://backend.tecquiz.net/users/profile/', {
+  //     headers: {
+  //       access: localStorage.getItem('access'),
+  //       refresh: localStorage.getItem('refresh'),
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setDashboardData(data[0]);
+  //       dispatch(userProfileUpdate(data[0]));
+  //       dispatch(profileDataUpdate(data[0].rank_set[0]));
+  //     });
+  // }, []);
 
   const chartData = {
     // type: 'bar',

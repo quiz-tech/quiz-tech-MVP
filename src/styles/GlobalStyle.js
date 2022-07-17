@@ -10,7 +10,7 @@ ${reset}
 body {
     line-height: 1;
     background-color: #fbf9f9;
-    max-width:1920px;
+    max-width:1440px;
     margin: 0 auto;
   }
   ol, ul,li {
