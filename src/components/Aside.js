@@ -8,6 +8,7 @@ const Aside = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
     navigate('/');
   };
 
@@ -35,21 +36,18 @@ const SIDEDATA = [
     contentImg: '/images/DashboardImg.svg',
     contentImgWhite: '/images/DashboardImgW.svg',
     contentName: 'Dashboard',
-    navigateUri: '/dashboard',
   },
   {
     id: 2,
     contentImg: '/images/SupportImg.svg',
     contentImgWhite: '/images/SupportImgW.svg',
     contentName: 'Support',
-    navigateUri: '/support',
   },
   {
     id: 3,
     contentImg: '/images/NotificationImg.svg',
     contentImgWhite: '/images/NotificationImgW.svg',
     contentName: 'Notification',
-    navigateUri: '/notification',
   },
 ];
 

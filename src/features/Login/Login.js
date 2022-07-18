@@ -33,7 +33,9 @@ const Login = () => {
   return (
     <LoginContainer>
       <Contents>
-        <LoginImg src="/images/logo.svg" alt="메인로고" />
+        <LogoImgBase>
+          <LoginImg src="/images/LoginLogo.png" alt="메인로고" />
+        </LogoImgBase>
         <LoginContent>
           <LoginTitle>
             <MainText>Login to your Account</MainText>
@@ -61,8 +63,8 @@ const Contents = styled.div`
 `;
 
 const LoginImg = styled.img`
-  width: 600px;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const LoginContent = styled.div`
@@ -90,4 +92,10 @@ const GoogleLogin = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 40px;
+`;
+
+const LogoImgBase = styled.div`
+  width: 600px;
+  height: 600px;
+  margin-top: 100px;
 `;

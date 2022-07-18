@@ -31,7 +31,6 @@ const ProfileDataImgBase = styled.div`
   width: 70px;
   height: 70px;
   background-color: #ffffff;
-
   border-radius: 10px;
   box-shadow: 5px 5px 5px lightgray;
 `;
@@ -44,12 +43,12 @@ const ProfileDataImg = styled.img`
 const ProfileDataInfo = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 15px;
+  margin: 10px 0 0 15px;
 `;
 
 const ProfileDataResult = styled.span`
   font-weight: 700;
-  font-size: 28px;
+  font-size: 20px;
 `;
 
 const ProfileDataName = styled.span`

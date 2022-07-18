@@ -20,15 +20,6 @@ const DashBoard = () => {
   const userData = useSelector(state => state.userData);
 
   useEffect(() => {
-    fetch('/data/dashboardData.json')
-      .then(res => res.json())
-      .then(data => {
-        setDataItem(data.ProfileData);
-        setQuizItem(data.CategoryData);
-      });
-  }, []);
-
-  useEffect(() => {
     fetch('https://backend.tecquiz.net/users/profile/', {
       headers: {
         access: localStorage.getItem('access'),
@@ -43,47 +34,101 @@ const DashBoard = () => {
       });
   }, []);
 
-  const chartData = {
-    // type: 'bar',
-    // data: {
-    //   labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-    //   datasets: [
-    //     {
-    //       label: "Population (millions)",
-    //       backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-    //       data: [2478,5267,734,784,433]
-    //     }
-    //   ]
-    // },
-    // options: {
-    //   legend: { display: false },
-    //   title: {
-    //     display: true,
-    //     text: 'Predicted world population (millions) in 2050'
-    //   }
-    // }
-    // FIX ME: 위에 값이 바 차트
+  const passChart =
+    userData.resultData.attempt === 0
+      ? {
+          labels: ['Attempt', 'Passed'],
+          datasets: [
+            {
+              data: [1],
+              backgroundColor: ['rgba(153, 153, 153, 0.7)'],
+              borderColor: ['rgba(255, 255, 255, 1)'],
+              borderWidth: 2,
+            },
+          ],
+        }
+      : {
+          datasets: [
+            {
+              labels: ['Attempt', 'Passed'],
+              data: [
+                userData.resultData.attempt,
+                userData.resultData.quiz_passed,
+              ],
+              backgroundColor: [
+                'rgba(153, 153, 153, 0.7)',
+                'rgba(102, 102, 102, 0.7)',
+              ],
+              borderColor: ['rgba(255, 255, 255, 1)'],
+              borderWidth: 2,
+            },
+          ],
+        };
 
-    labels: ['Quiz passed', 'Total time', 'Correct answer'],
-    datasets: [
+  const correctChart =
+    userData.resultData.attempt === 0
+      ? {
+          labels: ['Correct', 'Incorrect'],
+          datasets: [
+            {
+              data: [1],
+              backgroundColor: ['rgba(102, 102, 102, 0.7)'],
+              borderColor: ['rgba(255, 255, 255, 1)'],
+              borderWidth: 2,
+            },
+          ],
+        }
+      : {
+          labels: ['Correct', 'Incorrect'],
+          datasets: [
+            {
+              label: 'resultData',
+              data: [
+                userData.resultData.correct_answer,
+                userData.resultData.attempt * 10 -
+                  userData.resultData.correct_answer,
+              ],
+              backgroundColor: [
+                'rgba(153, 153, 153, 0.7)',
+                'rgba(102, 102, 102, 0.7)',
+              ],
+              borderColor: ['rgba(255, 255, 255, 1)'],
+              borderWidth: 2,
+            },
+          ],
+        };
+
+  const DASHBOARDDATA = {
+    ProfileData: [
       {
-        label: 'resultData',
-        data: [
-          userData.resultData.quiz_passed,
-          userData.resultData.total_time,
-          userData.resultData.correct_answer,
-        ],
-        backgroundColor: [
-          'rgba(126, 206, 252, 0.2)',
-          'rgba(255, 77, 51, 0.2)',
-          'rgba(200, 11, 50, 2)',
-        ],
-        borderColor: [
-          'rgba(126, 206, 252, 1)',
-          'rgba(255, 77, 51, 1)',
-          'rgba(200, 11, 51, 1)',
-        ],
-        borderWidth: 1,
+        id: 1,
+        dataImg: '/images/quizpass.svg',
+        dataName: 'Quiz Passed',
+        dataResult: userData.resultData.quiz_passed,
+      },
+      {
+        id: 2,
+        dataImg: '/images/fastest.svg',
+        dataName: 'Fastest Time',
+        dataResult: userData.resultData.total_time,
+      },
+      {
+        id: 3,
+        dataImg: '/images/correct.svg',
+        dataName: 'Correct Answers',
+        dataResult: userData.resultData.correct_answer,
+      },
+    ],
+    CategoryData: [
+      {
+        id: 1,
+        CategoryImg: '/images/selectQuiz/backimg.png',
+        CategoryName: 'Back-end',
+      },
+      {
+        id: 2,
+        CategoryImg: '/images/selectQuiz/frontimg.png',
+        CategoryName: 'Front-end',
       },
     ],
   };
@@ -101,8 +146,8 @@ const DashBoard = () => {
           </ProfileText>
           <DataChart />
           <ProfileDataContainer>
-            {dataItem &&
-              dataItem.map(profileData => {
+            {DASHBOARDDATA.ProfileData &&
+              DASHBOARDDATA.ProfileData.map(profileData => {
                 return <ProfileData key={profileData.id} {...profileData} />;
               })}
           </ProfileDataContainer>
@@ -114,7 +159,8 @@ const DashBoard = () => {
           <RankingTitle>Data chart</RankingTitle>
           <RankingPerson>
             <ChartWrap>
-              <Doughnut data={chartData} />
+              <Doughnut data={passChart} />
+              <Doughnut data={correctChart} />
             </ChartWrap>
           </RankingPerson>
           {/* <RenkingPersonView>랭킹 뷰 버튼</RenkingPersonView> */}
@@ -124,8 +170,8 @@ const DashBoard = () => {
           {/* <QuizCategoryView>카테고리 뷰</QuizCategoryView> */}
           {/* <QuizCategorySelect /> */}
           <SelectQuizContainer>
-            {quizItem &&
-              quizItem.map(quizData => {
+            {DASHBOARDDATA.CategoryData &&
+              DASHBOARDDATA.CategoryData.map(quizData => {
                 return <SelectQuiz key={quizData.id} {...quizData} />;
               })}
           </SelectQuizContainer>
@@ -188,28 +234,20 @@ const DataChart = styled.div`
   background-color: #c4c4c4;
   border-radius: 50px;
 `;
-
 const ProfileDataContainer = styled.ul`
   display: flex;
 `;
 
 const Content = styled.div`
   display: flex;
-  margin-top: 40px;
+  margin-top: 80px;
   @media (min-width: 1793px) {
     margin-top: 100px;
   }
 `;
 
 const Ranking = styled.div`
-  width: 280px;
-`;
-
-const RankingPerson = styled.div`
-  /* width: 470px; */
-  height: 255px;
-  /* border-radius: 30px;
-  box-shadow: 3px 3px 3px lightgray; */
+  width: 350px;
 `;
 
 const RankingTitle = styled.div`
@@ -219,24 +257,32 @@ const RankingTitle = styled.div`
   margin-bottom: 15px;
 `;
 
+const ChartWrap = styled.div`
+  display: flex;
+  width: 175px;
+  margin-top: 50px;
+  @media (min-width: 1793px) {
+    width: 260px;
+  }
+`;
+
+const RankingPerson = styled.div`
+  /* width: 470px; */
+  height: 255px;
+  /* border-radius: 30px;
+  box-shadow: 3px 3px 3px lightgray; */
+`;
+
 const QuizCategory = styled.div`
-  margin-left: 60px;
+  margin-left: 80px;
 `;
 
 const QuizCategoryTitle = styled(RankingTitle)``;
 
 const SelectQuizContainer = styled.div`
-  ${flex('space-around', 'center')}
-  width:470px;
+  ${flex('space-between', 'center')}
+  width: 530px;
   height: 255px;
   @media (min-width: 1793px) {
-  }
-`;
-
-const ChartWrap = styled.div`
-  display: flex;
-  width: 220px;
-  @media (min-width: 1793px) {
-    width: 260px;
   }
 `;
