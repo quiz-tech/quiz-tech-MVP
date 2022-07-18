@@ -11,7 +11,9 @@ const SelectQuiz = ({ ...quizData }) => {
 
   return (
     <SelectQuizContainer onClick={goToQuiz}>
-      <QuizImg src={quizData.CategoryImg} alt="퀴즈선택사진" />
+      <QuizImgBase>
+        <QuizImg src={quizData.CategoryImg} alt="퀴즈선택사진" />
+      </QuizImgBase>
       <QuizName>{quizData.CategoryName}</QuizName>
     </SelectQuizContainer>
   );
@@ -22,14 +24,19 @@ export default SelectQuiz;
 const SelectQuizContainer = styled.button`
   ${flex('center', 'center')}
   flex-direction: column;
-  width: 100px;
-  height: 100px;
-  margin: 0 30px;
+  width: 240px;
+  height: 170px;
   border-radius: 30px;
+  box-shadow: 5px 5px 5px lightgray;
   @media (min-width: 1792px) {
     width: 150px;
     height: 150px;
   }
+`;
+
+const QuizImgBase = styled.div`
+  width: 75px;
+  height: 75px;
 `;
 
 const QuizImg = styled.img`
@@ -38,7 +45,7 @@ const QuizImg = styled.img`
 `;
 
 const QuizName = styled.span`
-  margin-top: 15px;
+  margin-top: 10px;
   font-weight: 400;
   font-size: 17px;
   @media (min-width: 1792px) {

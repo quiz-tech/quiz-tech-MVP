@@ -15,11 +15,11 @@ const ContentItem = ({ ...contentData }) => {
           confirmButtonColor: '#000',
           confirmButtonText: '확인',
         })
-      : navigate(`${name}`);
+      : navigate(`/${name}`.toLowerCase());
   };
 
   return (
-    <Content onClick={() => NavigateContent(contentData.navigateUri)}>
+    <Content onClick={() => NavigateContent(contentData.contentName)}>
       <ContentBox>
         <ContentImg src={contentData.contentImg} alt="카테고리사진" />
         <ContentText>{contentData.contentName}</ContentText>

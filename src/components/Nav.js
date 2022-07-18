@@ -120,6 +120,7 @@ const SearchImg = styled.img`
 
 const SearchInput = styled.input`
   width: 100%;
+  margin-left: 15px;
   font-size: 20px;
   border: none;
   outline: none;
@@ -150,7 +151,7 @@ const UserImg = styled.img`
 `;
 
 const UserName = styled.span`
-  font-size: 17px;
-  margin-left: 20px;
+  font-size: 22px;
+  margin: 10px 10px 0 20px;
   color: #696f79;
 `;
