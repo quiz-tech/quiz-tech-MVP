@@ -61,7 +61,7 @@ const List = () => {
     <>
       <ContentWrap>
         <ContentLeft>
-          <Title>내 기록 전체 보기</Title>
+          <Title>My Records</Title>
           <ChartWrap>
             <Doughnut data={data} />
           </ChartWrap>
