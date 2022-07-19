@@ -14,4 +14,5 @@ const Wrapper = styled.div`
   background-color: #ffffff;
   border-radius: 30px;
   box-shadow: 3px 3px 3px lightgray;
+  overflow: hidden;
 `;

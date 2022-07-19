@@ -155,7 +155,6 @@ const QuestionIndex = styled.p`
   font-weight: 600;
   font-size: 23px;
   line-height: 34px;
-  margin-top: 36px;
 `;
 
 const QuestionExplanation = styled.p`

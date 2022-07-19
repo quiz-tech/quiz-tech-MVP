@@ -11,21 +11,21 @@ const Nav = () => {
   const [userProfile, setUserProfile] = useState({});
   const [userData, setUserData] = useState({});
 
-  useEffect(() => {
-    localStorage.getItem('access')
-      ? fetch('https://backend.tecquiz.net/users/profile/', {
-          headers: {
-            access: localStorage.getItem('access'),
-            refresh: localStorage.getItem('refresh'),
-          },
-        })
-          .then(res => res.json())
-          .then(data => {
-            setUserProfile(data[0]);
-            setUserData(data[0].rank_set[0]);
-          })
-      : navigate('/');
-  }, []);
+  // useEffect(() => {
+  //   localStorage.getItem('access')
+  //     ? fetch('https://backend.tecquiz.net/users/profile/', {
+  //         headers: {
+  //           access: localStorage.getItem('access'),
+  //           refresh: localStorage.getItem('refresh'),
+  //         },
+  //       })
+  //         .then(res => res.json())
+  //         .then(data => {
+  //           setUserProfile(data[0]);
+  //           setUserData(data[0].rank_set[0]);
+  //         })
+  //     : navigate('/');
+  // }, []);
 
   const goToDashboard = () => {
     navigate('/dashboard');

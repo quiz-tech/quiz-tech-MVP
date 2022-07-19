@@ -9,26 +9,26 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (localStorage.getItem('access')) {
-      return navigate('/dashboard');
-    }
+  // useEffect(() => {
+  //   if (localStorage.getItem('access')) {
+  //     return navigate('/dashboard');
+  //   }
 
-    fetch('https://backend.tecquiz.net/users/login/', {
-      headers: {
-        Authorization: auth.credential,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        localStorage.setItem('access', data[0].jwt_token.access);
-        localStorage.setItem('refresh', data[0].jwt_token.refresh);
-        localStorage.getItem('access')
-          ? navigate('/dashboard')
-          : alert('다시 로그인을 진행해주세요.');
-      });
-  }, [auth, navigate]);
+  //   fetch('https://backend.tecquiz.net/users/login/', {
+  //     headers: {
+  //       Authorization: auth.credential,
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       localStorage.setItem('access', data[0].jwt_token.access);
+  //       localStorage.setItem('refresh', data[0].jwt_token.refresh);
+  //       localStorage.getItem('access')
+  //         ? navigate('/dashboard')
+  //         : alert('다시 로그인을 진행해주세요.');
+  //     });
+  // }, [auth, navigate]);
 
   return (
     <LoginContainer>

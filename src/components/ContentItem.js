@@ -7,7 +7,7 @@ const ContentItem = ({ ...contentData }) => {
   const navigate = useNavigate();
 
   const NavigateContent = name => {
-    name !== '/dashboard'
+    name !== 'Dashboard'
       ? Swal.fire({
           text: '아직 서비스가 지원되지 않습니다.',
           icon: 'info',
