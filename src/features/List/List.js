@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -90,7 +91,21 @@ const List = () => {
           <CardList>
             {quizInfo &&
               quizInfo.map(card => (
-                <Card key={card.id} onClick={() => goToCard(card.id)}>
+                <Card
+                  key={card.id}
+                  cardName={card.name}
+                  onClick={() => {
+                    card.id !== 5 && goToCard(card.id);
+                    card.id === 5 &&
+                      Swal.fire({
+                        text: '아직 서비스가 지원되지 않습니다.',
+                        icon: 'info',
+                        iconColor: '#484848',
+                        confirmButtonColor: '#000',
+                        confirmButtonText: '확인',
+                      });
+                  }}
+                >
                   <CardImg src={card.image} alt={card.name} />
                 </Card>
               ))}
@@ -114,20 +129,20 @@ export const SubTitle = styled.p`
 `;
 
 const ContentWrap = styled.div`
-  @media (max-width: 1700px) {
+  @media (max-width: 1793px) {
     display: flex;
   }
 `;
 
 const ContentLeft = styled.div`
-  @media (max-width: 1700px) {
+  @media (max-width: 1793px) {
     padding-right: 50px;
     border-right: 1px solid #e9e9e9;
   }
 `;
 
 const ContentRight = styled.div`
-  @media (max-width: 1700px) {
+  @media (max-width: 1793px) {
     margin-left: 50px;
     padding: 0 20px;
   }
@@ -139,7 +154,7 @@ const CardList = styled.ul`
   margin-top: 70px;
   max-height: 350px;
   overflow-y: auto;
-  @media (max-width: 1700px) {
+  @media (max-width: 1793px) {
     max-height: 350px;
   }
 `;
@@ -156,11 +171,13 @@ const Card = styled.li`
   &:last-child {
     margin-right: 0;
   }
-  @media (max-width: 1700px) {
+  @media (max-width: 1793px) {
     width: 160px;
     height: 130px;
     border-radius: 20px;
   }
+
+  cursor: pointer;
 `;
 
 const CardImg = styled.img`
@@ -185,7 +202,7 @@ const ChartWrap = styled.div`
   width: 300px;
   height: 300px;
   margin-bottom: 50px;
-  @media (max-width: 1700px) {
+  @media (max-width: 1793px) {
     margin-top: 80px;
     margin-bottom: 0;
   }

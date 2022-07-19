@@ -46,7 +46,7 @@ export default Timer;
 
 const TimerText = styled.p`
   position: absolute;
-  top: 24px;
+  top: 30px;
   right: 45px;
   font-weight: 700;
   font-size: 33px;

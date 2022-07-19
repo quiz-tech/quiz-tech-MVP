@@ -22,8 +22,7 @@ const Result = () => {
   return (
     <>
       <Title>Quiz Result</Title>
-      <SubTitle>You can see it by pressing</SubTitle>
-      <ListTitle>Your Quiz</ListTitle>
+      <SubTitle>Click on the question to check your answer</SubTitle>
       <ListContainer>
         {answers.map((answer, idx) => {
           return (

@@ -28,7 +28,7 @@ const SelectQuizContainer = styled.button`
   height: 170px;
   border-radius: 30px;
   box-shadow: 5px 5px 5px lightgray;
-  @media (min-width: 1792px) {
+  @media (min-width: 1793px) {
     width: 150px;
     height: 150px;
   }
@@ -48,7 +48,7 @@ const QuizName = styled.span`
   margin-top: 10px;
   font-weight: 400;
   font-size: 17px;
-  @media (min-width: 1792px) {
+  @media (min-width: 1793px) {
     font-size: 20px;
   }
 `;

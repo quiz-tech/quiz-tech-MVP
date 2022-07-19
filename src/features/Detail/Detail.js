@@ -45,7 +45,7 @@ const Detail = () => {
             <InfoText>10 MIN</InfoText>
           </Info>
           <Info>
-            <InfoTitle>Quiz Account</InfoTitle>
+            <InfoTitle>Total Questions</InfoTitle>
             <InfoText>10</InfoText>
           </Info>
         </ThumbnailInfo>
@@ -76,7 +76,7 @@ const ThumbnailWrap = styled.div`
   border-radius: 30px;
   background: #c9c9c9;
   overflow: hidden;
-  @media (max-width: 1792px) {
+  @media (max-width: 1793px) {
     width: 300px;
     height: 240px;
   }
@@ -118,7 +118,7 @@ const TextBold = styled.span`
 
 const IntroText = styled.div`
   margin-top: 100px;
-  @media (max-width: 1792px) {
+  @media (max-width: 1793px) {
     margin-top: 50px;
   }
 `;
