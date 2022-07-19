@@ -17,9 +17,9 @@ const List = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  // const answerChart = useSelector(
-  //   state => state.userData.userProfile.rank_set[0]
-  // );
+  const answerChart = useSelector(
+    state => state.userData.userProfile.rank_set[0]
+  );
 
   useEffect(() => {
     fetch(
@@ -28,15 +28,15 @@ const List = () => {
       .then(res => res.json())
       .then(data => setQuizInfo(data));
   }, [params.id]);
-  console.log(quizInfo);
-  // useEffect(() => {
-  //   const fail = answerChart.attempt * 10 - answerChart.correct_answer;
-  //   setTotalAnswer(prev => ({
-  //     ...prev,
-  //     success: answerChart.correct_answer,
-  //     fail: fail,
-  //   }));
-  // }, [answerChart.attempt, answerChart.correct_answer]);
+
+  useEffect(() => {
+    const fail = answerChart.attempt * 10 - answerChart.correct_answer;
+    setTotalAnswer(prev => ({
+      ...prev,
+      success: answerChart.correct_answer,
+      fail: fail,
+    }));
+  }, [answerChart.attempt, answerChart.correct_answer]);
 
   const goToCard = id => {
     navigate(`/detail/${id}`);
