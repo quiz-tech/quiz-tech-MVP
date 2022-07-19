@@ -150,8 +150,10 @@ const UserImg = styled.img`
   vertical-align: middle;
 `;
 
-const UserName = styled.span`
+const UserName = styled.div`
+  display: line-block;
   font-size: 22px;
-  margin: 10px 10px 0 20px;
+  margin: 0 10px 0 20px;
+  padding-top: 10px;
   color: #696f79;
 `;

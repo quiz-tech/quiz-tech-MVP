@@ -19,6 +19,7 @@ const List = () => {
   const answerChart = useSelector(
     state => state.userData.userProfile.rank_set[0]
   );
+
   useEffect(() => {
     fetch(
       `https://backend.tecquiz.net/questions/${params.id}/category/?format=json`
@@ -41,21 +42,39 @@ const List = () => {
   };
 
   const goToDashBoard = () => {
-    navigate('/');
+    navigate('/dashboard');
   };
 
-  const data = {
-    labels: ['정답 횟수', '오답 횟수'],
-    datasets: [
-      {
-        label: '# of Votes',
-        data: [totalAnswer.success, totalAnswer.fail],
-        backgroundColor: ['rgba(126, 206, 252, 0.2)', 'rgba(255, 77, 51, 0.2)'],
-        borderColor: ['rgba(126, 206, 252, 1)', 'rgba(255, 77, 51, 1)'],
-        borderWidth: 1,
-      },
-    ],
-  };
+  const data =
+    answerChart.correct_answer === 0
+      ? {
+          labels: ['Correct', 'Incorrect'],
+          datasets: [
+            {
+              data: [1, 1],
+              backgroundColor: [
+                'rgba(000, 102, 000,0.8)',
+                'rgba(153, 255, 153,1)',
+              ],
+              borderColor: ['rgba(255, 255, 255, 1)'],
+              borderWidth: 2,
+            },
+          ],
+        }
+      : {
+          labels: ['Correct', 'Incorrect'],
+          datasets: [
+            {
+              data: [totalAnswer.success, totalAnswer.fail],
+              backgroundColor: [
+                'rgba(000, 102, 000,0.8)',
+                'rgba(153, 255, 153,1)',
+              ],
+              borderColor: ['rgba(255, 255, 255, 1)'],
+              borderWidth: 2,
+            },
+          ],
+        };
 
   return (
     <>

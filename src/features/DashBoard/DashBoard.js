@@ -11,8 +11,6 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DashBoard = () => {
-  const [dataItem, setDataItem] = useState([]);
-  const [quizItem, setQuizItem] = useState([]);
   const [dashboardData, setDashboardData] = useState({});
 
   const dispatch = useDispatch();
@@ -40,25 +38,22 @@ const DashBoard = () => {
           labels: ['Attempt', 'Passed'],
           datasets: [
             {
-              data: [1],
-              backgroundColor: ['rgba(153, 153, 153, 0.7)'],
+              data: [1, 1],
+              backgroundColor: ['rgb(255, 91, 0,0.5)', 'rgba(250, 85, 85,0.9)'],
               borderColor: ['rgba(255, 255, 255, 1)'],
               borderWidth: 2,
             },
           ],
         }
       : {
+          labels: ['Attempt', 'Passed'],
           datasets: [
             {
-              labels: ['Attempt', 'Passed'],
               data: [
                 userData.resultData.attempt,
                 userData.resultData.quiz_passed,
               ],
-              backgroundColor: [
-                'rgba(153, 153, 153, 0.7)',
-                'rgba(102, 102, 102, 0.7)',
-              ],
+              backgroundColor: ['rgb(255, 91, 0,0.5)', 'rgba(250, 85, 85,0.9)'],
               borderColor: ['rgba(255, 255, 255, 1)'],
               borderWidth: 2,
             },
@@ -71,8 +66,11 @@ const DashBoard = () => {
           labels: ['Correct', 'Incorrect'],
           datasets: [
             {
-              data: [1],
-              backgroundColor: ['rgba(102, 102, 102, 0.7)'],
+              data: [1, 1],
+              backgroundColor: [
+                'rgba(36, 47, 155, 0.7)',
+                'rgba(71, 181, 255, 0.7)',
+              ],
               borderColor: ['rgba(255, 255, 255, 1)'],
               borderWidth: 2,
             },
@@ -89,8 +87,8 @@ const DashBoard = () => {
                   userData.resultData.correct_answer,
               ],
               backgroundColor: [
-                'rgba(153, 153, 153, 0.7)',
-                'rgba(102, 102, 102, 0.7)',
+                'rgba(36, 47, 155, 0.7)',
+                'rgba(71, 181, 255, 0.7)',
               ],
               borderColor: ['rgba(255, 255, 255, 1)'],
               borderWidth: 2,
@@ -109,7 +107,7 @@ const DashBoard = () => {
       {
         id: 2,
         dataImg: '/images/fastest.svg',
-        dataName: 'Fastest Time',
+        dataName: 'Total Time',
         dataResult: userData.resultData.total_time,
       },
       {
