@@ -144,16 +144,17 @@ const UserProfile = styled.div`
 `;
 
 const UserImg = styled.img`
+  display: inline-block;
   width: 50px;
   height: 50px;
   border-radius: 45px;
-  vertical-align: middle;
+  vertical-align: top;
 `;
 
 const UserName = styled.div`
-  display: line-block;
+  display: inline-block;
   font-size: 22px;
   margin: 0 10px 0 20px;
-  padding-top: 10px;
+  padding-top: 15px;
   color: #696f79;
 `;
