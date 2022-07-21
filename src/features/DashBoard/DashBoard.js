@@ -239,9 +239,9 @@ const ProfileDataContainer = styled.ul`
 const Content = styled.div`
   display: flex;
   margin-top: 80px;
-  @media (min-width: 1793px) {
+  /* @media (min-width: 1793px) {
     margin-top: 100px;
-  }
+  } */
 `;
 
 const Ranking = styled.div`
@@ -259,9 +259,9 @@ const ChartWrap = styled.div`
   display: flex;
   width: 175px;
   margin-top: 50px;
-  @media (min-width: 1793px) {
+  /* @media (min-width: 1793px) {
     width: 260px;
-  }
+  } */
 `;
 
 const RankingPerson = styled.div`
@@ -281,6 +281,6 @@ const SelectQuizContainer = styled.div`
   ${flex('space-between', 'center')}
   width: 530px;
   height: 255px;
-  @media (min-width: 1793px) {
-  }
+  /* @media (min-width: 1793px) {
+  } */
 `;
