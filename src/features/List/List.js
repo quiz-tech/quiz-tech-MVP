@@ -129,23 +129,23 @@ export const SubTitle = styled.p`
 `;
 
 const ContentWrap = styled.div`
-  /* @media (max-width: 1793px) {
+  @media (max-width: 1793px) {
     display: flex;
-  } */
+  }
 `;
 
 const ContentLeft = styled.div`
-  /* @media (max-width: 1793px) {
+  @media (max-width: 1793px) {
     padding-right: 50px;
     border-right: 1px solid #e9e9e9;
-  } */
+  }
 `;
 
 const ContentRight = styled.div`
-  /* @media (max-width: 1793px) {
+  @media (max-width: 1793px) {
     margin-left: 50px;
     padding: 0 20px;
-  } */
+  }
 `;
 
 const CardList = styled.ul`
@@ -154,9 +154,9 @@ const CardList = styled.ul`
   margin-top: 70px;
   max-height: 350px;
   overflow-y: auto;
-  /* @media (max-width: 1793px) {
+  @media (max-width: 1793px) {
     max-height: 350px;
-  } */
+  }
 `;
 
 const Card = styled.li`
@@ -171,11 +171,11 @@ const Card = styled.li`
   &:last-child {
     margin-right: 0;
   }
-  /* @media (max-width: 1793px) {
+  @media (max-width: 1793px) {
     width: 160px;
     height: 130px;
     border-radius: 20px;
-  } */
+  }
 
   cursor: pointer;
 `;
@@ -202,8 +202,8 @@ const ChartWrap = styled.div`
   width: 300px;
   height: 300px;
   margin-bottom: 50px;
-  /* @media (max-width: 1793px) {
+  @media (max-width: 1793px) {
     margin-top: 80px;
     margin-bottom: 0;
-  } */
+  }
 `;
