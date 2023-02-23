@@ -9,7 +9,7 @@
 <br>
 
 ### 📌개발 기간 및 인원
-개발기간 : 2022/6/20 ~ 현재 진행중 
+개발기간 : 2022/6/20 ~ [ 서비스 리뉴얼을 위한 중단 ]
 개발 인원 : 5명
 
 
@@ -25,9 +25,9 @@
 ### 📌적용 기술 및 구현 기능
 
 #### 적용 기술
-* Front-End : React.js, Redux-toolkit, Styled Components, AWS
+* Front-End : React.js, Redux-toolkit, Styled Components, AWS EC2 
 
-* Back-End : Python, Django, DRF, AWS
+* Back-End : Python, Django, DRF, AWS 
 
 #### 소통 툴
 * Git, Github, Slack, jira
